@@ -1,61 +1,217 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovementController : MonoBehaviour
 {
     //Get Character Properties
     private Transform Player;
     private CharacterController CharController;
-    private Camera PlayerCam;
+    public Camera PlayerCam;
+    public Image dashIconIMG;
+    public Image dashCooldownIMG;
+    public Image filledHealthbarIMG;
+    public Text dashCooldownText;
+    public Text interactText;
+    public Text HealthNumText;
+    public Text RespawningText;
+    private Shooting shootingScript;
+    private GameObject DodgeballInstance;
+    private Target PlayerHealth;
+    private GameObject[] SpawnPointList;
+
+    public GameObject DodgeballPrefab;
+    public Transform BallCarrierTransform;
+
+    private bool isDashCooldown;
 
     //Initialize Variables
+    private float vertical;
+    private float horizontal;
+    private float LeftAnalogX;
+    private float LeftAnalogY;
     private float velocityY;
+    private Vector3 movement;
     private Vector3 currentImpact;
     public float moveSpeed = 5f;
     public float mass = 1f;
     public float damping = 5f;
-    public float edgeUpForce = 5f;
+    private float edgeUpForce = 15f;
     public float climbSpeed = 100f;
     public float jumpForce = 4f;
+    public float dashForce = 4f;
+    public float dashCooldown = 5f;
+    private float dashCountdownUI;
+    private float nextDash;
     private float gravity = Physics.gravity.y;
-    private float distWall = 1f;
-    private bool jumping = false;
-    private bool isClimbing = false;
+    private float distWall = 0.6f;
+    public bool isClimbing = false;
+    private bool isFalling = false;
+    private bool isRespawning = false;
+    public bool inHand = true;
+    private bool inHandStored = false;
+    public float climbWallTimer = 1f;
+    private float tempClimbTimer;
+    private float respawnTimer = 1f;
+    private float tempRespawnTimer;
+    public int tempRandomNum;
+    private int PlayerID;
+
+    private float forwardMovement;
+    private float horizontalMovement;
+
+    private int doubleJumpCheck = 0;
+
+    //ControllerStrings
+    private string LeftAnalogXString;
+    private string LeftAnalogYString;
+    private string ControllerJumpString;
+    private string ControllerDashString;
+    private string ControllerLoadString;
+    private string ControllerInteractString;
 
     private void Start()
     {
+        PlayerID = GetComponentInParent<PlayerRootInfo>().PlayerID;
+
+        if (PlayerID == 1)
+        {
+            GetComponent<Renderer>().material.color = Color.red;
+        }
+        else if (PlayerID == 2)
+        {
+            GetComponent<Renderer>().material.color = Color.blue;
+        }
+        else if (PlayerID == 3)
+        {
+            GetComponent<Renderer>().material.color = Color.green;
+        }
+        else
+        {
+            GetComponent<Renderer>().material.color = Color.magenta;
+        }
+
+        //Set Controller Strings
+        LeftAnalogXString = "LeftAnalogX" + PlayerID.ToString();
+        LeftAnalogYString = "LeftAnalogY" + PlayerID.ToString();
+        ControllerJumpString = "ControllerJump" + PlayerID.ToString();
+        ControllerDashString = "ControllerDash" + PlayerID.ToString();
+        ControllerLoadString = "ControllerLoad" + PlayerID.ToString();
+        ControllerInteractString = "ControllerInteract" + PlayerID.ToString();
+        SpawnPointList = GameObject.FindGameObjectsWithTag("PlayerSpawn");
+
         //Set Components to Variables at Start of Script
         Player = GetComponent<Transform>();
         CharController = GetComponent<CharacterController>();
-        PlayerCam = GetComponentInChildren<Camera>();
+        shootingScript = GetComponentInParent<Shooting>();
+        PlayerHealth = GetComponent<Target>();
+
+        tempClimbTimer = climbWallTimer;
+        tempRespawnTimer = respawnTimer;
+
+        dashCountdownUI = dashCooldown + 1;
+    }
+
+    //Any Input(Keyboard or Mouse) should be in Update function
+    private void Update()
+    {
+        //Checks if Player is on the ground, if true set Y Velocity to 0
+        if (CharController.isGrounded && velocityY < 0f)
+        {
+            doubleJumpCheck = 0;
+            isClimbing = false;
+            isFalling = false;
+            //inHandStored = inHand;
+            tempClimbTimer = climbWallTimer;
+            tempRespawnTimer = respawnTimer;
+            velocityY = 0f;
+        }
+
+        //Get Input from Horizontal and Vertical Axis and store them in variables
+        if (Input.GetAxisRaw("Vertical") != 0)
+        {
+            vertical = Input.GetAxisRaw("Vertical");
+            forwardMovement = vertical;
+        }
+        else
+        {
+            LeftAnalogY = Input.GetAxisRaw(LeftAnalogYString);
+            forwardMovement = LeftAnalogY;
+        }
+
+        if (isClimbing == false)
+        {
+            if (Input.GetAxisRaw("Horizontal") != 0)
+            {
+                horizontal = Input.GetAxisRaw("Horizontal");
+                horizontalMovement = horizontal;
+            }
+            else
+            {
+                LeftAnalogX = Input.GetAxisRaw(LeftAnalogXString);
+                horizontalMovement = LeftAnalogX;
+            }
+            Dash();
+        }
+
+        /*This is so that when you press W and A at the same time for instance, the player doesn't become faster,
+        it remains the same speed*/
+        if (forwardMovement != 0 && horizontalMovement != 0)
+        {
+            forwardMovement *= 0.7071f;
+            horizontalMovement *= 0.7071f;
+        }
+
+        //Jump pls
+        Jump();
+        ClimbWall();
+        LoadDodgeball();
+
+        if (isDashCooldown)
+        {
+            dashIconIMG.color = new Color(dashIconIMG.color.r, dashIconIMG.color.g, dashIconIMG.color.b, 1f);
+            dashCooldownIMG.fillAmount += 1 / dashCooldown * Time.deltaTime;
+            dashCountdownUI -= Time.deltaTime;
+            if (dashCooldownIMG.fillAmount >= 1)
+            {
+                dashCountdownUI = 0;
+                dashCooldownIMG.fillAmount = 0;
+                dashCountdownUI = dashCooldown + 1;
+                dashCooldownText.text = "";
+                isDashCooldown = false;
+            }
+            else
+            {
+                dashIconIMG.color = new Color(dashIconIMG.color.r, dashIconIMG.color.g, dashIconIMG.color.b, 0.1f);
+                dashCooldownText.text = dashCountdownUI.ToString();
+            }
+        }
     }
 
     //All Physics and Movement should be handled in FixedUpdate()
     private void FixedUpdate()
     {
-        //Get Input from Horizontal and Vertical Axis and store them in variables
-        float vertical = Input.GetAxis("Vertical");
-        float horizontal = Input.GetAxis("Horizontal");
-
         //Create a Vector to store the overall movement
-        Vector3 movement = new Vector3(horizontal, 0, vertical);
+        movement = new Vector3(horizontalMovement, 0, forwardMovement);
+        Vector3 velocity;
 
         /*Takes the movement vector and converts the position from Local Space to World Space and stores 
         it back in the movement variable*/
         movement = transform.TransformDirection(movement);
 
-        //Checks if Player is on the ground, if true set Y Velocity to 0
-        if (CharController.isGrounded && velocityY < 0f)
-        {
-            velocityY = 0f;
-        }
-
         //Calculates gravity and stores it in variable
         velocityY += gravity * Time.deltaTime;
 
         //Vector which stores the overall effect of gravity on the Character's position
-        Vector3 velocity = movement * moveSpeed + Vector3.up * velocityY;
+        if (inHand == true)
+        {
+            velocity = movement * moveSpeed + Vector3.up * velocityY;
+        }
+        else
+        {
+            velocity = movement * moveSpeed * 1.5f + Vector3.up * velocityY;
+        }
 
         //sets the velocity to take all forces into account
         if (currentImpact.magnitude > 0.2f)
@@ -63,22 +219,19 @@ public class PlayerMovementController : MonoBehaviour
             velocity += currentImpact;
         }
 
+        if (DodgeballInstance != null)
+        {
+            DodgeballInstance.transform.position = BallCarrierTransform.position;
+        }
+
         //Takes the velocity and actually moves the Character
-        CharController.Move(velocity * Time.deltaTime);
+        if (isRespawning == false)
+        {
+            CharController.Move(velocity * Time.fixedDeltaTime);
+        }
 
         //Interpolates the effects of forces for smooth movement
         currentImpact = Vector3.Lerp(currentImpact, Vector3.zero, damping * Time.deltaTime);
-
-        /*This is so that when you press W and A at the same time for instance, the player doesn't become faster,
-        it remains the same speed*/
-        if (vertical != 0 && horizontal != 0)
-        {
-            vertical *= 0.7071f;
-            horizontal *= 0.7071f;
-        }
-
-        //Jump pls
-        Jump();
     }
 
     //Resets all forces
@@ -99,27 +252,77 @@ public class PlayerMovementController : MonoBehaviour
     private void Jump()
     {
         //Checks if Space was pressed
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") || Input.GetButtonDown(ControllerJumpString))
         {
-            //Performs a raycast that travels in the direction the character is facing
-            RaycastHit hit;
-            //This returns true if the distance to the wall is less than or equal to distWall
-            if (Physics.Raycast(transform.position, transform.forward, out hit, distWall))
-            {
-                //Checks if the wall infront has the Climable script
-                if (hit.collider.GetComponent<Climable>() != null)
-                {
-                    //Performs climbing mechanic Coroutine
-                    StartCoroutine(Climb(hit.collider));
-                    return;
-                }
-            }
-
+            doubleJumpCheck++;
             //Checks if player is on the ground, if true then character can jump
-            if (CharController.isGrounded)
+            if (doubleJumpCheck <= 2)
             {
                 //Custom AddForce function which applies jumpForce in the upward direction
                 AddForce(Vector3.up, jumpForce);
+                if (doubleJumpCheck == 2)
+                {
+                    AddForce(Vector3.up, jumpForce * 1.5f);
+                }
+            }
+        }
+    }
+
+    private void Dash()
+    {
+        if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetAxisRaw(ControllerDashString) > 0) && Time.time > nextDash)
+        {
+            isDashCooldown = true;
+            nextDash = Time.time + dashCooldown;
+            AddForce(PlayerCam.transform.forward, dashForce);
+        }
+    }
+
+    private void LoadDodgeball()
+    {
+        if (Input.GetKeyDown(KeyCode.R) || Input.GetButtonDown(ControllerLoadString))
+        {
+            if (shootingScript.DodgeballsInHand != 0 && inHand == false)
+            {
+                inHand = true;
+                DodgeballInstance = Instantiate(DodgeballPrefab, BallCarrierTransform.position, BallCarrierTransform.rotation);
+            }
+            else if (shootingScript.DodgeballsInHand != 0 && inHand == true)
+            {
+                inHand = false;
+                inHandStored = inHand;
+                Destroy(DodgeballInstance);
+            }
+        }
+        else if (shootingScript.DodgeballsInHand == 0)
+        {
+            if (inHand == false)
+            {
+                if (DodgeballInstance != null)
+                {
+                    Destroy(DodgeballInstance);
+                }
+            }
+            else if (inHand == true)
+            {
+                if (inHandStored != true)
+                {
+                    inHandStored = inHand;
+                    inHand = false;
+                }
+                inHand = false;
+            }
+        }
+        else if (shootingScript.DodgeballsInHand != 0)
+        {
+            if (DodgeballInstance == null && inHandStored == true && isClimbing == false)
+            {
+                DodgeballInstance = Instantiate(DodgeballPrefab, BallCarrierTransform.position, BallCarrierTransform.rotation);
+                inHand = true;
+            }
+            else if (DodgeballInstance != null && inHand == false)
+            {
+                Destroy(DodgeballInstance);
             }
         }
     }
@@ -131,39 +334,111 @@ public class PlayerMovementController : MonoBehaviour
         currentImpact += direction.normalized * magnitude / mass;
     }
 
-    //Climb Mechanic
-    private IEnumerator Climb(Collider climableCollider)
+    private void ClimbWall()
     {
-        isClimbing = true;
-        while (Input.GetKey(KeyCode.Space))
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward, out hit, distWall))
         {
-            //Performs a raycast that travels in the direction the character is facing(Same as before)
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.forward, out hit, distWall))
+            if (hit.collider.tag == "Climable")
             {
-                //Checks if the wall is the same wall that was checked when Climb Coroutine was started
-                if (hit.collider == climableCollider)
+                if ((Input.GetAxisRaw("Vertical") > 0 || Input.GetAxisRaw(LeftAnalogYString) > 0) && (Input.GetButton("Jump") || Input.GetButton(ControllerJumpString)) && tempClimbTimer > 0)
                 {
+                    tempClimbTimer -= Time.deltaTime;
+                    ResetImpactY();
                     //Gives the Character movement on the Y axis to climb up the wall
                     CharController.Move(new Vector3(0f, climbSpeed * Time.deltaTime, 0f));
-                    yield return null;
+                    isClimbing = true;
+                    if (inHand == true)
+                    {
+                        inHandStored = inHand;
+                        inHand = false;
+                    }
                 }
-                //If it isn't, break
+                else if (tempClimbTimer <= 0)
+                {
+                    isClimbing = false;
+                    isFalling = true;
+                }
                 else
                 {
-                    break;
+                    isClimbing = false;
                 }
             }
-            //If there is no wall directly infront anymore, break
-            else
+        }
+        else if (isClimbing == true && isFalling == false && CharController.isGrounded == false)
+        {
+            //Resets Forces on the Y axis
+            ResetImpactY();
+            //This is to nudge the character above the ledge of the top of the wall
+            AddForce(Vector3.up, edgeUpForce);
+            tempClimbTimer = climbWallTimer;
+            isClimbing = false;
+            isFalling = false;
+            if (inHandStored)
             {
-                break;
+                inHand = true;
             }
         }
-        //Resets Forces on the Y axis
-        ResetImpactY();
-        //This is to nudge the character above the ledge of the top of the wall
-        AddForce(Vector3.up, edgeUpForce);
-        isClimbing = false;
+        else
+        {
+            tempClimbTimer = climbWallTimer;
+        }
+
+    }
+
+    private void OnTriggerStay(Collider collider)
+    {
+        if (collider.gameObject.tag == "Loot")
+        {
+            if (interactText.color.a != 1 && shootingScript.DodgeballsInHand != shootingScript.DodgeballCarryLimit)
+            {
+                interactText.color = new Color(interactText.color.r, interactText.color.g, interactText.color.b, 1f);
+            }
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown(ControllerInteractString))
+            {
+                if (shootingScript.DodgeballsInHand < shootingScript.DodgeballCarryLimit)
+                {
+                    shootingScript.DodgeballsInHand++;
+                    Destroy(collider.gameObject);
+                }
+                if (interactText.color.a != 0)
+                {
+                    interactText.color = new Color(interactText.color.r, interactText.color.g, interactText.color.b, 0f);
+                }
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider collider)
+    {
+        if (collider.gameObject.tag == "Loot")
+        {
+            if (interactText.color.a != 0)
+            {
+                interactText.color = new Color(interactText.color.r, interactText.color.g, interactText.color.b, 0f);
+            }
+        }
+    }
+
+    public IEnumerator Respawn()
+    {
+        isRespawning = true;
+        RespawningText.color = new Color(RespawningText.color.r, RespawningText.color.g, RespawningText.color.b, 1f);
+        tempRandomNum = Random.Range(0, SpawnPointList.Length - 1);
+        gameObject.GetComponent<MeshRenderer>().enabled = false;
+        gameObject.GetComponent<CharacterController>().enabled = false;
+        yield return new WaitForSeconds(3);
+        transform.position = SpawnPointList[tempRandomNum].transform.position;
+        transform.eulerAngles = SpawnPointList[tempRandomNum].transform.eulerAngles;
+        isRespawning = false;
+        shootingScript.DodgeballsInHand = 0;
+        nextDash = nextDash - dashCooldown;
+        isDashCooldown = true;
+        dashCooldownIMG.fillAmount = 1f;
+        RespawningText.color = new Color(RespawningText.color.r, RespawningText.color.g, RespawningText.color.b, 0f);
+        HealthNumText.text = PlayerHealth.originalHealth.ToString() + "/" + PlayerHealth.originalHealth.ToString();
+        filledHealthbarIMG.fillAmount = PlayerHealth.originalHealth / PlayerHealth.originalHealth;
+        gameObject.GetComponent<MeshRenderer>().enabled = true;
+        gameObject.GetComponent<CharacterController>().enabled = true;
     }
 }

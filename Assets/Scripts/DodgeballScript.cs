@@ -7,11 +7,15 @@ public class DodgeballScript : MonoBehaviour
     //Initialize Variables
     public float damage = 10.0f;
 
-    //Checks if dodgeball has entered a collider
-    private void OnTriggerEnter(Collider other)
+    private void Start()
+    {
+        Destroy(gameObject, 10);
+    }
+
+    private void OnTriggerEnter(Collider collision)
     {
         //If the object collieded with has a Target script
-        Target target = other.gameObject.GetComponent<Target>();
+        Target target = collision.gameObject.GetComponent<Target>();
         //If it does, apply the damage to the object's health
         if (target != null)
         {
