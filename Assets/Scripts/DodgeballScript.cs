@@ -12,7 +12,7 @@ public class DodgeballScript : MonoBehaviour
         Destroy(gameObject, 10);
     }
 
-    private void OnTriggerEnter(Collider collision)
+    /*private void OnTriggerEnter(Collider collision)
     {
         //If the object collieded with has a Target script
         Target target = collision.gameObject.GetComponent<Target>();
@@ -23,5 +23,5 @@ public class DodgeballScript : MonoBehaviour
         }
         //Destroys the dodgeball on impact
         Destroy(gameObject);
-    }
+    }*/
 }

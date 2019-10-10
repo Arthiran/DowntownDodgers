@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Photon.Pun;
 
 public class Target : MonoBehaviour {
 
@@ -6,47 +7,72 @@ public class Target : MonoBehaviour {
     public float health = 30f;
     public float originalHealth;
     private PlayerMovementController MovementController;
+    private PhotonView PV;
 
     private void Start()
     {
-        originalHealth = health;
-        MovementController = GetComponent<PlayerMovementController>();
-        if (gameObject.tag == "Player")
+        PV = GetComponent<PhotonView>();
+        if (PV.IsMine)
         {
-            MovementController.HealthNumText.text = health.ToString() + "/" + originalHealth.ToString();
-            MovementController.filledHealthbarIMG.fillAmount = health / originalHealth;
+            originalHealth = health;
+            MovementController = GetComponent<PlayerMovementController>();
+            if (gameObject.tag == "Player")
+            {
+                MovementController.HealthNumText.text = health.ToString() + "/" + originalHealth.ToString();
+                MovementController.filledHealthbarIMG.fillAmount = health / originalHealth;
+            }
         }
     }
 
     //Calculates the amount of damage taken from shot, dies if under 0 health
+    [PunRPC]
     public void TakeDamage(float amount)
     {
-        health -= amount;
-        if (gameObject.tag == "Player")
+        if (PV.IsMine)
         {
-            MovementController.HealthNumText.text = health.ToString() + "/" + originalHealth.ToString();
-            MovementController.filledHealthbarIMG.fillAmount = health / originalHealth;
+            health -= amount;
+            if (gameObject.tag == "Player")
+            {
+                MovementController.HealthNumText.text = health.ToString() + "/" + originalHealth.ToString();
+                MovementController.filledHealthbarIMG.fillAmount = health / originalHealth;
+            }
+            if (health <= 0f)
+            {
+                Die();
+            }
         }
-        if(health <= 0f)
+    }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (PV.IsMine)
         {
-            Die();
+            DodgeballScript dodgeballScript = collision.gameObject.GetComponent<DodgeballScript>();
+            if (dodgeballScript != null)
+            {
+                TakeDamage(dodgeballScript.damage);
+                Destroy(collision.gameObject);
+            }
         }
     }
 
     //Destroys game object
     void Die()
     {
-        if (gameObject.tag == "Player")
+        if (PV.IsMine)
         {
-            if (MovementController != null)
+            if (gameObject.tag == "Player")
             {
-                MovementController.StartCoroutine(MovementController.Respawn());
-                health = originalHealth;
+                if (MovementController != null)
+                {
+                    MovementController.StartCoroutine(MovementController.Respawn());
+                    health = originalHealth;
+                }
             }
-        }
-        else
-        {
-            Destroy(gameObject);
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 

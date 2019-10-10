@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
+using Photon.Pun;
 
 public class GameManagerScript : MonoBehaviour
 {
@@ -17,11 +19,7 @@ public class GameManagerScript : MonoBehaviour
     {
         SpawnPointList = GameObject.FindGameObjectsWithTag("PlayerSpawn");
 
-        for (int i = 0; i <= NumberOfPlayers - 1; i++)
-        {
-            PlayerInstance = Instantiate(PlayerPrefab, SpawnPointList[i].transform.position, Quaternion.Euler(SpawnPointList[i].transform.eulerAngles));
-            PlayerInstance.GetComponent<PlayerRootInfo>().PlayerID = i + 1;
-        }
+        CreatePlayer();
 
         for (int i = 1; i <= 3; i++)
         {
@@ -35,6 +33,12 @@ public class GameManagerScript : MonoBehaviour
         {
             SpawnNewDodgeball();
         }
+    }
+
+    private void CreatePlayer()
+    {
+        Debug.Log("Creating Player");
+        PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerRoot"), SpawnPointList[0].transform.position, Quaternion.Euler(SpawnPointList[0].transform.eulerAngles));
     }
 
     private void SpawnNewDodgeball()

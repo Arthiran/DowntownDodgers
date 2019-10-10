@@ -1,0 +1,31 @@
+﻿  FileManager.cpp
+c:\users\arthi\downloads\unityeditorassignment1-master\leveleditorplugin\leveleditorplugin\filemanager.h(13): warning C4251: 'FileManager::myFile': class 'std::basic_ofstream<char,std::char_traits<char>>' needs to have dll-interface to be used by clients of class 'FileManager'
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\iosfwd(626): note: see declaration of 'std::basic_ofstream<char,std::char_traits<char>>'
+c:\users\arthi\downloads\unityeditorassignment1-master\leveleditorplugin\leveleditorplugin\filemanager.h(22): warning C4251: 'FileManager::read': class 'std::vector<float,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'FileManager'
+          with
+          [
+              _Ty=float
+          ]
+  c:\users\arthi\downloads\unityeditorassignment1-master\leveleditorplugin\leveleditorplugin\filemanager.h(22): note: see declaration of 'std::vector<float,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=float
+          ]
+  Wrapper.cpp
+c:\users\arthi\downloads\unityeditorassignment1-master\leveleditorplugin\leveleditorplugin\filemanager.h(13): warning C4251: 'FileManager::myFile': class 'std::basic_ofstream<char,std::char_traits<char>>' needs to have dll-interface to be used by clients of class 'FileManager'
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\iosfwd(626): note: see declaration of 'std::basic_ofstream<char,std::char_traits<char>>'
+c:\users\arthi\downloads\unityeditorassignment1-master\leveleditorplugin\leveleditorplugin\filemanager.h(22): warning C4251: 'FileManager::read': class 'std::vector<float,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'FileManager'
+          with
+          [
+              _Ty=float
+          ]
+  c:\users\arthi\downloads\unityeditorassignment1-master\leveleditorplugin\leveleditorplugin\filemanager.h(22): note: see declaration of 'std::vector<float,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=float
+          ]
+     Creating library C:\Users\arthi\Downloads\UnityEditorAssignment1-master\LevelEditorPlugin\LevelEditorPlugin\x64\Release\LevelEditorPlugin.lib and object C:\Users\arthi\Downloads\UnityEditorAssignment1-master\LevelEditorPlugin\LevelEditorPlugin\x64\Release\LevelEditorPlugin.exp
+  Generating code
+  All 268 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  LevelEditorPlugin.vcxproj -> C:\Users\arthi\Downloads\UnityEditorAssignment1-master\LevelEditorPlugin\LevelEditorPlugin\x64\Release\LevelEditorPlugin.dll

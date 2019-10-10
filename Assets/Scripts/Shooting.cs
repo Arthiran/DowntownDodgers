@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.UI;
+using Photon.Pun;
 
 public class Shooting : MonoBehaviour
 {
+    private PhotonView PV;
     //Get transform to spawn dodgeball in and get dodgeball prefab
     public Transform BallShootingTransform;
     public GameObject DodgeballPrefab;
@@ -24,51 +26,55 @@ public class Shooting : MonoBehaviour
 
     private void Start()
     {
-        ControllerShootString = "ControllerShoot" + GetComponent<PlayerRootInfo>().PlayerID.ToString();
+        PV = GetComponent<PhotonView>();
+        ControllerShootString = "ControllerShoot1"; //+ GetComponent<PlayerRootInfo>().PlayerID.ToString();
     }
 
     //Checks if left mouse button was clicked
     void Update()
     {
-        if ((Input.GetMouseButton(0) || (Input.GetAxisRaw(ControllerShootString) > 0)) && DodgeballsInHand > 0 && DodgeballsInHand <= 3 && Time.time > nextFire && MovementController.inHand == true)
+        if (PV.IsMine)
         {
-            nextFire = Time.time + fireRate;
-            //Starts dodgeball shooting coroutine
-            Shoot();
-        }
-
-        for (int i = 0; i < DodgeballsInHand; i++)
-        {
-            if (DodgeballsInHand != 0)
+            if ((Input.GetMouseButton(0) || (Input.GetAxisRaw(ControllerShootString) > 0)) && DodgeballsInHand > 0 && DodgeballsInHand <= 3 && Time.time > nextFire && MovementController.inHand == true)
             {
-                FillSlots[i].fillAmount = 1f;
+                nextFire = Time.time + fireRate;
+                //Starts dodgeball shooting coroutine
+                Shoot();
             }
-        }
 
-        if (DodgeballsInHand == 0)
-        {
-            for (int i = 0; i < FillSlots.Length; i++)
-                FillSlots[i].fillAmount = 0f;
-        }
-
-        if (MovementController.inHand == true)
-        {
-            if (inHandText.text == "Ball Not In Hand")
+            for (int i = 0; i < DodgeballsInHand; i++)
             {
-                inHandText.text = "Ball In Hand";
-                inHandText.color = new Color(0f, 128f, 0f);
+                if (DodgeballsInHand != 0)
+                {
+                    FillSlots[i].fillAmount = 1f;
+                }
             }
-        }
-        else
-        {
-            if (inHandText.text == "Ball In Hand")
-            {
-                inHandText.text = "Ball Not In Hand";
-                inHandText.color = new Color(255f, 0f, 0f);
-            }
-        }
 
-        dodgeballsText.text = DodgeballsInHand.ToString() + "/" + DodgeballCarryLimit.ToString();
+            if (DodgeballsInHand == 0)
+            {
+                for (int i = 0; i < FillSlots.Length; i++)
+                    FillSlots[i].fillAmount = 0f;
+            }
+
+            if (MovementController.inHand == true)
+            {
+                if (inHandText.text == "Ball Not In Hand")
+                {
+                    inHandText.text = "Ball In Hand";
+                    inHandText.color = new Color(0f, 128f, 0f);
+                }
+            }
+            else
+            {
+                if (inHandText.text == "Ball In Hand")
+                {
+                    inHandText.text = "Ball Not In Hand";
+                    inHandText.color = new Color(255f, 0f, 0f);
+                }
+            }
+
+            dodgeballsText.text = DodgeballsInHand.ToString() + "/" + DodgeballCarryLimit.ToString();
+        }
     }
 
     //Fires Dodgeball

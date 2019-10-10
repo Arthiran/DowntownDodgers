@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class CameraScript : MonoBehaviour
 {
+    //Networking
+    private PhotonView PV;
     //Get Character properties
     public GameObject Player;
     public GameObject PlayerEmptyChild;
@@ -27,8 +30,9 @@ public class CameraScript : MonoBehaviour
 
     private void Start()
     {
-        RightAnalogXString = "RightAnalogX" + GetComponentInParent<PlayerRootInfo>().PlayerID.ToString();
-        RightAnalogYString = "RightAnalogY" + GetComponentInParent<PlayerRootInfo>().PlayerID.ToString();
+        PV = GetComponent<PhotonView>();
+        RightAnalogXString = "RightAnalogX1"; //+ GetComponentInParent<PlayerRootInfo>().PlayerID.ToString();
+        RightAnalogYString = "RightAnalogY1"; //+ GetComponentInParent<PlayerRootInfo>().PlayerID.ToString();
         //Finds the character which has a tag set to Player
         //Rotation variables are set
         Vector3 rot = transform.localRotation.eulerAngles;
@@ -42,65 +46,78 @@ public class CameraScript : MonoBehaviour
     // Update is called once per frame, Camera movement should always be in LateUpdate()
     private void Update()
     {
-        //Gets mouse input and stores them in a variable
-        mouseX = Input.GetAxis("Mouse X");
-        mouseY = Input.GetAxis("Mouse Y");
-        RightAnalogX = Input.GetAxis(RightAnalogXString);
-        RightAnalogY = Input.GetAxis(RightAnalogYString);
-
-        //Takes the mouse input and multiplies it by the sensitivity and then multiplied by Time.deltaTime for frame rate
-        rotY += mouseX * inputSens * Time.deltaTime;
-        rotX -= mouseY * inputSens * Time.deltaTime;
-
-        RaycastHit aimAssistRay;
-        if (Physics.Raycast(transform.position, transform.forward, out aimAssistRay, 1000))
+        if (PV.IsMine)
         {
-            if (aimAssistRay.collider.GetComponent<Target>() != null)
+            //Gets mouse input and stores them in a variable
+            if (Cursor.visible == false)
             {
-                rotY += (RightAnalogX * controllerInputSens * Time.deltaTime) * aimAssistFactor;
-                rotX -= (RightAnalogY * controllerInputSens * Time.deltaTime) * aimAssistFactor;
+                mouseX = Input.GetAxis("Mouse X");
+                mouseY = Input.GetAxis("Mouse Y");
+                RightAnalogX = Input.GetAxis(RightAnalogXString);
+                RightAnalogY = Input.GetAxis(RightAnalogYString);
             }
-            else if (aimAssistRay.collider.GetComponent<Target>() == null)
+            else if (Cursor.visible == true)
+            {
+                mouseX = 0f;
+                mouseY = 0f;
+                RightAnalogX = 0f;
+                RightAnalogY = 0f;
+            }
+
+            //Takes the mouse input and multiplies it by the sensitivity and then multiplied by Time.deltaTime for frame rate
+            rotY += mouseX * inputSens * Time.deltaTime;
+            rotX -= mouseY * inputSens * Time.deltaTime;
+
+            RaycastHit aimAssistRay;
+            if (Physics.Raycast(transform.position, transform.forward, out aimAssistRay, 1000))
+            {
+                if (aimAssistRay.collider.GetComponent<Target>() != null)
+                {
+                    rotY += (RightAnalogX * controllerInputSens * Time.deltaTime) * aimAssistFactor;
+                    rotX -= (RightAnalogY * controllerInputSens * Time.deltaTime) * aimAssistFactor;
+                }
+                else if (aimAssistRay.collider.GetComponent<Target>() == null)
+                {
+                    rotY += RightAnalogX * controllerInputSens * Time.deltaTime;
+                    rotX -= RightAnalogY * controllerInputSens * Time.deltaTime;
+                }
+            }
+            else
             {
                 rotY += RightAnalogX * controllerInputSens * Time.deltaTime;
                 rotX -= RightAnalogY * controllerInputSens * Time.deltaTime;
             }
-        }
-        else
-        {
-            rotY += RightAnalogX * controllerInputSens * Time.deltaTime;
-            rotX -= RightAnalogY * controllerInputSens * Time.deltaTime;
-        }
 
-        //Clamps the rotation vertically so you can't view things upside down
-        rotX = Mathf.Clamp(rotX, -clampAngle, clampAngle);
+            //Clamps the rotation vertically so you can't view things upside down
+            rotX = Mathf.Clamp(rotX, -clampAngle, clampAngle);
 
-        //Assigns the rotation to a variable and also sets a variable for the rotation of the player
-        //Actually changes the rotation
-        transform.eulerAngles = new Vector3(rotX, rotY, 0.0f);
+            //Assigns the rotation to a variable and also sets a variable for the rotation of the player
+            //Actually changes the rotation
+            transform.eulerAngles = new Vector3(rotX, rotY, 0.0f);
 
-        PlayerEmptyChild.transform.eulerAngles = new Vector3(0.0f, rotY, 0.0f);
-        RaycastHit hit;
-        if (Physics.Raycast(Player.transform.position, PlayerEmptyChild.transform.transform.transform.forward, out hit, distWall) == false)
-        {
-            Player.transform.eulerAngles = new Vector3(0.0f, rotY, 0.0f);
-        }
-        else
-        {
-            if (hit.collider != null)
+            PlayerEmptyChild.transform.eulerAngles = new Vector3(0.0f, rotY, 0.0f);
+            RaycastHit hit;
+            if (Physics.Raycast(Player.transform.position, PlayerEmptyChild.transform.transform.transform.forward, out hit, distWall) == false)
             {
-                if (hit.collider.tag != "Climable")
+                Player.transform.eulerAngles = new Vector3(0.0f, rotY, 0.0f);
+            }
+            else
+            {
+                if (hit.collider != null)
                 {
-                    Player.transform.eulerAngles = new Vector3(0.0f, rotY, 0.0f);
-                }
-                else if (hit.collider.tag == "Climable" && MovementController.isClimbing == false)
-                {
-                    Player.transform.eulerAngles = new Vector3(0.0f, rotY, 0.0f);
+                    if (hit.collider.tag != "Climable")
+                    {
+                        Player.transform.eulerAngles = new Vector3(0.0f, rotY, 0.0f);
+                    }
+                    else if (hit.collider.tag == "Climable" && MovementController.isClimbing == false)
+                    {
+                        Player.transform.eulerAngles = new Vector3(0.0f, rotY, 0.0f);
+                    }
                 }
             }
-        }
 
-        //This is so that the Camera can follow the Player
-        transform.localPosition = new Vector3(Player.transform.localPosition.x, Player.transform.localPosition.y + 0.6f, Player.transform.localPosition.z);
+            //This is so that the Camera can follow the Player
+            transform.localPosition = new Vector3(Player.transform.localPosition.x, Player.transform.localPosition.y + 0.6f, Player.transform.localPosition.z);
+        }
     }
 }

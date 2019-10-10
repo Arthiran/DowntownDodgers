@@ -1,0 +1,29 @@
+﻿  SimpleClass.cpp
+c:\users\arthi\downloads\unityeditorassignment1-master\project1\project1\simpleclass.h(13): warning C4251: 'SimpleClass::myFile': class 'std::basic_ofstream<char,std::char_traits<char>>' needs to have dll-interface to be used by clients of class 'SimpleClass'
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\iosfwd(626): note: see declaration of 'std::basic_ofstream<char,std::char_traits<char>>'
+c:\users\arthi\downloads\unityeditorassignment1-master\project1\project1\simpleclass.h(23): warning C4251: 'SimpleClass::read': class 'std::vector<float,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'SimpleClass'
+          with
+          [
+              _Ty=float
+          ]
+  c:\users\arthi\downloads\unityeditorassignment1-master\project1\project1\simpleclass.h(23): note: see declaration of 'std::vector<float,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=float
+          ]
+  Wrapper.cpp
+c:\users\arthi\downloads\unityeditorassignment1-master\project1\project1\simpleclass.h(13): warning C4251: 'SimpleClass::myFile': class 'std::basic_ofstream<char,std::char_traits<char>>' needs to have dll-interface to be used by clients of class 'SimpleClass'
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\iosfwd(626): note: see declaration of 'std::basic_ofstream<char,std::char_traits<char>>'
+c:\users\arthi\downloads\unityeditorassignment1-master\project1\project1\simpleclass.h(23): warning C4251: 'SimpleClass::read': class 'std::vector<float,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'SimpleClass'
+          with
+          [
+              _Ty=float
+          ]
+  c:\users\arthi\downloads\unityeditorassignment1-master\project1\project1\simpleclass.h(23): note: see declaration of 'std::vector<float,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=float
+          ]
+  Generating Code...
+     Creating library C:\Users\arthi\Downloads\UnityEditorAssignment1-master\Project1\Project1\Debug\LevelEditorPlugin.lib and object C:\Users\arthi\Downloads\UnityEditorAssignment1-master\Project1\Project1\Debug\LevelEditorPlugin.exp
+  Project1.vcxproj -> C:\Users\arthi\Downloads\UnityEditorAssignment1-master\Project1\Project1\Debug\LevelEditorPlugin.dll
