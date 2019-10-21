@@ -15,7 +15,7 @@ public class GameManagerScript : MonoBehaviour
     public GameObject DodgeballLootPrefab;
     public Collider TempSpawnBox;
     // Start is called before the first frame update
-    void Start()
+    /*void Start()
     {
         SpawnPointList = GameObject.FindGameObjectsWithTag("PlayerSpawn");
 
@@ -25,7 +25,7 @@ public class GameManagerScript : MonoBehaviour
         {
             SpawnNewDodgeball();
         }
-    }
+    }*/
 
     private void Update()
     {

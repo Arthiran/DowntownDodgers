@@ -6,13 +6,13 @@ public class Target : MonoBehaviour {
     //Initialize Variables
     public float health = 30f;
     public float originalHealth;
-    private PlayerMovementController MovementController;
+    private PlayerMovementControllerNoNetwork MovementController;
     private PhotonView PV;
 
     private void Start()
     {
         PV = GetComponent<PhotonView>();
-        if (PV.IsMine)
+        /*if (PV.IsMine)
         {
             originalHealth = health;
             MovementController = GetComponent<PlayerMovementController>();
@@ -21,6 +21,13 @@ public class Target : MonoBehaviour {
                 MovementController.HealthNumText.text = health.ToString() + "/" + originalHealth.ToString();
                 MovementController.filledHealthbarIMG.fillAmount = health / originalHealth;
             }
+        }*/
+        originalHealth = health;
+        MovementController = GetComponent<PlayerMovementControllerNoNetwork>();
+        if (gameObject.tag == "Player")
+        {
+            MovementController.HealthNumText.text = health.ToString() + "/" + originalHealth.ToString();
+            MovementController.filledHealthbarIMG.fillAmount = health / originalHealth;
         }
     }
 
@@ -28,7 +35,7 @@ public class Target : MonoBehaviour {
     [PunRPC]
     public void TakeDamage(float amount)
     {
-        if (PV.IsMine)
+        /*if (PV.IsMine)
         {
             health -= amount;
             if (gameObject.tag == "Player")
@@ -40,12 +47,22 @@ public class Target : MonoBehaviour {
             {
                 Die();
             }
+        }*/
+        health -= amount;
+        if (gameObject.tag == "Player")
+        {
+            MovementController.HealthNumText.text = health.ToString() + "/" + originalHealth.ToString();
+            MovementController.filledHealthbarIMG.fillAmount = health / originalHealth;
+        }
+        if (health <= 0f)
+        {
+            Die();
         }
     }
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (PV.IsMine)
+        /*if (PV.IsMine)
         {
             DodgeballScript dodgeballScript = collision.gameObject.GetComponent<DodgeballScript>();
             if (dodgeballScript != null)
@@ -53,13 +70,19 @@ public class Target : MonoBehaviour {
                 TakeDamage(dodgeballScript.damage);
                 Destroy(collision.gameObject);
             }
+        }*/
+        DodgeballScript dodgeballScript = collision.gameObject.GetComponent<DodgeballScript>();
+        if (dodgeballScript != null)
+        {
+            TakeDamage(dodgeballScript.damage);
+            Destroy(collision.gameObject);
         }
     }
 
     //Destroys game object
     void Die()
     {
-        if (PV.IsMine)
+        /*if (PV.IsMine)
         {
             if (gameObject.tag == "Player")
             {
@@ -73,6 +96,18 @@ public class Target : MonoBehaviour {
             {
                 Destroy(gameObject);
             }
+        }*/
+        if (gameObject.tag == "Player")
+        {
+            if (MovementController != null)
+            {
+                MovementController.StartCoroutine(MovementController.Respawn());
+                health = originalHealth;
+            }
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 

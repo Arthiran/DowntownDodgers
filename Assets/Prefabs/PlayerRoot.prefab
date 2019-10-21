@@ -946,7 +946,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 1150266295338764129}
   PlayerEmptyChild: {fileID: 1150266295451169682}
-  MovementController: {fileID: 1150266295338764190}
+  MovementController: {fileID: 0}
   mouseX: 0
   mouseY: 0
   RightAnalogX: 0
@@ -1113,7 +1113,7 @@ MonoBehaviour:
   - {fileID: 1150266293729021765}
   dodgeballsText: {fileID: 1150266294553799077}
   inHandText: {fileID: 1150266293880055588}
-  MovementController: {fileID: 1150266295338764190}
+  MovementController: {fileID: 0}
   dodgeballLaunchForce: 50
   fireRate: 0.75
   DodgeballsInHand: 0
@@ -1130,7 +1130,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d591033e93c3c5c41ad25e84f865574f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerID: 0
 --- !u!1 &1150266294830677686
 GameObject:
   m_ObjectHideFlags: 0
@@ -1667,10 +1666,8 @@ GameObject:
   - component: {fileID: 1150266295338764186}
   - component: {fileID: 1150266295338764189}
   - component: {fileID: 1150266295338764188}
-  - component: {fileID: 1150266295338764190}
+  - component: {fileID: 499366795720310086}
   - component: {fileID: 1150266295338764191}
-  - component: {fileID: 1949334755945674422}
-  - component: {fileID: 611398850686931119}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1775,7 +1772,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1150266295338764190
+--- !u!114 &499366795720310086
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1784,7 +1781,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1150266295338764129}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76e6892e78b3f6448a10c3bb47bcc686, type: 3}
+  m_Script: {fileID: 11500000, guid: b6f40071a0c58de448309330890bfac4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerCam: {fileID: 1150266294631081421}
@@ -1823,43 +1820,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 30
   originalHealth: 0
---- !u!114 &1949334755945674422
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1150266295338764129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 611398850686931119}
-  viewIdField: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
---- !u!114 &611398850686931119
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1150266295338764129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
 --- !u!1 &1150266295430779085
 GameObject:
   m_ObjectHideFlags: 0

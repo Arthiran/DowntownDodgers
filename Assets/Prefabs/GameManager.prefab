@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NumberOfPlayers: 1
-  PlayerPrefab: {fileID: 1150266294808196759, guid: 195043a823fa0324997607ba4a45adfa,
+  PlayerPrefab: {fileID: 1150266294808196759, guid: 51b1becf417e14c488de996468cec74f,
     type: 3}
   DodgeballLootPrefab: {fileID: 1086040798761678246, guid: 4513a5ad1377d1843a2b336c592efbd5,
     type: 3}
