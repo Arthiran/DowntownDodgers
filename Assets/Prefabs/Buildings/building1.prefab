@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 5572604142142276212}
   - component: {fileID: 8950996379140300947}
   - component: {fileID: 6470282992098856971}
+  - component: {fileID: -1512298939602472603}
   m_Layer: 0
   m_Name: building1
   m_TagString: Climable
@@ -137,3 +138,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 429ded89c44fb0546aa5d0b38d22fa96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &-1512298939602472603
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8867170031487955047}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 11.49, y: 9.8, z: 5.3}
+  m_Center: {x: -2.46, y: 4.8, z: 0}

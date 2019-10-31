@@ -6,10 +6,12 @@ public class DodgeballScript : MonoBehaviour
 {
     //Initialize Variables
     public float damage = 10.0f;
+    public Rigidbody rb;
 
     private void Start()
     {
-        Destroy(gameObject, 10);
+        rb.GetComponent<Rigidbody>();
+        //Destroy(gameObject, 10);
     }
 
     /*private void OnTriggerEnter(Collider collision)
@@ -24,4 +26,8 @@ public class DodgeballScript : MonoBehaviour
         //Destroys the dodgeball on impact
         Destroy(gameObject);
     }*/
+    private void OnCollisionEnter(Collision collision)
+    {
+        //rb.AddForce(-gameObject.transform.forward * 20, ForceMode.VelocityChange);
+    }
 }
