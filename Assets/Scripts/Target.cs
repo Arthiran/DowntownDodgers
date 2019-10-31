@@ -60,7 +60,7 @@ public class Target : MonoBehaviour {
         }
     }
 
-    private void OnTriggerEnter(Collider collision)
+    private void OnCollisionEnter(Collision collision)
     {
         /*if (PV.IsMine)
         {
