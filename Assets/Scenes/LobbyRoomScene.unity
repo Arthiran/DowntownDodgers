@@ -356,9 +356,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d81ea0e8aa99cc40b6ba59e3e224c34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  multiplayerScene: Map1
+  multiplayerScene: Testmap
   menuScene: MenuScene
-  minPlayersToStart: 2
+  minPlayersToStart: 1
   playerCountDisplay: {fileID: 578179859}
   timerToStartDisplay: {fileID: 955913548}
   maxWaitTime: 5

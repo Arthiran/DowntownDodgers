@@ -6,7 +6,7 @@ public class Target : MonoBehaviour {
     //Initialize Variables
     public float health = 30f;
     public float originalHealth;
-    private PlayerMovementControllerNoNetwork MovementController;
+    private PlayerMovementController MovementController;
     private PhotonView PV;
 
     private void Start()
@@ -23,7 +23,7 @@ public class Target : MonoBehaviour {
             }
         }*/
         originalHealth = health;
-        MovementController = GetComponent<PlayerMovementControllerNoNetwork>();
+        MovementController = GetComponent<PlayerMovementController>();
         if (gameObject.tag == "Player")
         {
             MovementController.HealthNumText.text = health.ToString() + "/" + originalHealth.ToString();

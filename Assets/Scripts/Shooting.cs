@@ -13,7 +13,7 @@ public class Shooting : MonoBehaviour
     public Image[] FillSlots;
     public Text dodgeballsText;
     public Text inHandText;
-    public PlayerMovementControllerNoNetwork MovementController;
+    public PlayerMovementController MovementController;
 
     //Initializes Variables
     public float dodgeballLaunchForce;
