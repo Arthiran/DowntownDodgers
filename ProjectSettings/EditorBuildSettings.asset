@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Testmap.unity
     guid: 4f574144d6c7b734285277597548373a
+  - enabled: 1
+    path: Assets/Scenes/TestmapNoNetwork.unity
+    guid: 6718c8bc1432ca0478a2145279e8c0a8
   m_configObjects: {}

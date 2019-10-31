@@ -1152,7 +1152,6 @@ MonoBehaviour:
   - {fileID: 1150266293729021765}
   dodgeballsText: {fileID: 1150266294553799077}
   inHandText: {fileID: 1150266293880055588}
-  MovementController: {fileID: 0}
   dodgeballLaunchForce: 50
   fireRate: 0.75
   DodgeballsInHand: 0
@@ -2136,16 +2135,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: -6057140222963153312, guid: e6370046bb4506e4486a421c6172cf71,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 62098ed973504e3469d22a286cd42ea4, type: 2}
-    - target: {fileID: -6057140222963153312, guid: e6370046bb4506e4486a421c6172cf71,
-        type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: e6370046bb4506e4486a421c6172cf71,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2199,6 +2188,16 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: e6370046bb4506e4486a421c6172cf71,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: e6370046bb4506e4486a421c6172cf71,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 62098ed973504e3469d22a286cd42ea4, type: 2}
+    - target: {fileID: -6057140222963153312, guid: e6370046bb4506e4486a421c6172cf71,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -1232451692195220358, guid: e6370046bb4506e4486a421c6172cf71,

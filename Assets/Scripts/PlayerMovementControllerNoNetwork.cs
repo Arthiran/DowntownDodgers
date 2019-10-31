@@ -18,7 +18,7 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
     public Text interactText;
     public Text HealthNumText;
     public Text RespawningText;
-    private Shooting shootingScript;
+    private ShootingNoNetwork shootingScript;
     private GameObject DodgeballInstance;
     private Target PlayerHealth;
     private GameObject[] SpawnPointList;
@@ -89,7 +89,7 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
         //Set Components to Variables at Start of Script
         Player = GetComponent<Transform>();
         CharController = GetComponent<CharacterController>();
-        shootingScript = GetComponentInParent<Shooting>();
+        shootingScript = GetComponentInParent<ShootingNoNetwork>();
         PlayerHealth = GetComponent<Target>();
 
         tempClimbTimer = climbWallTimer;
