@@ -1066,7 +1066,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1150266294808196756}
-  - component: {fileID: 1150266294808196757}
+  - component: {fileID: 997062673534216075}
   - component: {fileID: 6066163026988717062}
   m_Layer: 0
   m_Name: PlayerRootNoNetwork
@@ -1092,7 +1092,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1150266294808196757
+--- !u!114 &997062673534216075
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1101,7 +1101,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1150266294808196759}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50117f7e7d6464741bab47c517d07b81, type: 3}
+  m_Script: {fileID: 11500000, guid: 637c324bec70c4a4d8e5c092eca4f415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   BallShootingTransform: {fileID: 1150266295430779082}
@@ -1113,7 +1113,6 @@ MonoBehaviour:
   - {fileID: 1150266293729021765}
   dodgeballsText: {fileID: 1150266294553799077}
   inHandText: {fileID: 1150266293880055588}
-  MovementController: {fileID: 6110418014921123862}
   dodgeballLaunchForce: 50
   fireRate: 0.75
   DodgeballsInHand: 0

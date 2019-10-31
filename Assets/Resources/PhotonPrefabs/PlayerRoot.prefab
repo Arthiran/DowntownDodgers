@@ -1152,7 +1152,6 @@ MonoBehaviour:
   - {fileID: 1150266293729021765}
   dodgeballsText: {fileID: 1150266294553799077}
   inHandText: {fileID: 1150266293880055588}
-  MovementController: {fileID: 1150266295338764190}
   dodgeballLaunchForce: 50
   fireRate: 0.75
   DodgeballsInHand: 0

@@ -159,7 +159,7 @@ public class LevelEditorScript : MonoBehaviour
             {
                 for (int j = 0; j < spawnables.Count; j++)
                 {
-                    if (spawnablePrefabs[i].name.ToLower() == spawnables[j].name.Substring(0, spawnables[j].gameObject.name.Length - 7).ToLower())
+                    if (spawnablePrefabs[i].name.ToLower() == spawnables[j].name.Substring(0, spawnables[j].gameObject.name.Length - 7).ToLower() || spawnablePrefabs[i].name.ToLower() == spawnables[j].name.ToLower())
                     {
                         ReadInto(i, spawnables[j].transform.position.x, spawnables[j].transform.position.y, spawnables[j].transform.position.z,
                             spawnables[j].transform.eulerAngles.x, spawnables[j].transform.eulerAngles.y, spawnables[j].transform.eulerAngles.z,

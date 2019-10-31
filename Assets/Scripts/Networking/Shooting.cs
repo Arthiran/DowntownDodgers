@@ -13,7 +13,7 @@ public class Shooting : MonoBehaviour
     public Image[] FillSlots;
     public Text dodgeballsText;
     public Text inHandText;
-    public PlayerMovementController MovementController;
+    private PlayerMovementController MovementController;
 
     //Initializes Variables
     public float dodgeballLaunchForce;
@@ -27,6 +27,7 @@ public class Shooting : MonoBehaviour
     private void Start()
     {
         PV = GetComponent<PhotonView>();
+        MovementController = GetComponentInChildren<PlayerMovementController>();
         ControllerShootString = "ControllerShoot1"; //+ GetComponent<PlayerRootInfo>().PlayerID.ToString();
     }
 
