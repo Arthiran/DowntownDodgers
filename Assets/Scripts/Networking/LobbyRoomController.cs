@@ -98,7 +98,7 @@ public class LobbyRoomController : MonoBehaviourPunCallbacks
 
     private void WaitingForMorePlayers()
     {
-        if (playerCount<= 1)
+        if (playerCount<= 0)
         {
             ResetTimer();
         }
