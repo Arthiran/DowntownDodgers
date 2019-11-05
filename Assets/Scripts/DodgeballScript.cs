@@ -11,7 +11,7 @@ public class DodgeballScript : MonoBehaviour
     private void Start()
     {
         rb.GetComponent<Rigidbody>();
-        //Destroy(gameObject, 10);
+        Destroy(gameObject, 10);
     }
 
     /*private void OnTriggerEnter(Collider collision)
