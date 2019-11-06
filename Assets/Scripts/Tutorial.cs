@@ -7,6 +7,7 @@ public class Tutorial : MonoBehaviour
 {
     public Text toThrow;
     public Text toClimb;
+    public Text theEnd;
     public Image wSpacebar;
 
     // Start is called before the first frame update
@@ -14,6 +15,7 @@ public class Tutorial : MonoBehaviour
     {
         toThrow = GameObject.Find("Throw").GetComponent<Text>() ;
         toClimb = GameObject.Find("Climb").GetComponent<Text>() ;
+        theEnd = GameObject.Find("End").GetComponent<Text>() ;
         wSpacebar = GameObject.Find("WSpace").GetComponent<Image>() ;
     }
 
@@ -43,9 +45,21 @@ public class Tutorial : MonoBehaviour
             toClimb.gameObject.SetActive(true);
             wSpacebar.gameObject.SetActive(true);
 
-            //GameObject.Find("Throw").SetActive(false);
+            //Hide
             toThrow.gameObject.SetActive(false);
         }
 
+        if (other.gameObject.name == "Trigger3")
+        {
+            //Hide
+            wSpacebar.gameObject.SetActive(false);
+            toClimb.gameObject.SetActive(false);
+        }
+
+        if (other.gameObject.name == "Trigger4")
+        {
+            //Hide
+            theEnd.gameObject.SetActive(true);
+        }
     }
 }
