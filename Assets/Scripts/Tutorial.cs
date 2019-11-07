@@ -10,6 +10,14 @@ public class Tutorial : MonoBehaviour
     public Text theEnd;
     public Image wSpacebar;
 
+    float timePassed;
+
+    public ObjectPool pool;
+
+    private bool end = false;
+
+    private int counter = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,13 +25,57 @@ public class Tutorial : MonoBehaviour
         toClimb = GameObject.Find("Climb").GetComponent<Text>() ;
         theEnd = GameObject.Find("End").GetComponent<Text>() ;
         wSpacebar = GameObject.Find("WSpace").GetComponent<Image>() ;
+
+        timePassed = Time.time;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (end)
+        {
+            //yield return new WaitForSeconds(0.2f);
+            if ((Time.time - timePassed) > 1.0f)
+            {
+
+                Debug.Log(counter);
+
+                GameObject theBall;
+
+                theBall = pool.SpawnBall();
+
+                theBall.transform.position = GameObject.Find("Object Pool").transform.position;
+
+
+                counter++;
+
+                if (counter >= 8)
+                {
+                    pool.DespawnBall(theBall);
+                }
+
+                timePassed = Time.time;
+            }
+            //counter++;
+
+            //if (counter > 5)
+            //{
+            //pool.DespawnBall(theBall);
+                //counter = 0;
+            //}
+
+
+            //yield return new WaitForSeconds(1.0f);
+            //CheckLife(theBall);
+        }
     }
+
+    IEnumerator CheckLife(GameObject temp)
+    {
+        yield return new WaitForSeconds(2.0f);
+        pool.DespawnBall(temp);
+    }
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -60,6 +112,8 @@ public class Tutorial : MonoBehaviour
         {
             //Hide
             theEnd.gameObject.SetActive(true);
+
+            end = true;
         }
     }
 }
