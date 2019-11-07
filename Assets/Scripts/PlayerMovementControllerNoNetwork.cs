@@ -26,6 +26,8 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
     public GameObject DodgeballPrefab;
     public Transform BallCarrierTransform;
 
+    public GameObject sphere;
+
     private bool isDashCooldown;
 
     //Initialize Variables
@@ -96,6 +98,8 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
         tempRespawnTimer = respawnTimer;
 
         dashCountdownUI = dashCooldown + 1;
+
+        sphere.SetActive(false);
     }
 
     //Any Input(Keyboard or Mouse) should be in Update function
@@ -206,7 +210,7 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
 
         if (DodgeballInstance != null)
         {
-            DodgeballInstance.transform.position = BallCarrierTransform.position;
+            //DodgeballInstance.transform.position = BallCarrierTransform.position;
         }
 
         //Takes the velocity and actually moves the Character
@@ -270,28 +274,32 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
             if (shootingScript.DodgeballsInHand != 0 && inHand == false)
             {
                 inHand = true;
-                DodgeballInstance = Instantiate(DodgeballPrefab, BallCarrierTransform.position, BallCarrierTransform.rotation);
+                sphere.SetActive(true);
+                //DodgeballInstance = Instantiate(DodgeballPrefab, BallCarrierTransform.position, BallCarrierTransform.rotation);
             }
             else if (shootingScript.DodgeballsInHand != 0 && inHand == true)
             {
                 inHand = false;
+                sphere.SetActive(false);
                 inHandStored = inHand;
-                Destroy(DodgeballInstance);
+                //Destroy(DodgeballInstance);
             }
         }
         else if (shootingScript.DodgeballsInHand == 0)
         {
             if (inHand == false)
             {
+                sphere.SetActive(false);
                 if (DodgeballInstance != null)
                 {
-                    Destroy(DodgeballInstance);
+                    //Destroy(DodgeballInstance);
                 }
             }
             else if (inHand == true)
             {
                 if (inHandStored != true)
                 {
+                    sphere.SetActive(false);
                     inHandStored = inHand;
                     inHand = false;
                 }
@@ -302,12 +310,14 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
         {
             if (DodgeballInstance == null && inHandStored == true && isClimbing == false)
             {
-                DodgeballInstance = Instantiate(DodgeballPrefab, BallCarrierTransform.position, BallCarrierTransform.rotation);
+                //DodgeballInstance = Instantiate(DodgeballPrefab, BallCarrierTransform.position, BallCarrierTransform.rotation);
+                sphere.SetActive(true);
                 inHand = true;
             }
             else if (DodgeballInstance != null && inHand == false)
             {
-                Destroy(DodgeballInstance);
+                sphere.SetActive(false);
+                //Destroy(DodgeballInstance);
             }
         }
     }
@@ -335,6 +345,7 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
                     isClimbing = true;
                     if (inHand == true)
                     {
+                        sphere.SetActive(false);
                         inHandStored = inHand;
                         inHand = false;
                     }
@@ -361,6 +372,7 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
             isFalling = false;
             if (inHandStored)
             {
+                sphere.SetActive(true);
                 inHand = true;
             }
         }
