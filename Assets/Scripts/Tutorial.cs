@@ -38,7 +38,7 @@ public class Tutorial : MonoBehaviour
             if ((Time.time - timePassed) > 1.0f)
             {
 
-                Debug.Log(counter);
+                //Debug.Log(counter);
 
                 GameObject theBall;
 
