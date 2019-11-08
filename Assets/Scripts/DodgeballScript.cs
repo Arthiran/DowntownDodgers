@@ -8,10 +8,14 @@ public class DodgeballScript : MonoBehaviour
     public float damage = 10.0f;
     public Rigidbody rb;
 
+    public bool inAir;
+
     private void Start()
     {
         rb.GetComponent<Rigidbody>();
         Destroy(gameObject, 10);
+
+        inAir = true;
     }
 
     /*private void OnTriggerEnter(Collider collision)
@@ -26,8 +30,18 @@ public class DodgeballScript : MonoBehaviour
         //Destroys the dodgeball on impact
         Destroy(gameObject);
     }*/
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionExit(Collision collision)
+    {
+        inAir = true;
+        Debug.Log(inAir);
+    }
+    private void OnCollisionStay(Collision collision)
     {
         //rb.AddForce(-gameObject.transform.forward * 20, ForceMode.VelocityChange);
-    }
+        if (collision.gameObject.tag == "Ground")
+        {
+            inAir = false;
+            Debug.Log(inAir);
+        }
+    }     
 }

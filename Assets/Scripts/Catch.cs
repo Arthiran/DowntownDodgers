@@ -32,7 +32,7 @@ public class Catch : MonoBehaviour
             //capsule.GetComponent<CapsuleCollider>().radius -= 0.02f;
             //capsuleObj.transform.localScale = new Vector3(capsuleObj.transform.localScale.x - 0.02f, 0.0f, capsuleObj.transform.localScale.z - 0.02f);
             if (capsule.transform.localScale.x > 0.7f)
-                capsuleObj.transform.localScale -= new Vector3(0.005f, 0.0f, 0.005f);
+                capsuleObj.transform.localScale -= new Vector3(0.01f, 0.0f, 0.01f);
             //capsule.transform.localScale -= new Vector3(0.02f, 0.0f, 0.02f);
         }
         else
@@ -47,7 +47,7 @@ public class Catch : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Q))
         {
-            Debug.Log("Hey bb");
+            //Debug.Log("Hey bb");
             //capsule.enabled = true;
 
             if (other.gameObject.GetComponent<DodgeballScript>() != null)
@@ -56,8 +56,11 @@ public class Catch : MonoBehaviour
                 {
                     if (!sphere.activeSelf)
                     {
-                        Destroy(other.gameObject);
-                        shooter.DodgeballsInHand++;
+                        if (other.gameObject.GetComponent<DodgeballScript>().inAir)
+                        {
+                            Destroy(other.gameObject);
+                            shooter.DodgeballsInHand++;
+                        }
                         //sphere.SetActive(true);
                     }
                 }
