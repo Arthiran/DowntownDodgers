@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.UI;
 using Photon.Pun;
+using UnityEngine.SceneManagement;
 
 public class ShootingNoNetwork : MonoBehaviour
 {
+    
     private PhotonView PV;
     //Get transform to spawn dodgeball in and get dodgeball prefab
     public Transform BallShootingTransform;
@@ -24,9 +26,14 @@ public class ShootingNoNetwork : MonoBehaviour
     private string ControllerShootString;
 
     public GiveQuest giveQuest;
+    Scene currentScene;
+    string sceneName;
 
     private void Start()
     {
+        currentScene = SceneManager.GetActiveScene();
+
+        sceneName = currentScene.name;
         PV = GetComponent<PhotonView>();
         MovementController = GetComponentInChildren<PlayerMovementControllerNoNetwork>();
         ControllerShootString = "ControllerShoot1"; //+ GetComponent<PlayerRootInfo>().PlayerID.ToString();
@@ -79,6 +86,7 @@ public class ShootingNoNetwork : MonoBehaviour
     //Fires Dodgeball
     private void Shoot()
     {
+        if (sceneName == "Tutorial")
         giveQuest.loadQuest(2);
         //Spawns an instance of the dodgeball prefab at the spawn transform
         GameObject DodgeballInstance = Instantiate(DodgeballPrefab, BallShootingTransform.position, BallShootingTransform.rotation);
