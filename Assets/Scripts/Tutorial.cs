@@ -108,7 +108,7 @@ public class Tutorial : MonoBehaviour
             //Hide
             toThrow.gameObject.SetActive(false);
 
-            giveQuest.loadQuest(2);
+            //giveQuest.loadQuest(2);
         }
 
         if (other.gameObject.name == "Trigger3")
