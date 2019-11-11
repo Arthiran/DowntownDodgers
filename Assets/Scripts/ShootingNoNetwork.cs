@@ -23,6 +23,8 @@ public class ShootingNoNetwork : MonoBehaviour
 
     private string ControllerShootString;
 
+    public GiveQuest giveQuest;
+
     private void Start()
     {
         PV = GetComponent<PhotonView>();
@@ -77,6 +79,7 @@ public class ShootingNoNetwork : MonoBehaviour
     //Fires Dodgeball
     private void Shoot()
     {
+        giveQuest.loadQuest(2);
         //Spawns an instance of the dodgeball prefab at the spawn transform
         GameObject DodgeballInstance = Instantiate(DodgeballPrefab, BallShootingTransform.position, BallShootingTransform.rotation);
         //Gives dodgeball a launch force wherever the character is facing

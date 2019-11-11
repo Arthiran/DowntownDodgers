@@ -7,6 +7,7 @@ using Photon.Pun;
 
 public class PlayerMovementControllerNoNetwork : MonoBehaviour
 {
+    public GiveQuest quest;
     //Get Character Properties
     private Transform Player;
     private CharacterController CharController;
@@ -243,6 +244,10 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
         //Checks if Space was pressed
         if (Input.GetButtonDown("Jump") || Input.GetButtonDown(ControllerJumpString))
         {
+            if (quest.currQuest == "MOVE") ;
+            {
+                quest.loadQuest(2);
+            }
             doubleJumpCheck++;
             //Checks if player is on the ground, if true then character can jump
             if (doubleJumpCheck <= 2)

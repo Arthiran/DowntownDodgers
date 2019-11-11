@@ -1,0 +1,28 @@
+﻿  FileManager.cpp
+C:\Users\gilro\OneDrive\Documents\Third Year\GDW\Repos\Native_C++\Tutorial2\FileManager.h(36,21): warning C4251:  'FileManager::write': class 'std::basic_ofstream<char,std::char_traits<char>>' needs to have dll-interface to be used by clients of class 'FileManager'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.22.27905\include\iosfwd(224): message :  see declaration of 'std::basic_ofstream<char,std::char_traits<char>>'
+C:\Users\gilro\OneDrive\Documents\Third Year\GDW\Repos\Native_C++\Tutorial2\FileManager.h(37,20): warning C4251:  'FileManager::read': class 'std::basic_ifstream<char,std::char_traits<char>>' needs to have dll-interface to be used by clients of class 'FileManager'
+  main.cpp
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.22.27905\include\iosfwd(223): message :  see declaration of 'std::basic_ifstream<char,std::char_traits<char>>'
+C:\Users\gilro\OneDrive\Documents\Third Year\GDW\Repos\Native_C++\Tutorial2\FileManager.h(36,21): warning C4251:  'FileManager::write': class 'std::basic_ofstream<char,std::char_traits<char>>' needs to have dll-interface to be used by clients of class 'FileManager'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.22.27905\include\iosfwd(224): message :  see declaration of 'std::basic_ofstream<char,std::char_traits<char>>'
+C:\Users\gilro\OneDrive\Documents\Third Year\GDW\Repos\Native_C++\Tutorial2\FileManager.h(37,20): warning C4251:  'FileManager::read': class 'std::basic_ifstream<char,std::char_traits<char>>' needs to have dll-interface to be used by clients of class 'FileManager'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.22.27905\include\iosfwd(223): message :  see declaration of 'std::basic_ifstream<char,std::char_traits<char>>'
+  SimpleClass.cpp
+C:\Users\gilro\OneDrive\Documents\Third Year\GDW\Repos\Native_C++\Tutorial2\main.cpp(8,1): warning C4326:  return type of 'main' should be 'int' instead of 'void'
+C:\Users\gilro\OneDrive\Documents\Third Year\GDW\Repos\Native_C++\Tutorial2\FileManager.h(36,21): warning C4251:  'FileManager::write': class 'std::basic_ofstream<char,std::char_traits<char>>' needs to have dll-interface to be used by clients of class 'FileManager'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.22.27905\include\iosfwd(224): message :  see declaration of 'std::basic_ofstream<char,std::char_traits<char>>'
+C:\Users\gilro\OneDrive\Documents\Third Year\GDW\Repos\Native_C++\Tutorial2\FileManager.h(37,20): warning C4251:  'FileManager::read': class 'std::basic_ifstream<char,std::char_traits<char>>' needs to have dll-interface to be used by clients of class 'FileManager'
+  Wrapper.cpp
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.22.27905\include\iosfwd(223): message :  see declaration of 'std::basic_ifstream<char,std::char_traits<char>>'
+C:\Users\gilro\OneDrive\Documents\Third Year\GDW\Repos\Native_C++\Tutorial2\FileManager.h(36,21): warning C4251:  'FileManager::write': class 'std::basic_ofstream<char,std::char_traits<char>>' needs to have dll-interface to be used by clients of class 'FileManager'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.22.27905\include\iosfwd(224): message :  see declaration of 'std::basic_ofstream<char,std::char_traits<char>>'
+C:\Users\gilro\OneDrive\Documents\Third Year\GDW\Repos\Native_C++\Tutorial2\FileManager.h(37,20): warning C4251:  'FileManager::read': class 'std::basic_ifstream<char,std::char_traits<char>>' needs to have dll-interface to be used by clients of class 'FileManager'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.22.27905\include\iosfwd(223): message :  see declaration of 'std::basic_ifstream<char,std::char_traits<char>>'
+     Creating library C:\Users\gilro\OneDrive\Documents\Third Year\GDW\Repos\Native_C++\x64\Release\Tutorial2.lib and object C:\Users\gilro\OneDrive\Documents\Third Year\GDW\Repos\Native_C++\x64\Release\Tutorial2.exp
+  Generating code
+  203 of 209 functions (97.1%) were compiled, the rest were copied from previous compilation.
+    12 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  Tutorial2.vcxproj -> C:\Users\gilro\OneDrive\Documents\Third Year\GDW\Repos\Native_C++\x64\Release\Tutorial2.dll
