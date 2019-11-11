@@ -124,6 +124,7 @@ public class Tutorial : MonoBehaviour
         {
             //Hide
             theEnd.gameObject.SetActive(true);
+            giveQuest.loadQuest(4);
 
             end = true;
 
