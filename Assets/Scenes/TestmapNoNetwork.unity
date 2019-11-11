@@ -23,10 +23,10 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1.66
+  m_AmbientIntensity: 1.2
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: ccba45d763ba23f4ab6eadc1ebbbaa21, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: b9ad0aaf2d7938749a36daf7fa5bc7d6, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1526980366}
-  m_IndirectSpecularColor: {r: 0.2046977, g: 0.2830995, b: 0.37430093, a: 1}
+  m_IndirectSpecularColor: {r: 0.39640477, g: 0.4782473, b: 0.37532875, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -381,12 +381,12 @@ MonoBehaviour:
   - {fileID: 3300857788191296137, guid: 675502a81bd89c547995da722ddcaa0f, type: 3}
   - {fileID: 4440117315389513506, guid: 16455edd30808504883792dae3a43f95, type: 3}
   - {fileID: 3495481487593483860, guid: 2a4c79e885a976c4a9ebf714418f2405, type: 3}
-  - {fileID: 8472719749117427103, guid: e5bd866091f75224c953fe24b15f6fce, type: 3}
-  - {fileID: 9042263892034451281, guid: 501d37efcb0422e46be22e5711bb7b5b, type: 3}
-  - {fileID: 3849664563579728684, guid: ed7ad7d904aba0e4d9254cd89ce658bc, type: 3}
-  - {fileID: 7184884107345974696, guid: fb4ecf830ca838b40bdd12561c6eb40c, type: 3}
-  - {fileID: 9160891678479491699, guid: a6c6c67c367bad741bdc50861e1c0f66, type: 3}
-  - {fileID: 357490218757141195, guid: 7cf9e9fc35943cf45928a79295f11411, type: 3}
+  - {fileID: 1397974189333136011, guid: 8afbdaefc2824b64488369ba011da986, type: 3}
+  - {fileID: 6636551177363865669, guid: 5d612cf1e72c726448bd72d380fa8c9c, type: 3}
+  - {fileID: 8466280362553413021, guid: 406e98fa04e630e41a97073b84eb9893, type: 3}
+  - {fileID: 2087580250729269020, guid: e2033aed1edaa75468f2aa62c710f7b8, type: 3}
+  - {fileID: 2100849548332589145, guid: 9197ab7c5b47bf848abd06bbc9640b46, type: 3}
+  - {fileID: 5682995869327925794, guid: 2cbd0fc2f7580c440af96224e50a3c9d, type: 3}
   levelName: TestLevel1
 --- !u!4 &308772357
 Transform:
@@ -488,7 +488,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 310961369}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0.6, z: 9.6}
+  m_LocalPosition: {x: -6.63, y: 1, z: 9.6}
   m_LocalScale: {x: 6.9205556, y: 0.01, z: 12.98689}
   m_Children: []
   m_Father: {fileID: 0}
@@ -921,7 +921,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1295923690}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
   m_LocalScale: {x: 100, y: 1, z: 100}
   m_Children: []
   m_Father: {fileID: 0}
