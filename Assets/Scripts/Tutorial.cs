@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class Tutorial : MonoBehaviour
 {
     public Text toThrow;
@@ -10,7 +11,7 @@ public class Tutorial : MonoBehaviour
     public Text theEnd;
     public Image wSpacebar;
 
-    float timePassed;
+    public float timePassed;
 
     public ObjectPool pool;
 
@@ -18,15 +19,20 @@ public class Tutorial : MonoBehaviour
 
     private int counter = 0;
 
+    public Quest quest;
+    public GiveQuest giveQuest;
+   
     // Start is called before the first frame update
     void Start()
     {
-        toThrow = GameObject.Find("Throw").GetComponent<Text>() ;
-        toClimb = GameObject.Find("Climb").GetComponent<Text>() ;
-        theEnd = GameObject.Find("End").GetComponent<Text>() ;
-        wSpacebar = GameObject.Find("WSpace").GetComponent<Image>() ;
+        
+        toThrow = GameObject.Find("Throw").GetComponent<Text>();
+        toClimb = GameObject.Find("Climb").GetComponent<Text>();
+        theEnd = GameObject.Find("End").GetComponent<Text>();
+        wSpacebar = GameObject.Find("WSpace").GetComponent<Image>();
 
         timePassed = Time.time;
+       
     }
 
     // Update is called once per frame
@@ -61,7 +67,7 @@ public class Tutorial : MonoBehaviour
             //if (counter > 5)
             //{
             //pool.DespawnBall(theBall);
-                //counter = 0;
+            //counter = 0;
             //}
 
 
@@ -89,6 +95,8 @@ public class Tutorial : MonoBehaviour
 
             //Reveal new instructions
             toThrow.gameObject.SetActive(true);
+
+            giveQuest.loadQuest(1);
         }
 
         if (other.gameObject.name == "Trigger2")
@@ -99,6 +107,8 @@ public class Tutorial : MonoBehaviour
 
             //Hide
             toThrow.gameObject.SetActive(false);
+
+            giveQuest.loadQuest(2);
         }
 
         if (other.gameObject.name == "Trigger3")
@@ -106,6 +116,8 @@ public class Tutorial : MonoBehaviour
             //Hide
             wSpacebar.gameObject.SetActive(false);
             toClimb.gameObject.SetActive(false);
+
+            giveQuest.loadQuest(3);
         }
 
         if (other.gameObject.name == "Trigger4")
@@ -114,6 +126,9 @@ public class Tutorial : MonoBehaviour
             theEnd.gameObject.SetActive(true);
 
             end = true;
+
         }
     }
+  
+
 }
