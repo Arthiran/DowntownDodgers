@@ -82,15 +82,32 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
 
     private void Start()
     {
-        PlayerCam.gameObject.SetActive(true);
+        PlayerID = GetComponentInParent<PlayerRootInfo>().PlayerID;
+
+        if (PlayerID == 1)
+        {
+            GetComponent<Renderer>().material.color = Color.red;
+        }
+        else if (PlayerID == 2)
+        {
+            GetComponent<Renderer>().material.color = Color.blue;
+        }
+        else if (PlayerID == 3)
+        {
+            GetComponent<Renderer>().material.color = Color.green;
+        }
+        else
+        {
+            GetComponent<Renderer>().material.color = Color.magenta;
+        }
 
         //Set Controller Strings
-        LeftAnalogXString = "LeftAnalogX1"; //+ PlayerID.ToString();
-        LeftAnalogYString = "LeftAnalogY1"; //+ PlayerID.ToString();
-        ControllerJumpString = "ControllerJump1"; //+ PlayerID.ToString();
-        ControllerDashString = "ControllerDash1"; //+ PlayerID.ToString();
-        ControllerLoadString = "ControllerLoad1"; //+ PlayerID.ToString();
-        ControllerInteractString = "ControllerInteract1"; //+ PlayerID.ToString();
+        LeftAnalogXString = "LeftAnalogX" + PlayerID.ToString();
+        LeftAnalogYString = "LeftAnalogY" + PlayerID.ToString();
+        ControllerJumpString = "ControllerJump" + PlayerID.ToString();
+        ControllerDashString = "ControllerDash" + PlayerID.ToString();
+        ControllerLoadString = "ControllerLoad" + PlayerID.ToString();
+        ControllerInteractString = "ControllerInteract" + PlayerID.ToString();
         SpawnPointList = GameObject.FindGameObjectsWithTag("PlayerSpawn");
 
         //Set Components to Variables at Start of Script
@@ -199,7 +216,6 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
             if (Mathf.Abs(horizontalMovement) == 0 && Mathf.Abs(forwardMovement) == 0)
             {
                 timer = 0.0f;
-                Debug.Log("hello");
             }
             else
             {
@@ -217,6 +233,7 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
                 totalAxes = Mathf.Clamp(totalAxes, 0.0f, 1.0f);
                 translateChange = totalAxes * translateChange;
                 PlayerCam.transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + 0.6f + translateChange, transform.localPosition.z);
+                Debug.Log(translateChange);
             }
             else
             {

@@ -19,7 +19,13 @@ public class GameManagerScriptNoNetwork : MonoBehaviour
     {
         SpawnPointList = GameObject.FindGameObjectsWithTag("PlayerSpawn");
 
-        CreatePlayer();
+        /*for (int i = 0; i <= NumberOfPlayers - 1; i++)
+        {
+            PlayerInstance = Instantiate(PlayerPrefab, SpawnPointList[i].transform.position, Quaternion.Euler(SpawnPointList[i].transform.eulerAngles));
+            PlayerInstance.GetComponent<PlayerRootInfo>().PlayerID = i + 1;
+        }*/
+
+        //CreatePlayer();
 
         for (int i = 1; i <= 3; i++)
         {

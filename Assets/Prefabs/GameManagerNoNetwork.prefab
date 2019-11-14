@@ -28,7 +28,7 @@ PrefabInstance:
     - target: {fileID: 2753328640296715307, guid: 7f4c13315b8971f4f95681da8140a42e,
         type: 3}
       propertyPath: m_Name
-      value: GameManager
+      value: GameManagerNoNetwork
       objectReference: {fileID: 0}
     - target: {fileID: 2753328640296715305, guid: 7f4c13315b8971f4f95681da8140a42e,
         type: 3}
@@ -85,17 +85,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2753328640296715306, guid: 7f4c13315b8971f4f95681da8140a42e,
-        type: 3}
-      propertyPath: TempSpawnBox
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2753328640296715306, guid: 7f4c13315b8971f4f95681da8140a42e,
-        type: 3}
-      propertyPath: PlayerPrefab
-      value: 
-      objectReference: {fileID: 1150266294808196759, guid: 596185beb64bf794c90f6997ba758ff5,
-        type: 3}
     m_RemovedComponents:
     - {fileID: 2753328640296715306, guid: 7f4c13315b8971f4f95681da8140a42e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7f4c13315b8971f4f95681da8140a42e, type: 3}
