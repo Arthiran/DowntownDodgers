@@ -7,6 +7,10 @@ using Photon.Pun;
 
 public class PlayerMovementControllerNoNetwork : MonoBehaviour
 {
+    private float timer = 0.0f;
+    public float bobbingSpeed = 0.18f;
+    public float bobbingAmount = 0.2f;
+
     public GiveQuest quest;
     //Get Character Properties
     private Transform Player;
@@ -115,33 +119,43 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
             //inHandStored = inHand;
             tempClimbTimer = climbWallTimer;
             tempRespawnTimer = respawnTimer;
-            velocityY = 0f;
+            velocityY = 0f;   
         }
 
         //Get Input from Horizontal and Vertical Axis and store them in variables
         if (Input.GetAxisRaw("Vertical") != 0)
         {
-            vertical = Input.GetAxisRaw("Vertical");
+            vertical = Input.GetAxis("Vertical");
             forwardMovement = vertical;
         }
         else
         {
-            LeftAnalogY = Input.GetAxisRaw(LeftAnalogYString);
-            forwardMovement = LeftAnalogY;
+            forwardMovement = Input.GetAxis("Vertical"); ;
         }
+        /*else
+        {
+            LeftAnalogY = Input.GetAxis(LeftAnalogYString);
+            forwardMovement = LeftAnalogY;
+        }*/
 
         if (isClimbing == false)
         {
             if (Input.GetAxisRaw("Horizontal") != 0)
             {
-                horizontal = Input.GetAxisRaw("Horizontal");
+                horizontal = Input.GetAxis("Horizontal");
                 horizontalMovement = horizontal;
             }
             else
             {
-                LeftAnalogX = Input.GetAxisRaw(LeftAnalogXString);
-                horizontalMovement = LeftAnalogX;
+                horizontalMovement = Input.GetAxis("Horizontal");
             }
+            /*else
+            {
+                LeftAnalogX = Input.GetAxis(LeftAnalogXString);
+                horizontalMovement = LeftAnalogX;
+            }*/
+            
+           
             Dash();
         }
 
@@ -175,6 +189,38 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
             {
                 dashIconIMG.color = new Color(dashIconIMG.color.r, dashIconIMG.color.g, dashIconIMG.color.b, 0.1f);
                 dashCooldownText.text = dashCountdownUI.ToString();
+            }
+        }
+
+        if (CharController.isGrounded)
+        {
+            float waveslice = 0.0f;
+
+            if (Mathf.Abs(horizontalMovement) == 0 && Mathf.Abs(forwardMovement) == 0)
+            {
+                timer = 0.0f;
+                Debug.Log("hello");
+            }
+            else
+            {
+                waveslice = Mathf.Sin(timer);
+                timer = timer + bobbingSpeed;
+                if (timer > Mathf.PI * 2)
+                {
+                    timer = timer - (Mathf.PI * 2);
+                }
+            }
+            if (waveslice != 0)
+            {
+                float translateChange = waveslice * bobbingAmount;
+                float totalAxes = Mathf.Abs(horizontal) + Mathf.Abs(vertical);
+                totalAxes = Mathf.Clamp(totalAxes, 0.0f, 1.0f);
+                translateChange = totalAxes * translateChange;
+                PlayerCam.transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + 0.6f + translateChange, transform.localPosition.z);
+            }
+            else
+            {
+                PlayerCam.transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + 0.6f, transform.localPosition.z);
             }
         }
     }
@@ -246,14 +292,10 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
         {
             doubleJumpCheck++;
             //Checks if player is on the ground, if true then character can jump
-            if (doubleJumpCheck <= 2)
+            if (doubleJumpCheck == 1 && isFalling == false && CharController.isGrounded == true)
             {
                 //Custom AddForce function which applies jumpForce in the upward direction
                 AddForce(Vector3.up, jumpForce);
-                if (doubleJumpCheck == 2)
-                {
-                    AddForce(Vector3.up, jumpForce * 1.5f);
-                }
             }
         }
     }

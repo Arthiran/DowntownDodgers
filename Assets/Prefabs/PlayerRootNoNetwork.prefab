@@ -855,7 +855,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 1000
-  field of view: 90
+  field of view: 60
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1118,6 +1118,7 @@ MonoBehaviour:
   fireRate: 0.75
   DodgeballsInHand: 0
   DodgeballCarryLimit: 3
+  giveQuest: {fileID: 0}
 --- !u!114 &6066163026988717062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1784,6 +1785,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6f40071a0c58de448309330890bfac4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bobbingSpeed: 0.2
+  bobbingAmount: 0.2
+  quest: {fileID: 0}
   PlayerCam: {fileID: 1150266294631081421}
   dashIconIMG: {fileID: 1150266294888113566}
   dashCooldownIMG: {fileID: 1150266295048495520}
@@ -1795,7 +1799,8 @@ MonoBehaviour:
   DodgeballPrefab: {fileID: 3723546027264283388, guid: 4bff7f3f8ae98814e9fee9c376d10e3c,
     type: 3}
   BallCarrierTransform: {fileID: 1150266293726577362}
-  moveSpeed: 5
+  sphere: {fileID: 0}
+  moveSpeed: 12.5
   mass: 1
   damping: 5
   climbSpeed: 5
@@ -2197,4 +2202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e578f7f499c86034484ea228a5a8c621, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  capsule: {fileID: 0}
+  sphere: {fileID: 0}
+  capsuleObj: {fileID: 0}
+  controller: {fileID: 0}
+  shooter: {fileID: 0}
