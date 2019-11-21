@@ -77,27 +77,23 @@ public class CameraScriptNoNetwork : MonoBehaviour
 
             if (hitOuterCollision)
             {
+                Debug.Log("heyyyy");
                 rotY += (RightAnalogX * controllerInputSens * Time.deltaTime) * aimAssistFactor;
                 rotX -= (RightAnalogY * controllerInputSens * Time.deltaTime) * aimAssistFactor;
-                /*if (aimAssistRay.collider.tag == "OuterCollision")
-                {
-                    Debug.Log("YOOOOO");
-                    rotY += (RightAnalogX * controllerInputSens * Time.deltaTime) * aimAssistFactor;
-                    rotX -= (RightAnalogY * controllerInputSens * Time.deltaTime) * aimAssistFactor;
-                }
-                else if (aimAssistRay.collider.tag != "OuterCollision")
-                {
-                    rotY += RightAnalogX * controllerInputSens * Time.deltaTime;
-                    rotX -= RightAnalogY * controllerInputSens * Time.deltaTime;
-                }*/
             }
-            else
+            /*else
             {
+                Debug.Log("bruuuuuuuuuuh");
                 rotY += RightAnalogX * controllerInputSens * Time.deltaTime;
                 rotX -= RightAnalogY * controllerInputSens * Time.deltaTime;
-            }
+            }*/
         }
 
+        if (!hitOuterCollision)
+        {
+            rotY += RightAnalogX * controllerInputSens * Time.deltaTime;
+            rotX -= RightAnalogY * controllerInputSens * Time.deltaTime;
+        }
 
 
         //Clamps the rotation vertically so you can't view things upside down

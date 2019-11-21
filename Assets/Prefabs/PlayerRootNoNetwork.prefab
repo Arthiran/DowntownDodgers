@@ -1229,13 +1229,12 @@ MonoBehaviour:
   Player: {fileID: 1150266295338764129}
   PlayerEmptyChild: {fileID: 1150266295451169682}
   MovementController: {fileID: 6110418014921123862}
-  capsuleCollider: {fileID: 6065971949270593289}
   mouseX: 0
   mouseY: 0
   RightAnalogX: 0
   RightAnalogY: 0
   inputSens: 150
-  aimAssistFactor: 0.4
+  aimAssistFactor: 0.25
   controllerInputSens: 150
 --- !u!1 &1150266294702848165
 GameObject:
@@ -2438,7 +2437,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8999883304483873112}
-  - component: {fileID: 6065971949270593289}
+  - component: {fileID: 2009447705702117879}
   m_Layer: 0
   m_Name: OuterCollison
   m_TagString: OuterCollision
@@ -2460,8 +2459,8 @@ Transform:
   m_Father: {fileID: 1150266295338764184}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &6065971949270593289
-CapsuleCollider:
+--- !u!65 &2009447705702117879
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2470,9 +2469,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 1.5
-  m_Height: 2.5
-  m_Direction: 1
+  serializedVersion: 2
+  m_Size: {x: 2.5, y: 2.5, z: 2.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8629313838845290084
 GameObject:
