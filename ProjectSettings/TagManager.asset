@@ -9,6 +9,7 @@ TagManager:
   - Loot
   - PlayerSpawn
   - GameManager
+  - OuterCollision
   layers:
   - Default
   - TransparentFX

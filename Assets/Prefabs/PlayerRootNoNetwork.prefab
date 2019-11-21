@@ -198,7 +198,7 @@ Transform:
   m_GameObject: {fileID: 2070749564}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 2.135}
-  m_LocalScale: {x: 2, y: 1, z: 2}
+  m_LocalScale: {x: 1.75, y: 1, z: 1.75}
   m_Children: []
   m_Father: {fileID: 1150266294631081420}
   m_RootOrder: 5
@@ -361,7 +361,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1150266293726577362}
-  - component: {fileID: 1015072813}
   m_Layer: 0
   m_Name: BallCarrierTransform
   m_TagString: Untagged
@@ -383,19 +382,6 @@ Transform:
   m_Father: {fileID: 1150266294631081420}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &1015072813
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1150266293726577365}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1150266293729021767
 GameObject:
   m_ObjectHideFlags: 0
@@ -1243,6 +1229,7 @@ MonoBehaviour:
   Player: {fileID: 1150266295338764129}
   PlayerEmptyChild: {fileID: 1150266295451169682}
   MovementController: {fileID: 6110418014921123862}
+  capsuleCollider: {fileID: 6065971949270593289}
   mouseX: 0
   mouseY: 0
   RightAnalogX: 0
@@ -1410,7 +1397,7 @@ MonoBehaviour:
   - {fileID: 1150266293729021765}
   dodgeballsText: {fileID: 1150266294553799077}
   inHandText: {fileID: 1150266293880055588}
-  dodgeballLaunchForce: 50
+  dodgeballLaunchForce: 20
   fireRate: 0.75
   DodgeballsInHand: 0
   DodgeballCarryLimit: 3
@@ -1427,6 +1414,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d591033e93c3c5c41ad25e84f865574f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerID: 0
 --- !u!1 &1150266294830677686
 GameObject:
   m_ObjectHideFlags: 0
@@ -1982,7 +1970,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 8999883304483873112}
   m_Father: {fileID: 1150266294808196756}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2440,6 +2429,51 @@ RectTransform:
   m_AnchoredPosition: {x: -76.90015, y: -21.200195}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0}
+--- !u!1 &6636644500464676776
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8999883304483873112}
+  - component: {fileID: 6065971949270593289}
+  m_Layer: 0
+  m_Name: OuterCollison
+  m_TagString: OuterCollision
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8999883304483873112
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6636644500464676776}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1150266295338764184}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &6065971949270593289
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6636644500464676776}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 1.5
+  m_Height: 2.5
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8629313838845290084
 GameObject:
   m_ObjectHideFlags: 0

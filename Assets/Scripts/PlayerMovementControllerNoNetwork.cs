@@ -145,15 +145,15 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
             vertical = Input.GetAxis("Vertical");
             forwardMovement = vertical;
         }
+        else if (Input.GetAxis(LeftAnalogYString) != 0)
+        {
+            LeftAnalogY = Input.GetAxis(LeftAnalogYString);
+            forwardMovement = LeftAnalogY;
+        }
         else
         {
             forwardMovement = Input.GetAxis("Vertical"); ;
         }
-        /*else
-        {
-            LeftAnalogY = Input.GetAxis(LeftAnalogYString);
-            forwardMovement = LeftAnalogY;
-        }*/
 
         if (isClimbing == false)
         {
@@ -162,17 +162,15 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
                 horizontal = Input.GetAxis("Horizontal");
                 horizontalMovement = horizontal;
             }
-            else
-            {
-                horizontalMovement = Input.GetAxis("Horizontal");
-            }
-            /*else
+            else if (Input.GetAxis(LeftAnalogXString) != 0)
             {
                 LeftAnalogX = Input.GetAxis(LeftAnalogXString);
                 horizontalMovement = LeftAnalogX;
-            }*/
-            
-           
+            }
+            else
+            {
+                horizontalMovement = Input.GetAxis("Horizontal");
+            } 
             Dash();
         }
 
@@ -233,7 +231,6 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
                 totalAxes = Mathf.Clamp(totalAxes, 0.0f, 1.0f);
                 translateChange = totalAxes * translateChange;
                 PlayerCam.transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + 0.6f + translateChange, transform.localPosition.z);
-                Debug.Log(translateChange);
             }
             else
             {
@@ -451,6 +448,7 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
             {
                 interactText.color = new Color(interactText.color.r, interactText.color.g, interactText.color.b, 1f);
             }
+
             if (Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown(ControllerInteractString))
             {
                 if (shootingScript.DodgeballsInHand < shootingScript.DodgeballCarryLimit)

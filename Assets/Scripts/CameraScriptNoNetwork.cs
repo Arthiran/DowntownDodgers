@@ -27,12 +27,13 @@ public class CameraScriptNoNetwork : MonoBehaviour
     private float distWall = 1f;
     private string RightAnalogXString;
     private string RightAnalogYString;
+    private bool hitOuterCollision;
 
     private void Start()
     {
         PV = GetComponent<PhotonView>();
-        RightAnalogXString = "RightAnalogX1"; //+ GetComponentInParent<PlayerRootInfo>().PlayerID.ToString();
-        RightAnalogYString = "RightAnalogY1"; //+ GetComponentInParent<PlayerRootInfo>().PlayerID.ToString();
+        RightAnalogXString = "RightAnalogX" + GetComponentInParent<PlayerRootInfo>().PlayerID.ToString();
+        RightAnalogYString = "RightAnalogY" + GetComponentInParent<PlayerRootInfo>().PlayerID.ToString();
         //Finds the character which has a tag set to Player
         //Rotation variables are set
         Vector3 rot = transform.localRotation.eulerAngles;
@@ -66,25 +67,38 @@ public class CameraScriptNoNetwork : MonoBehaviour
         rotY += mouseX * inputSens * Time.deltaTime;
         rotX -= mouseY * inputSens * Time.deltaTime;
 
-        RaycastHit aimAssistRay;
-        if (Physics.Raycast(transform.position, transform.forward, out aimAssistRay, 1000))
+        RaycastHit[] aimAssistRay;
+        aimAssistRay = Physics.RaycastAll(transform.position, transform.forward, 10000);
+
+        for(int i = 0; i < aimAssistRay.Length; i++)
         {
-            if (aimAssistRay.collider.GetComponent<Target>() != null)
+            RaycastHit raycastHit = aimAssistRay[i];
+            hitOuterCollision = raycastHit.collider.tag == "OuterCollision";
+
+            if (hitOuterCollision)
             {
                 rotY += (RightAnalogX * controllerInputSens * Time.deltaTime) * aimAssistFactor;
                 rotX -= (RightAnalogY * controllerInputSens * Time.deltaTime) * aimAssistFactor;
+                /*if (aimAssistRay.collider.tag == "OuterCollision")
+                {
+                    Debug.Log("YOOOOO");
+                    rotY += (RightAnalogX * controllerInputSens * Time.deltaTime) * aimAssistFactor;
+                    rotX -= (RightAnalogY * controllerInputSens * Time.deltaTime) * aimAssistFactor;
+                }
+                else if (aimAssistRay.collider.tag != "OuterCollision")
+                {
+                    rotY += RightAnalogX * controllerInputSens * Time.deltaTime;
+                    rotX -= RightAnalogY * controllerInputSens * Time.deltaTime;
+                }*/
             }
-            else if (aimAssistRay.collider.GetComponent<Target>() == null)
+            else
             {
                 rotY += RightAnalogX * controllerInputSens * Time.deltaTime;
                 rotX -= RightAnalogY * controllerInputSens * Time.deltaTime;
             }
         }
-        else
-        {
-            rotY += RightAnalogX * controllerInputSens * Time.deltaTime;
-            rotX -= RightAnalogY * controllerInputSens * Time.deltaTime;
-        }
+
+
 
         //Clamps the rotation vertically so you can't view things upside down
         rotX = Mathf.Clamp(rotX, -clampAngle, clampAngle);
