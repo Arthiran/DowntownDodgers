@@ -2175,6 +2175,7 @@ MonoBehaviour:
   inHand: 1
   climbWallTimer: 5
   tempRandomNum: 0
+  PlayerID: 0
 --- !u!114 &1150266295338764191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2189,6 +2190,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 30
   originalHealth: 0
+  gameManager: {fileID: 2829869188681669576, guid: e261cb0d3e8136a41a7b8f73e90b9362,
+    type: 3}
 --- !u!1 &1150266295430779085
 GameObject:
   m_ObjectHideFlags: 0

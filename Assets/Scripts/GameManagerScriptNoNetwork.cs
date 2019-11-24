@@ -19,7 +19,7 @@ public class GameManagerScriptNoNetwork : MonoBehaviour
     public int p1Score = 0;
     public int p2Score = 0;
 
-    private float gameTime = 10.0f;
+    private float gameTime = 120.0f;
 
     public Text p1Result;
     public Text p2Result;
@@ -28,9 +28,14 @@ public class GameManagerScriptNoNetwork : MonoBehaviour
     {
         SpawnPointList = GameObject.FindGameObjectsWithTag("PlayerSpawn");
 
+        //Set scores to start at 0
+        p1Score = 0;
+        p2Score = 0;
+
         p1Result = p1Result.GetComponent<Text>();
         p2Result = p2Result.GetComponent<Text>();
 
+        //Hide the text
         p1Result.enabled = false;
         p2Result.enabled = false;
 
@@ -52,7 +57,7 @@ public class GameManagerScriptNoNetwork : MonoBehaviour
     {
         gameTime -= Time.deltaTime;
 
-        if (gameTime <= 0.0f)
+        if (gameTime <= 0.0f || p1Score == 3 || p2Score == 3)
         {
             p1Result.enabled = true;
             p2Result.enabled = true;

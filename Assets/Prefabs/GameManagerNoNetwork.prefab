@@ -12,12 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8beb6c782714d034f8772ab762bb8bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NumberOfPlayers: 1
+  NumberOfPlayers: 2
   PlayerPrefab: {fileID: 1150266294808196759, guid: 51b1becf417e14c488de996468cec74f,
     type: 3}
   DodgeballLootPrefab: {fileID: 1086040798761678246, guid: 4513a5ad1377d1843a2b336c592efbd5,
     type: 3}
   TempSpawnBox: {fileID: 0}
+  p1Score: 0
+  p2Score: 0
+  p1Result: {fileID: 0}
+  p2Result: {fileID: 0}
 --- !u!1001 &4590628669676661999
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -85,8 +89,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2753328640296715306, guid: 7f4c13315b8971f4f95681da8140a42e, type: 3}
+    - target: {fileID: 2753328640296715306, guid: 7f4c13315b8971f4f95681da8140a42e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f4c13315b8971f4f95681da8140a42e, type: 3}
 --- !u!1 &1837743235645483204 stripped
 GameObject:
