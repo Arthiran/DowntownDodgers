@@ -65,7 +65,7 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
     private float respawnTimer = 1f;
     private float tempRespawnTimer;
     public int tempRandomNum;
-    private int PlayerID;
+    public int PlayerID;
 
     private float forwardMovement;
     private float horizontalMovement;

@@ -77,7 +77,7 @@ public class CameraScriptNoNetwork : MonoBehaviour
 
             if (hitOuterCollision)
             {
-                Debug.Log("heyyyy");
+                //Debug.Log("heyyyy");
                 rotY += (RightAnalogX * controllerInputSens * Time.deltaTime) * aimAssistFactor;
                 rotX -= (RightAnalogY * controllerInputSens * Time.deltaTime) * aimAssistFactor;
             }

@@ -7,6 +7,7 @@ public class Target : MonoBehaviour {
     public float health = 30f;
     public float originalHealth;
     private PlayerMovementControllerNoNetwork MovementController;
+    public GameManagerScriptNoNetwork gameManager;
     private PhotonView PV;
 
     private void Start()
@@ -24,6 +25,7 @@ public class Target : MonoBehaviour {
         }*/
         originalHealth = health;
         MovementController = GetComponent<PlayerMovementControllerNoNetwork>();
+
         if (gameObject.tag == "Player")
         {
             MovementController.HealthNumText.text = health.ToString() + "/" + originalHealth.ToString();
@@ -32,7 +34,7 @@ public class Target : MonoBehaviour {
     }
 
     //Calculates the amount of damage taken from shot, dies if under 0 health
-    [PunRPC]
+    //[PunRPC]
     public void TakeDamage(float amount)
     {
         /*if (PV.IsMine)
@@ -56,6 +58,18 @@ public class Target : MonoBehaviour {
         }
         if (health <= 0f)
         {
+            //Increase scores
+            if (MovementController.PlayerID == 1)
+            {
+                gameManager.p2Score++;
+                Debug.Log(gameManager.p2Score);
+            }
+            if (MovementController.PlayerID == 2)
+            {
+                gameManager.p1Score++;
+                Debug.Log(gameManager.p1Score);
+            }
+
             Die();
         }
     }
@@ -97,6 +111,7 @@ public class Target : MonoBehaviour {
                 Destroy(gameObject);
             }
         }*/
+
         if (gameObject.tag == "Player")
         {
             if (MovementController != null)
