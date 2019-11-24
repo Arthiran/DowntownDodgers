@@ -58,6 +58,7 @@ public class Target : MonoBehaviour {
         }
         if (health <= 0f)
         {
+            //Increase scores
             if (MovementController.PlayerID == 1)
             {
                 gameManager.p2Score++;
