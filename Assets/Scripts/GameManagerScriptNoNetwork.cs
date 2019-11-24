@@ -21,11 +21,14 @@ public class GameManagerScriptNoNetwork : MonoBehaviour
 
     private float gameTime = 120.0f;
 
-    public Text p1Result;
-    public Text p2Result;
+    public Text p1ResultText;
+    public Text p2ResultText;
 
-    public Text timer1;
-    public Text timer2;
+    public Text timerText1;
+    public Text timerText2;
+
+    public Text scoreText1;
+    public Text scoreText2;
 
     public float seconds;
     public float minutes;
@@ -38,14 +41,16 @@ public class GameManagerScriptNoNetwork : MonoBehaviour
         p1Score = 0;
         p2Score = 0;
 
-        p1Result = p1Result.GetComponent<Text>();
-        p2Result = p2Result.GetComponent<Text>();
-        timer1 = timer1.GetComponent<Text>();
-        timer2 = timer2.GetComponent<Text>();
+        p1ResultText = p1ResultText.GetComponent<Text>();
+        p2ResultText = p2ResultText.GetComponent<Text>();
+        timerText1 = timerText1.GetComponent<Text>();
+        timerText2 = timerText2.GetComponent<Text>();
+        scoreText1 = scoreText1.GetComponent<Text>();
+        scoreText2 = scoreText2.GetComponent<Text>();
 
         //Hide the text
-        p1Result.enabled = false;
-        p2Result.enabled = false;
+        p1ResultText.enabled = false;
+        p2ResultText.enabled = false;
 
         /*for (int i = 0; i <= NumberOfPlayers - 1; i++)
         {
@@ -69,30 +74,33 @@ public class GameManagerScriptNoNetwork : MonoBehaviour
         minutes = (int)(gameTime / 60f);
         seconds = (int)(gameTime % 60f);
 
-        timer1.text = minutes.ToString("00") + ":" + seconds.ToString("00");
-        timer2.text = minutes.ToString("00") + ":" + seconds.ToString("00");
+        timerText1.text = minutes.ToString("00") + ":" + seconds.ToString("00");
+        timerText2.text = minutes.ToString("00") + ":" + seconds.ToString("00");
+
+        scoreText1.text = p1Score.ToString("0");
+        scoreText2.text = p2Score.ToString("0");
 
 
         //End Conditions
         if (gameTime <= 0.0f || p1Score == 3 || p2Score == 3)
         {
-            p1Result.enabled = true;
-            p2Result.enabled = true;
+            p1ResultText.enabled = true;
+            p2ResultText.enabled = true;
 
             if (p1Score > p2Score)
             {  
-                p1Result.text = "You Win!";
-                p2Result.text = "You Lose!";
+                p1ResultText.text = "You Win!";
+                p2ResultText.text = "You Lose!";
             }
             else if (p2Score > p1Score)
             {
-                p1Result.text = "You Lose!";
-                p2Result.text = "You Win!";
+                p1ResultText.text = "You Lose!";
+                p2ResultText.text = "You Win!";
             }
             else
             {
-                p1Result.text = "Tie Game!";
-                p2Result.text = "Tie Game!";
+                p1ResultText.text = "Tie Game!";
+                p2ResultText.text = "Tie Game!";
             }
         }
 
