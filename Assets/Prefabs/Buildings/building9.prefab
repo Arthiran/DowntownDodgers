@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 493469873635089479}
   - component: {fileID: 1217114208112183250}
   - component: {fileID: 6122628329231470330}
+  - component: {fileID: 4884304114965949523}
   m_Layer: 0
   m_Name: building9
   m_TagString: Climable
@@ -59,6 +60,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: -2432090755550338912, guid: 703661940054e8c42b8bc13e91633dbf, type: 3}
+--- !u!65 &4884304114965949523
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3495481487593483860}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 11.022711, y: 14.658398, z: 6.109621}
+  m_Center: {x: -0.04912758, y: 7.320509, z: 0.049130917}
 --- !u!1 &6957563668092308425
 GameObject:
   m_ObjectHideFlags: 0

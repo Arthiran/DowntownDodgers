@@ -11,6 +11,10 @@ GameObject:
   - component: {fileID: 3990242677191300008}
   - component: {fileID: 2226632221317077457}
   - component: {fileID: 3427411147886069706}
+  - component: {fileID: 1954193331787181875}
+  - component: {fileID: 2060072412590293789}
+  - component: {fileID: 1645485397439565307}
+  - component: {fileID: 3762829455898897356}
   m_Layer: 0
   m_Name: building5
   m_TagString: Climable
@@ -30,6 +34,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6849675263019909264}
+  - {fileID: 417392992573074312}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -59,6 +64,102 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: -2432090755550338912, guid: 61e970f76cbbfff4297275d0405d8bf6, type: 3}
+--- !u!65 &1954193331787181875
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88780385051320763}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8563423, y: 33.271137, z: 12.015352}
+  m_Center: {x: -10.433971, y: 6.917839, z: -2.2386818}
+--- !u!65 &2060072412590293789
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88780385051320763}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 14.772349, y: 33.47168, z: 0.7050996}
+  m_Center: {x: 1.5596013, y: 7.0181046, z: 8.143985}
+--- !u!65 &1645485397439565307
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88780385051320763}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8926735, y: 33.47168, z: 16.140152}
+  m_Center: {x: 8.499439, y: 7.0181046, z: -0.19285107}
+--- !u!65 &3762829455898897356
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88780385051320763}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 19.822094, y: 33.47168, z: 0.84799004}
+  m_Center: {x: -0.965271, y: 7.0181046, z: -7.9818697}
+--- !u!1 &3786954363109326337
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 417392992573074312}
+  - component: {fileID: 667447610620252233}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Climable
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &417392992573074312
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3786954363109326337}
+  m_LocalRotation: {x: 0, y: -0.36341384, z: 0, w: 0.9316278}
+  m_LocalPosition: {x: 1.08, y: 0, z: 7.23}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3990242677191300008}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: -42.62, z: 0}
+--- !u!65 &667447610620252233
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3786954363109326337}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.53091, y: 24.396559, z: 1}
+  m_Center: {x: -7.6455607, y: 11.507182, z: 5.200014}
 --- !u!1 &5852185709564740646
 GameObject:
   m_ObjectHideFlags: 0
