@@ -23,6 +23,12 @@ public class GameManagerScriptNoNetwork : MonoBehaviour
 
     public Text p1Result;
     public Text p2Result;
+
+    public Text timer1;
+    public Text timer2;
+
+    public float seconds;
+    public float minutes;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +40,8 @@ public class GameManagerScriptNoNetwork : MonoBehaviour
 
         p1Result = p1Result.GetComponent<Text>();
         p2Result = p2Result.GetComponent<Text>();
+        timer1 = timer1.GetComponent<Text>();
+        timer2 = timer2.GetComponent<Text>();
 
         //Hide the text
         p1Result.enabled = false;
@@ -57,6 +65,15 @@ public class GameManagerScriptNoNetwork : MonoBehaviour
     {
         gameTime -= Time.deltaTime;
 
+        //Display Time
+        minutes = (int)(gameTime / 60f);
+        seconds = (int)(gameTime % 60f);
+
+        timer1.text = minutes.ToString("00") + ":" + seconds.ToString("00");
+        timer2.text = minutes.ToString("00") + ":" + seconds.ToString("00");
+
+
+        //End Conditions
         if (gameTime <= 0.0f || p1Score == 3 || p2Score == 3)
         {
             p1Result.enabled = true;
