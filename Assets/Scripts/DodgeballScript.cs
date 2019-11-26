@@ -5,35 +5,37 @@ using UnityEngine;
 public class DodgeballScript : MonoBehaviour
 {
     //Initialize Variables
+    public float GravitationalForce = 25.0f;
     public float damage = 10.0f;
     public Rigidbody rb;
-
+    public int PlayerID = 0;
     public bool inAir;
 
     private void Start()
     {
         rb.GetComponent<Rigidbody>();
         Destroy(gameObject, 10);
-
         inAir = true;
     }
 
-    /*private void OnTriggerEnter(Collider collision)
+    private void OnTriggerStay(Collider collision)
     {
         //If the object collieded with has a Target script
-        Target target = collision.gameObject.GetComponent<Target>();
+        Target target = collision.gameObject.GetComponentInParent<Target>();
         //If it does, apply the damage to the object's health
         if (target != null)
         {
-            target.TakeDamage(damage);
+            if (collision.gameObject.GetComponentInParent<PlayerMovementControllerNoNetwork>().PlayerID != PlayerID)
+            {
+                float step = GravitationalForce * Time.deltaTime;
+                transform.position = Vector3.MoveTowards(transform.position, collision.gameObject.transform.position, step);
+            }
         }
-        //Destroys the dodgeball on impact
-        Destroy(gameObject);
-    }*/
+    }
+
     private void OnCollisionExit(Collision collision)
     {
         inAir = true;
-        Debug.Log(inAir);
     }
     private void OnCollisionStay(Collision collision)
     {
@@ -41,7 +43,6 @@ public class DodgeballScript : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             inAir = false;
-            Debug.Log(inAir);
         }
     }     
 }

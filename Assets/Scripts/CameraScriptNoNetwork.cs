@@ -67,35 +67,6 @@ public class CameraScriptNoNetwork : MonoBehaviour
         rotY += mouseX * inputSens * Time.deltaTime;
         rotX -= mouseY * inputSens * Time.deltaTime;
 
-        RaycastHit[] aimAssistRay;
-        aimAssistRay = Physics.RaycastAll(transform.position, transform.forward, 10000);
-
-        for(int i = 0; i < aimAssistRay.Length; i++)
-        {
-            RaycastHit raycastHit = aimAssistRay[i];
-            hitOuterCollision = raycastHit.collider.tag == "OuterCollision";
-
-            if (hitOuterCollision)
-            {
-                //Debug.Log("heyyyy");
-                rotY += (RightAnalogX * controllerInputSens * Time.deltaTime) * aimAssistFactor;
-                rotX -= (RightAnalogY * controllerInputSens * Time.deltaTime) * aimAssistFactor;
-            }
-            /*else
-            {
-                Debug.Log("bruuuuuuuuuuh");
-                rotY += RightAnalogX * controllerInputSens * Time.deltaTime;
-                rotX -= RightAnalogY * controllerInputSens * Time.deltaTime;
-            }*/
-        }
-
-        if (!hitOuterCollision)
-        {
-            rotY += RightAnalogX * controllerInputSens * Time.deltaTime;
-            rotX -= RightAnalogY * controllerInputSens * Time.deltaTime;
-        }
-
-
         //Clamps the rotation vertically so you can't view things upside down
         rotX = Mathf.Clamp(rotX, -clampAngle, clampAngle);
 
