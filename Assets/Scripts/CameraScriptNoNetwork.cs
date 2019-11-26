@@ -67,6 +67,9 @@ public class CameraScriptNoNetwork : MonoBehaviour
         rotY += mouseX * inputSens * Time.deltaTime;
         rotX -= mouseY * inputSens * Time.deltaTime;
 
+        rotY += RightAnalogX * inputSens * Time.deltaTime;
+        rotX -= RightAnalogY * inputSens * Time.deltaTime;
+
         //Clamps the rotation vertically so you can't view things upside down
         rotX = Mathf.Clamp(rotX, -clampAngle, clampAngle);
 
