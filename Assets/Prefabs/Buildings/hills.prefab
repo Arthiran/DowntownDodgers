@@ -88,6 +88,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5697073387151317831}
   - component: {fileID: 7187352485701499496}
+  - component: {fileID: -628496545772003859}
   m_Layer: 0
   m_Name: hills
   m_TagString: Untagged
@@ -122,3 +123,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 429ded89c44fb0546aa5d0b38d22fa96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!64 &-628496545772003859
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8740162889772083540}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: -2432090755550338912, guid: 90e4da6e3a8f0524d844dca95feaed8d, type: 3}
