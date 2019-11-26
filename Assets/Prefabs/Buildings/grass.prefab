@@ -57,7 +57,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3033667219593020291, guid: 335b57184c0464f4bae843169a970b90, type: 3}
+  - {fileID: 2100000, guid: 5ed5b4a502464974d909a05f1e654d5f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -88,6 +88,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8684443641388421169}
   - component: {fileID: -3205694203068831844}
+  - component: {fileID: 8441065339066122463}
   m_Layer: 0
   m_Name: grass
   m_TagString: Untagged
@@ -122,3 +123,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 429ded89c44fb0546aa5d0b38d22fa96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!64 &8441065339066122463
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5682995869327925794}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: -2432090755550338912, guid: 335b57184c0464f4bae843169a970b90, type: 3}
