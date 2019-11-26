@@ -443,6 +443,16 @@ MonoBehaviour:
   - {fileID: 2087580250729269020, guid: e2033aed1edaa75468f2aa62c710f7b8, type: 3}
   - {fileID: 2100849548332589145, guid: 9197ab7c5b47bf848abd06bbc9640b46, type: 3}
   - {fileID: 5682995869327925794, guid: 2cbd0fc2f7580c440af96224e50a3c9d, type: 3}
+  - {fileID: 2063886579621059001, guid: a3f78bdbe57ef6d46a88918adebc44d4, type: 3}
+  - {fileID: 6995803982596477458, guid: 6cb8ab1e1427b7649bbdad4ec34964c8, type: 3}
+  - {fileID: 113502693513727420, guid: 354a736ea3c220242975d70c25d051ec, type: 3}
+  - {fileID: 8740162889772083540, guid: 29f5b9f687b95bf4a8eb6a6c66fbade9, type: 3}
+  - {fileID: 2569607914115258651, guid: 049cccd71623a5646af5cca653f09126, type: 3}
+  - {fileID: 9052282942631096364, guid: 8cc27cb204c60b444ac19d5578173528, type: 3}
+  - {fileID: 9025459986656974384, guid: 2d46fe05a79d1334a8efeb57dfc003a1, type: 3}
+  - {fileID: 8954913846246996724, guid: da8172875f45fac4eb8c8feb3875fcaa, type: 3}
+  - {fileID: 4298266454429677821, guid: 44e3c1efc29bc0b49b34e3b1e172fb2d, type: 3}
+  - {fileID: 778664182582604173, guid: 7f417deedaf4f274586ef2a29f534424, type: 3}
   levelName: TestLevel1
 --- !u!4 &308772357
 Transform:
