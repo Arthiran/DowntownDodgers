@@ -260,7 +260,7 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
         }
         else
         {
-            velocity = movement * moveSpeed * 1.5f + Vector3.up * velocityY;
+            velocity = movement * moveSpeed * 1.2f + Vector3.up * velocityY;
         }
 
         //sets the velocity to take all forces into account
@@ -430,7 +430,7 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
             if (inHandStored)
             {
                 sphere.SetActive(true);
-                inHand = true;
+                //inHand = true;
             }
         }
         else

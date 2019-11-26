@@ -2246,13 +2246,13 @@ MonoBehaviour:
   moveSpeed: 12.5
   mass: 1
   damping: 5
-  climbSpeed: 5
-  jumpForce: 10
+  climbSpeed: 15
+  jumpForce: 15
   dashForce: 70
   dashCooldown: 8
   isClimbing: 0
   inHand: 1
-  climbWallTimer: 5
+  climbWallTimer: 8
   tempRandomNum: 0
   PlayerID: 0
 --- !u!114 &1150266295338764191
