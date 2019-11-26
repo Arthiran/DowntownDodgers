@@ -109,6 +109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   rb: {fileID: 8048425419474693442}
+  inAir: 0
 --- !u!54 &8048425419474693442
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -117,7 +118,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1880751298986934537}
   serializedVersion: 2
-  m_Mass: 0.0000001
+  m_Mass: 0.65
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 1

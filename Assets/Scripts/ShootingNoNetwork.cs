@@ -91,7 +91,7 @@ public class ShootingNoNetwork : MonoBehaviour
         //Spawns an instance of the dodgeball prefab at the spawn transform
         GameObject DodgeballInstance = Instantiate(DodgeballPrefab, BallShootingTransform.position, BallShootingTransform.rotation);
         //Gives dodgeball a launch force wherever the character is facing
-        DodgeballInstance.GetComponent<Rigidbody>().AddForce(DodgeballInstance.transform.forward * dodgeballLaunchForce, ForceMode.VelocityChange);
+        DodgeballInstance.GetComponent<Rigidbody>().AddForce(DodgeballInstance.transform.forward * dodgeballLaunchForce, ForceMode.Impulse);
         FillSlots[DodgeballsInHand-1].fillAmount = 0f;
         DodgeballsInHand--;
     }
