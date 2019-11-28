@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using Photon.Pun;
 
 public class Target : MonoBehaviour {
@@ -8,6 +9,8 @@ public class Target : MonoBehaviour {
     public float originalHealth;
     private PlayerMovementControllerNoNetwork MovementController;
     public GameManagerScriptNoNetwork gameManager;
+    public Image vignette;
+    bool toFade = false;
     private PhotonView PV;
 
     private void Start()
@@ -25,6 +28,7 @@ public class Target : MonoBehaviour {
         }*/
         originalHealth = health;
         MovementController = GetComponent<PlayerMovementControllerNoNetwork>();
+        vignette = vignette.GetComponent<Image>();
 
         if (gameObject.tag == "Player")
         {
@@ -53,9 +57,65 @@ public class Target : MonoBehaviour {
         health -= amount;
         if (gameObject.tag == "Player")
         {
+            //Show vignette
+            if (MovementController.PlayerID == 1)
+            {
+                vignette.canvasRenderer.SetAlpha(1.0f);
+                vignette.enabled = true;
+                var temp = vignette.color;
+                temp.a = 1;
+                vignette.color = temp;
+                //vignette.CrossFadeAlpha(0, 1.5f, false);
+                //vignette.enabled = false;
+                //temp.a = 1;
+                //vignette.color = temp;
+                toFade = true;
+                Debug.Log("Vignetter1");
+            }
+            if (MovementController.PlayerID == 2)
+            {
+                vignette.canvasRenderer.SetAlpha(1.0f);
+                vignette.enabled = true;
+                var temp = vignette.color;
+                temp.a = 1;
+                vignette.color = temp;
+                //vignette.CrossFadeAlpha(0, 1.5f, false);
+                //vignette.enabled = false;
+                //temp.a = 1;
+                //vignette.color = temp;
+                toFade = true;
+                Debug.Log("Vignetter2");
+            }
+
             MovementController.HealthNumText.text = health.ToString() + "/" + originalHealth.ToString();
             MovementController.filledHealthbarIMG.fillAmount = health / originalHealth;
+
+            if (toFade)
+            {
+                //Fade vignette
+                if (MovementController.PlayerID == 1)
+                {
+                    //vignette.CrossFadeAlpha(1, 2.0f, false);
+                    var temp = vignette.color;
+                    vignette.CrossFadeAlpha(0, 1.5f, false);
+                    temp.a = 1;
+                    vignette.color = temp;
+                    toFade = false;
+                    Debug.Log("Vignetterrrr1");
+                }
+                if (MovementController.PlayerID == 2)
+                {
+                    //vignette.CrossFadeAlpha(1, 2.0f, false);
+                    var temp = vignette.color;
+                    vignette.CrossFadeAlpha(0, 1.5f, false);
+                    temp.a = 1;
+                    vignette.color = temp;
+                    toFade = false;
+                    Debug.Log("Vignetterrrr2");
+                }
+            }
         }
+
         if (health <= 0f)
         {
             //Increase scores
