@@ -88,7 +88,6 @@ public class Target : MonoBehaviour {
         DodgeballScript dodgeballScript = collision.gameObject.GetComponent<DodgeballScript>();
         if (dodgeballScript != null)
         {
-            Debug.Log("hello");
             TakeDamage(dodgeballScript.damage);
             Destroy(collision.gameObject);
         }

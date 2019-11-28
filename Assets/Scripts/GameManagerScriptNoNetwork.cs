@@ -12,11 +12,11 @@ public class GameManagerScriptNoNetwork : MonoBehaviour
     [Range(1,4)]
     public int NumberOfPlayers = 1;
     public GameObject PlayerPrefab;
-    private GameObject[] SpawnPointList;
+    private GameObject[] LootSpawnList;
 
     public GameObject DodgeballLootPrefab;
-    public Collider TempSpawnBox;
 
+    private int LootRandomNum = 0;
     public int p1Score = 0;
     public int p2Score = 0;
 
@@ -40,7 +40,7 @@ public class GameManagerScriptNoNetwork : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SpawnPointList = GameObject.FindGameObjectsWithTag("PlayerSpawn");
+        LootSpawnList = GameObject.FindGameObjectsWithTag("LootSpawn");
 
         gameOver = false;
 
@@ -59,14 +59,6 @@ public class GameManagerScriptNoNetwork : MonoBehaviour
         //Hide the text
         p1ResultText.enabled = false;
         p2ResultText.enabled = false;
-
-        /*for (int i = 0; i <= NumberOfPlayers - 1; i++)
-        {
-            PlayerInstance = Instantiate(PlayerPrefab, SpawnPointList[i].transform.position, Quaternion.Euler(SpawnPointList[i].transform.eulerAngles));
-            PlayerInstance.GetComponent<PlayerRootInfo>().PlayerID = i + 1;
-        }*/
-
-        //CreatePlayer();
 
         for (int i = 1; i <= 3; i++)
         {
@@ -135,15 +127,10 @@ public class GameManagerScriptNoNetwork : MonoBehaviour
         }
     }
 
-    private void CreatePlayer()
-    {
-        Debug.Log("Creating Player");
-        PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerRoot"), SpawnPointList[0].transform.position, Quaternion.Euler(SpawnPointList[0].transform.eulerAngles));
-    }
-
     private void SpawnNewDodgeball()
     {
-        GameObject DodgeballLootInstance = Instantiate(DodgeballLootPrefab, RandomPointInBounds(TempSpawnBox.bounds), Quaternion.identity);
+        LootRandomNum = Random.Range(0, LootSpawnList.Length - 1);
+        GameObject DodgeballLootInstance = Instantiate(DodgeballLootPrefab, RandomPointInBounds(LootSpawnList[LootRandomNum].GetComponent<BoxCollider>().bounds), Quaternion.identity);
     }
 
     public static Vector3 RandomPointInBounds(Bounds bounds)

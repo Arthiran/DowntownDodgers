@@ -7,15 +7,11 @@ using Photon.Pun;
 
 public class PlayerMovementControllerNoNetwork : MonoBehaviour
 {
-    private float timer = 0.0f;
-    public float bobbingSpeed = 0.18f;
-    public float bobbingAmount = 0.2f;
-
     public GiveQuest quest;
     //Get Character Properties
     private Transform Player;
     private CharacterController CharController;
-    public Camera PlayerCam;
+    public Transform PlayerCam;
     public Image dashIconIMG;
     public Image dashCooldownIMG;
     public Image filledHealthbarIMG;
@@ -46,7 +42,7 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
     public float moveSpeed = 5f;
     public float mass = 1f;
     public float damping = 5f;
-    private float edgeUpForce = 15f;
+    private float edgeUpForce = 10f;
     public float climbSpeed = 100f;
     public float jumpForce = 4f;
     public float dashForce = 4f;
@@ -55,6 +51,7 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
     private float nextDash;
     private float gravity = Physics.gravity.y;
     private float distWall = 0.6f;
+    public bool isGrounded = false;
     public bool isClimbing = false;
     private bool isFalling = false;
     private bool isRespawning = false;
@@ -206,37 +203,6 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
                 dashCooldownText.text = dashCountdownUI.ToString();
             }
         }
-
-        if (CharController.isGrounded)
-        {
-            float waveslice = 0.0f;
-
-            if (Mathf.Abs(horizontalMovement) == 0 && Mathf.Abs(forwardMovement) == 0)
-            {
-                timer = 0.0f;
-            }
-            else
-            {
-                waveslice = Mathf.Sin(timer);
-                timer = timer + bobbingSpeed;
-                if (timer > Mathf.PI * 2)
-                {
-                    timer = timer - (Mathf.PI * 2);
-                }
-            }
-            if (waveslice != 0)
-            {
-                float translateChange = waveslice * bobbingAmount;
-                float totalAxes = Mathf.Abs(horizontal) + Mathf.Abs(vertical);
-                totalAxes = Mathf.Clamp(totalAxes, 0.0f, 1.0f);
-                translateChange = totalAxes * translateChange;
-                PlayerCam.transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + 0.6f + translateChange, transform.localPosition.z);
-            }
-            else
-            {
-                PlayerCam.transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + 0.6f, transform.localPosition.z);
-            }
-        }
     }
 
     //All Physics and Movement should be handled in FixedUpdate()
@@ -279,6 +245,8 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
         {
             CharController.Move(velocity * Time.fixedDeltaTime);
         }
+
+        isGrounded = CharController.isGrounded;
 
         //Interpolates the effects of forces for smooth movement
         currentImpact = Vector3.Lerp(currentImpact, Vector3.zero, damping * Time.deltaTime);
@@ -418,7 +386,7 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
                 }
             }
         }
-        else if (isClimbing == true && isFalling == false && CharController.isGrounded == false)
+        else if (isClimbing == true && isFalling == false)
         {
             //Resets Forces on the Y axis
             ResetImpactY();
@@ -430,7 +398,6 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
             if (inHandStored)
             {
                 sphere.SetActive(true);
-                //inHand = true;
             }
         }
         else
@@ -496,4 +463,6 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
         gameObject.GetComponent<MeshRenderer>().enabled = true;
         gameObject.GetComponent<CharacterController>().enabled = true;
     }
+
+
 }
