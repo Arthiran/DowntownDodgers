@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
+using XInputDotNetPure;
 
 public class Target : MonoBehaviour {
 
@@ -12,6 +13,10 @@ public class Target : MonoBehaviour {
     public Image vignette;
     bool toFade = false;
     private PhotonView PV;
+    bool vibrate;
+    float vibeTimer = 0.0f;
+
+    XInputTestCS controller;
 
     private void Start()
     {
@@ -28,6 +33,7 @@ public class Target : MonoBehaviour {
         }*/
         originalHealth = health;
         MovementController = GetComponent<PlayerMovementControllerNoNetwork>();
+        controller = GameObject.FindObjectOfType<XInputTestCS>();
         vignette = vignette.GetComponent<Image>();
 
         if (gameObject.tag == "Player")
@@ -35,6 +41,39 @@ public class Target : MonoBehaviour {
             MovementController.HealthNumText.text = health.ToString() + "/" + originalHealth.ToString();
             MovementController.filledHealthbarIMG.fillAmount = health / originalHealth;
         }
+    }
+
+    private void FixedUpdate()
+    {
+        if (vibrate == true)
+        {
+            GamePad.SetVibration(0, 1, 1);
+            Debug.Log("vibe");
+            vibeTimer += Time.deltaTime;
+            if (vibeTimer >= 0.2f)
+            {
+                GamePad.SetVibration(0, 0, 0);
+                Debug.Log("no vibe");
+                vibrate = false;
+                vibeTimer = 0.0f;
+            }
+            Debug.Log(vibrate);
+        }
+    }
+
+    private void RumbleOnHit(PlayerIndex controllerID)
+    {
+        GamePad.SetVibration(controllerID, 1, 1);
+        Debug.Log("vibe");
+        vibeTimer += Time.deltaTime;
+        if (vibeTimer >= 0.2f)
+        {
+            GamePad.SetVibration(controllerID, 0, 0);
+            Debug.Log("no vibe");
+            vibrate = false;
+            vibeTimer = 0.0f;
+        }
+        Debug.Log(vibrate);
     }
 
     //Calculates the amount of damage taken from shot, dies if under 0 health
@@ -60,6 +99,9 @@ public class Target : MonoBehaviour {
             //Show vignette
             if (MovementController.PlayerID == 1)
             {
+                vibrate = true;
+                if (vibrate)
+                    RumbleOnHit((PlayerIndex)1);
                 vignette.canvasRenderer.SetAlpha(1.0f);
                 vignette.enabled = true;
                 var temp = vignette.color;
@@ -74,6 +116,9 @@ public class Target : MonoBehaviour {
             }
             if (MovementController.PlayerID == 2)
             {
+                vibrate = true;
+                if (vibrate)
+                    RumbleOnHit((PlayerIndex)0);
                 vignette.canvasRenderer.SetAlpha(1.0f);
                 vignette.enabled = true;
                 var temp = vignette.color;
