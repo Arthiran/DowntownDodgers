@@ -103,7 +103,7 @@ public class Target : MonoBehaviour {
                 vibrate = true;
                 //if (vibrate)
                 //RumbleOnHit(0);
-                controllerID = 0;
+                controllerID = 1;
                 vignette.canvasRenderer.SetAlpha(1.0f);
                 vignette.enabled = true;
                 var temp = vignette.color;
@@ -121,7 +121,7 @@ public class Target : MonoBehaviour {
                 vibrate = true;
                 //if (vibrate)
                     //RumbleOnHit(1);
-                controllerID = 1;
+                controllerID = 0;
                 vignette.canvasRenderer.SetAlpha(1.0f);
                 vignette.enabled = true;
                 var temp = vignette.color;
