@@ -34,7 +34,6 @@ public class SceneInitializerScript : MonoBehaviour
     private void Start()
     {
         fileToSave = folderLocation + levelName + textExtension;
-        Debug.Log(fileToSave);
         loadObjects();
     }
 

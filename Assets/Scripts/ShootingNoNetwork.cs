@@ -14,7 +14,8 @@ public class ShootingNoNetwork : MonoBehaviour
     public GameObject DodgeballPrefab;
     public Image[] FillSlots;
     public Text dodgeballsText;
-    public Text inHandText; PlayerMovementControllerNoNetwork MovementController;
+    public Text inHandText;
+    private PlayerMovementControllerNoNetwork MovementController;
 
     //Initializes Variables
     public float dodgeballLaunchForce;
@@ -91,6 +92,7 @@ public class ShootingNoNetwork : MonoBehaviour
         //Spawns an instance of the dodgeball prefab at the spawn transform
         GameObject DodgeballInstance = Instantiate(DodgeballPrefab, BallShootingTransform.position, BallShootingTransform.rotation);
         DodgeballInstance.GetComponent<DodgeballScript>().PlayerID = GetComponent<PlayerRootInfo>().PlayerID;
+        DodgeballInstance.GetComponent<DodgeballScript>().MovementController = MovementController;
         //Gives dodgeball a launch force wherever the character is facing
         DodgeballInstance.GetComponent<Rigidbody>().AddForce(DodgeballInstance.transform.forward * dodgeballLaunchForce, ForceMode.Impulse);
         FillSlots[DodgeballsInHand-1].fillAmount = 0f;

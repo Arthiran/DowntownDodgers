@@ -10,11 +10,13 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
     public GiveQuest quest;
     //Get Character Properties
     private Transform Player;
+    private Animator PlayerAnimator;
     private CharacterController CharController;
     public Transform PlayerCam;
     public Image dashIconIMG;
     public Image dashCooldownIMG;
     public Image filledHealthbarIMG;
+    public Image hitmarkerIMG;
     public Text dashCooldownText;
     public Text interactText;
     public Text HealthNumText;
@@ -42,7 +44,7 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
     public float moveSpeed = 5f;
     public float mass = 1f;
     public float damping = 5f;
-    private float edgeUpForce = 10f;
+    private float edgeUpForce = 35f;
     public float climbSpeed = 100f;
     public float jumpForce = 4f;
     public float dashForce = 4f;
@@ -83,19 +85,19 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
 
         if (PlayerID == 1)
         {
-            GetComponent<Renderer>().material.color = Color.red;
+            GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.red;
         }
         else if (PlayerID == 2)
         {
-            GetComponent<Renderer>().material.color = Color.blue;
+            GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.blue;
         }
         else if (PlayerID == 3)
         {
-            GetComponent<Renderer>().material.color = Color.green;
+            GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.green;
         }
         else
         {
-            GetComponent<Renderer>().material.color = Color.magenta;
+            GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.magenta;
         }
 
         //Set Controller Strings
@@ -109,6 +111,7 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
 
         //Set Components to Variables at Start of Script
         Player = GetComponent<Transform>();
+        PlayerAnimator = GetComponentInChildren<Animator>();
         CharController = GetComponent<CharacterController>();
         shootingScript = GetComponentInParent<ShootingNoNetwork>();
         PlayerHealth = GetComponent<Target>();
@@ -125,7 +128,7 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
     private void Update()
     {
         //Checks if Player is on the ground, if true set Y Velocity to 0
-        if (CharController.isGrounded && velocityY < 0f)
+        if (isGrounded && velocityY < 0f)
         {
             doubleJumpCheck = 0;
             isClimbing = false;
@@ -178,6 +181,11 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
             forwardMovement *= 0.7071f;
             horizontalMovement *= 0.7071f;
         }
+
+        //Animations 
+        /*PlayerAnimator.SetFloat("Vertical", forwardMovement);
+        PlayerAnimator.SetFloat("Horizontal", horizontalMovement);
+        Debug.Log(PlayerAnimator.GetFloat("Vertical"));*/
 
         //Jump pls
         Jump();
@@ -248,6 +256,11 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
 
         isGrounded = CharController.isGrounded;
 
+        if (isGrounded)
+        {
+            PlayerAnimator.SetBool("Jump", false);
+        }
+
         //Interpolates the effects of forces for smooth movement
         currentImpact = Vector3.Lerp(currentImpact, Vector3.zero, damping * Time.deltaTime);
     }
@@ -273,6 +286,7 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
         if (Input.GetButtonDown("Jump") || Input.GetButtonDown(ControllerJumpString))
         {
             doubleJumpCheck++;
+            PlayerAnimator.SetBool("Jump", true);
             //Checks if player is on the ground, if true then character can jump
             if (doubleJumpCheck == 1 && isFalling == false && CharController.isGrounded == true)
             {
@@ -357,7 +371,7 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
     private void ClimbWall()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, distWall))
+        if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.925f, transform.position.z), transform.forward, out hit, distWall))
         {
             if (hit.collider.tag == "Climable")
             {
@@ -447,7 +461,7 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
         isRespawning = true;
         RespawningText.color = new Color(RespawningText.color.r, RespawningText.color.g, RespawningText.color.b, 1f);
         tempRandomNum = Random.Range(0, SpawnPointList.Length - 1);
-        gameObject.GetComponent<MeshRenderer>().enabled = false;
+        gameObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
         gameObject.GetComponent<CharacterController>().enabled = false;
         yield return new WaitForSeconds(3);
         transform.position = SpawnPointList[tempRandomNum].transform.position;
@@ -460,9 +474,14 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
         RespawningText.color = new Color(RespawningText.color.r, RespawningText.color.g, RespawningText.color.b, 0f);
         HealthNumText.text = PlayerHealth.originalHealth.ToString() + "/" + PlayerHealth.originalHealth.ToString();
         filledHealthbarIMG.fillAmount = PlayerHealth.originalHealth / PlayerHealth.originalHealth;
-        gameObject.GetComponent<MeshRenderer>().enabled = true;
+        gameObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
         gameObject.GetComponent<CharacterController>().enabled = true;
     }
 
-
+    public IEnumerator Hitmarker()
+    {
+        hitmarkerIMG.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        hitmarkerIMG.gameObject.SetActive(false);
+    }
 }

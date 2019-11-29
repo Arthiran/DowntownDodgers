@@ -103,7 +103,7 @@ public class CameraScriptNoNetwork : MonoBehaviour
         }
 
         //This is so that the Camera can follow the Player
-        transform.localPosition = new Vector3(Player.transform.localPosition.x, Player.transform.localPosition.y + 0.6f, Player.transform.localPosition.z);
+        transform.localPosition = new Vector3(Player.transform.localPosition.x, Player.transform.localPosition.y + 0.925f, Player.transform.localPosition.z);
 
 
         if (MovementController.isGrounded)

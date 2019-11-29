@@ -11,6 +11,8 @@ public class DodgeballScript : MonoBehaviour
     public int PlayerID = 0;
     public bool inAir;
 
+    public PlayerMovementControllerNoNetwork MovementController;
+
     private void Start()
     {
         rb.GetComponent<Rigidbody>();

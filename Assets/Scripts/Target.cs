@@ -76,19 +76,11 @@ public class Target : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        /*if (PV.IsMine)
-        {
-            DodgeballScript dodgeballScript = collision.gameObject.GetComponent<DodgeballScript>();
-            if (dodgeballScript != null)
-            {
-                TakeDamage(dodgeballScript.damage);
-                Destroy(collision.gameObject);
-            }
-        }*/
         DodgeballScript dodgeballScript = collision.gameObject.GetComponent<DodgeballScript>();
         if (dodgeballScript != null)
         {
             TakeDamage(dodgeballScript.damage);
+            dodgeballScript.MovementController.StartCoroutine(dodgeballScript.MovementController.Hitmarker());
             Destroy(collision.gameObject);
         }
     }
@@ -96,21 +88,6 @@ public class Target : MonoBehaviour {
     //Destroys game object
     void Die()
     {
-        /*if (PV.IsMine)
-        {
-            if (gameObject.tag == "Player")
-            {
-                if (MovementController != null)
-                {
-                    MovementController.StartCoroutine(MovementController.Respawn());
-                    health = originalHealth;
-                }
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
-        }*/
 
         if (gameObject.tag == "Player")
         {
