@@ -14,6 +14,7 @@ public class Target : MonoBehaviour {
     bool toFade = false;
     private PhotonView PV;
     bool vibrate;
+    int controllerID;
     float vibeTimer = 0.0f;
 
     XInputTestCS controller;
@@ -47,12 +48,12 @@ public class Target : MonoBehaviour {
     {
         if (vibrate == true)
         {
-            GamePad.SetVibration(0, 1, 1);
+            GamePad.SetVibration((PlayerIndex)controllerID, 1, 1);
             Debug.Log("vibe");
             vibeTimer += Time.deltaTime;
             if (vibeTimer >= 0.2f)
             {
-                GamePad.SetVibration(0, 0, 0);
+                GamePad.SetVibration((PlayerIndex)controllerID, 0, 0);
                 Debug.Log("no vibe");
                 vibrate = false;
                 vibeTimer = 0.0f;
@@ -61,14 +62,14 @@ public class Target : MonoBehaviour {
         }
     }
 
-    private void RumbleOnHit(PlayerIndex controllerID)
+    private void RumbleOnHit(int controllerID)
     {
-        GamePad.SetVibration(controllerID, 1, 1);
+        GamePad.SetVibration((PlayerIndex)controllerID, 1, 1);
         Debug.Log("vibe");
         vibeTimer += Time.deltaTime;
         if (vibeTimer >= 0.2f)
         {
-            GamePad.SetVibration(controllerID, 0, 0);
+            GamePad.SetVibration((PlayerIndex)controllerID, 0, 0);
             Debug.Log("no vibe");
             vibrate = false;
             vibeTimer = 0.0f;
@@ -100,8 +101,9 @@ public class Target : MonoBehaviour {
             if (MovementController.PlayerID == 1)
             {
                 vibrate = true;
-                if (vibrate)
-                    RumbleOnHit((PlayerIndex)1);
+                //if (vibrate)
+                //RumbleOnHit(0);
+                controllerID = 0;
                 vignette.canvasRenderer.SetAlpha(1.0f);
                 vignette.enabled = true;
                 var temp = vignette.color;
@@ -117,8 +119,9 @@ public class Target : MonoBehaviour {
             if (MovementController.PlayerID == 2)
             {
                 vibrate = true;
-                if (vibrate)
-                    RumbleOnHit((PlayerIndex)0);
+                //if (vibrate)
+                    //RumbleOnHit(1);
+                controllerID = 1;
                 vignette.canvasRenderer.SetAlpha(1.0f);
                 vignette.enabled = true;
                 var temp = vignette.color;
