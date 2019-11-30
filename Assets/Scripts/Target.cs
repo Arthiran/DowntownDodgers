@@ -54,7 +54,6 @@ public class Target : MonoBehaviour {
             if (vibeTimer >= 0.2f)
             {
                 GamePad.SetVibration((PlayerIndex)controllerID, 0, 0);
-                Debug.Log("no vibe");
                 vibrate = false;
                 vibeTimer = 0.0f;
             }
