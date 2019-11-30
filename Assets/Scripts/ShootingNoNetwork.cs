@@ -37,7 +37,14 @@ public class ShootingNoNetwork : MonoBehaviour
         sceneName = currentScene.name;
         PV = GetComponent<PhotonView>();
         MovementController = GetComponentInChildren<PlayerMovementControllerNoNetwork>();
-        ControllerShootString = "ControllerShoot" + GetComponent<PlayerRootInfo>().PlayerID.ToString();
+        if (SceneManager.GetActiveScene().name != "LevelEditorScene")
+        {
+            ControllerShootString = "ControllerShoot" + GetComponent<PlayerRootInfo>().PlayerID.ToString();
+        }
+        else
+        {
+            ControllerShootString = "ControllerShoot1";
+        }
     }
 
     //Checks if left mouse button was clicked

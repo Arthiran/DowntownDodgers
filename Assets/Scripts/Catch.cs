@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Catch : MonoBehaviour
@@ -22,10 +23,19 @@ public class Catch : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GMScript = FindObjectOfType<GameManagerScriptNoNetwork>();
-        CatchReticleRT.sizeDelta = new Vector2(410 / GMScript.NumberOfPlayers, 410 / GMScript.NumberOfPlayers);
+        if (SceneManager.GetActiveScene().name != "LevelEditorScene")
+        {
+            GMScript = FindObjectOfType<GameManagerScriptNoNetwork>();
+            ControllerCatchString = "ControllerCatch" + GetComponentInParent<PlayerRootInfo>().PlayerID.ToString();
+            CatchReticleRT.sizeDelta = new Vector2(410 / GMScript.NumberOfPlayers, 410 / GMScript.NumberOfPlayers);
+        }
+        else
+        {
+            ControllerCatchString = "ControllerCatch1";
+            CatchReticleRT.sizeDelta = new Vector2(410, 410);
+        }
         CatchReticleImg.gameObject.SetActive(false);
-        ControllerCatchString = "ControllerCatch" + GetComponentInParent<PlayerRootInfo>().PlayerID.ToString();
+
         capsule = GetComponent<CapsuleCollider>();
     }
 
