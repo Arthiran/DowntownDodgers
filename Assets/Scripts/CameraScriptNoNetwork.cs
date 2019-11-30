@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Photon.Pun;
 
 public class CameraScriptNoNetwork : MonoBehaviour
@@ -36,8 +37,16 @@ public class CameraScriptNoNetwork : MonoBehaviour
     private void Start()
     {
         PV = GetComponent<PhotonView>();
-        RightAnalogXString = "RightAnalogX" + GetComponentInParent<PlayerRootInfo>().PlayerID.ToString();
-        RightAnalogYString = "RightAnalogY" + GetComponentInParent<PlayerRootInfo>().PlayerID.ToString();
+        if (SceneManager.GetActiveScene().name != "LevelEditorScene")
+        {
+            RightAnalogXString = "RightAnalogX" + GetComponentInParent<PlayerRootInfo>().PlayerID.ToString();
+            RightAnalogYString = "RightAnalogY" + GetComponentInParent<PlayerRootInfo>().PlayerID.ToString();
+        }
+        else
+        {
+            RightAnalogXString = "RightAnalogX1";
+            RightAnalogYString = "RightAnalogY1";
+        }
         //Finds the character which has a tag set to Player
         //Rotation variables are set
         Vector3 rot = transform.localRotation.eulerAngles;
