@@ -2662,7 +2662,7 @@ MonoBehaviour:
   moveSpeed: 12.5
   mass: 1
   damping: 5
-  climbSpeed: 13
+  climbSpeed: 7
   jumpForce: 15
   dashForce: 70
   dashCooldown: 8
