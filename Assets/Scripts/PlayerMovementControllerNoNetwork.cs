@@ -45,8 +45,8 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
     public float moveSpeed = 5f;
     public float mass = 1f;
     public float damping = 5f;
-    private float edgeUpForce = 50f;
-    public float climbSpeed = 100f;
+    private float edgeUpForce = 30f;
+    public float climbSpeed = 0f;
     public float jumpForce = 4f;
     public float dashForce = 4f;
     public float dashCooldown = 5f;
@@ -204,7 +204,6 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
 
         //Jump pls
         Jump();
-        ClimbWall();
         LoadDodgeball();
 
         if (isDashCooldown)
@@ -300,6 +299,14 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
         //Checks if Space was pressed
         if (Input.GetButtonDown("Jump") || Input.GetButtonDown(ControllerJumpString))
         {
+            RaycastHit hit;
+            if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 1.1f, transform.position.z), transform.forward, out hit, distWall))
+            {
+                if (hit.collider.tag == "Climable")
+                {
+                    StartCoroutine(ClimbWall(hit.collider));
+                }
+            }
             doubleJumpCheck++;
             PlayerAnimator.SetBool("Jump", true);
             //Checks if player is on the ground, if true then character can jump
@@ -383,7 +390,46 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
         currentImpact += direction.normalized * magnitude / mass;
     }
 
-    private void ClimbWall()
+    private IEnumerator ClimbWall(Collider wallCollider)
+    {
+        while ((Input.GetAxisRaw("Vertical") > 0 || Input.GetAxisRaw(LeftAnalogYString) > 0) && (Input.GetButton("Jump") || Input.GetButton(ControllerJumpString)) && tempClimbTimer > 0)
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 1.1f, transform.position.z), transform.forward, out hit, distWall))
+            {
+                if (hit.collider == wallCollider)
+                {
+                    ResetImpactY();
+                    //Gives the Character movement on the Y axis to climb up the wall
+                    CharController.Move(new Vector3(0f, climbSpeed * Time.deltaTime, 0f));
+                    yield return null;
+                    if (inHand == true)
+                    {
+                        sphere.SetActive(false);
+                        inHandStored = inHand;
+                        inHand = false;
+                    }
+                    else
+                    {
+                        isClimbing = false;
+                    }
+                }
+                else
+                {
+                    break;
+                }
+            }
+            else
+            {
+                break;
+            }
+
+            ResetImpactY();
+            AddForce(Vector3.up, edgeUpForce);
+        }
+    }
+
+    /*private void ClimbWall()
     {
         RaycastHit[] hits;
         hits = Physics.RaycastAll(new Vector3(transform.position.x, transform.position.y + 0.7f, transform.position.z + 0.3f), transform.forward, distWall);
@@ -398,7 +444,7 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
                     tempClimbTimer -= Time.deltaTime;
                     ResetImpactY();
                     //Gives the Character movement on the Y axis to climb up the wall
-                    CharController.Move(new Vector3(0f, climbSpeed * Time.deltaTime, 0f));
+                    CharController.Move(new Vector3(0f, climbSpeed * Time.deltaTime/50, 0f));
                     isClimbing = true;
                     if (inHand == true)
                     {
@@ -437,7 +483,7 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
             tempClimbTimer = climbWallTimer;
         }
 
-        /*RaycastHit hit;
+        RaycastHit hit;
         if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 1.1f, transform.position.z), transform.forward, out hit, distWall))
         {
             if (!hit.collider.isTrigger)
@@ -468,9 +514,9 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
                         isClimbing = false;
                     }
                 }
-            }*/
+            }
 
-    }
+    }*/
 
     private void OnTriggerStay(Collider collider)
     {
