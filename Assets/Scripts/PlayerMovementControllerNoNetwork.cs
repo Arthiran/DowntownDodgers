@@ -191,7 +191,7 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
 
         /*This is so that when you press W and A at the same time for instance, the player doesn't become faster,
         it remains the same speed*/
-        if (forwardMovement != 0 && horizontalMovement != 0)
+        if ((forwardMovement != 0 && horizontalMovement != 0) && Input.GetAxisRaw("Vertical") != 0 || (Input.GetAxisRaw("Horizontal") != 0))
         {
             forwardMovement *= 0.7071f;
             horizontalMovement *= 0.7071f;

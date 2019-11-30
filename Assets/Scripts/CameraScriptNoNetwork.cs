@@ -9,6 +9,10 @@ public class CameraScriptNoNetwork : MonoBehaviour
     private float timer = 0.0f;
     public float bobbingSpeed = 0.18f;
     public float bobbingAmount = 0.2f;
+    private float vertical;
+    private float horizontal;
+    private float forwardMovement;
+    private float horizontalMovement;
 
     //Networking
     private PhotonView PV;
@@ -22,6 +26,8 @@ public class CameraScriptNoNetwork : MonoBehaviour
     public float mouseY;
     public float RightAnalogX;
     public float RightAnalogY;
+    private float LeftAnalogX;
+    private float LeftAnalogY;
     public float inputSens = 150.0f;
     [Range(0.0f, 1.0f)]
     public float aimAssistFactor = 0.5f;
@@ -32,6 +38,8 @@ public class CameraScriptNoNetwork : MonoBehaviour
     private float distWall = 1f;
     private string RightAnalogXString;
     private string RightAnalogYString;
+    private string LeftAnalogXString;
+    private string LeftAnalogYString;
     private bool hitOuterCollision;
 
     private void Start()
@@ -41,11 +49,16 @@ public class CameraScriptNoNetwork : MonoBehaviour
         {
             RightAnalogXString = "RightAnalogX" + GetComponentInParent<PlayerRootInfo>().PlayerID.ToString();
             RightAnalogYString = "RightAnalogY" + GetComponentInParent<PlayerRootInfo>().PlayerID.ToString();
+            LeftAnalogXString = "LeftAnalogX" + GetComponentInParent<PlayerRootInfo>().PlayerID.ToString();
+            LeftAnalogYString = "LeftAnalogY" + GetComponentInParent<PlayerRootInfo>().PlayerID.ToString();
+
         }
         else
         {
             RightAnalogXString = "RightAnalogX1";
             RightAnalogYString = "RightAnalogY1";
+            LeftAnalogXString = "LeftAnalogX1";
+            LeftAnalogYString = "LeftAnalogY1";
         }
         //Finds the character which has a tag set to Player
         //Rotation variables are set
@@ -114,12 +127,41 @@ public class CameraScriptNoNetwork : MonoBehaviour
         //This is so that the Camera can follow the Player
         transform.localPosition = new Vector3(Player.transform.localPosition.x, Player.transform.localPosition.y + 0.61f, Player.transform.localPosition.z);
 
+        if (Input.GetAxisRaw("Vertical") != 0)
+        {
+            vertical = Input.GetAxis("Vertical");
+            forwardMovement = vertical;
+        }
+        else if (Input.GetAxisRaw(LeftAnalogYString) != 0)
+        {
+            LeftAnalogY = Input.GetAxis(LeftAnalogYString);
+            forwardMovement = LeftAnalogY;
+        }
+        else
+        {
+            forwardMovement = Input.GetAxis("Vertical"); ;
+        }
+
+        if (Input.GetAxisRaw("Horizontal") != 0)
+        {
+            horizontal = Input.GetAxis("Horizontal");
+            horizontalMovement = horizontal;
+        }
+        else if (Input.GetAxisRaw(LeftAnalogXString) != 0)
+        {
+            LeftAnalogX = Input.GetAxis(LeftAnalogXString);
+            horizontalMovement = LeftAnalogX;
+        }
+        else
+        {
+            horizontalMovement = Input.GetAxis("Horizontal");
+        }
 
         if (MovementController.isGrounded)
         {
             float waveslice = 0.0f;
 
-            if (Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0)
+            if ((Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0) && (Input.GetAxisRaw(LeftAnalogXString) == 0 && Input.GetAxisRaw(LeftAnalogYString) == 0))
             {
                 timer = 0.0f;
             }
@@ -135,7 +177,7 @@ public class CameraScriptNoNetwork : MonoBehaviour
             if (waveslice != 0)
             {
                 float translateChange = waveslice * bobbingAmount;
-                float totalAxes = Mathf.Abs(Input.GetAxisRaw("Horizontal")) + Input.GetAxisRaw("Vertical");
+                float totalAxes = Mathf.Abs(horizontalMovement + forwardMovement);
                 totalAxes = Mathf.Clamp(totalAxes, 0.0f, 1.0f);
                 translateChange = totalAxes * translateChange;
                 transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + translateChange, transform.localPosition.z);
