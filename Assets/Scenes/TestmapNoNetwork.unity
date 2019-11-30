@@ -640,6 +640,11 @@ PrefabInstance:
       propertyPath: m_ShowToolkit
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7218999085510680558, guid: 51b1becf417e14c488de996468cec74f,
+        type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1843804806}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51b1becf417e14c488de996468cec74f, type: 3}
 --- !u!1 &456487983
@@ -1556,6 +1561,11 @@ PrefabInstance:
       propertyPath: scoreText2
       value: 
       objectReference: {fileID: 1325431087}
+    - target: {fileID: 2829869188681669576, guid: e261cb0d3e8136a41a7b8f73e90b9362,
+        type: 3}
+      propertyPath: p1Score
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e261cb0d3e8136a41a7b8f73e90b9362, type: 3}
 --- !u!1 &1191156926
@@ -2599,6 +2609,11 @@ PrefabInstance:
       propertyPath: m_ShowCustomSorter
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7218999085510680558, guid: 51b1becf417e14c488de996468cec74f,
+        type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1843804806}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51b1becf417e14c488de996468cec74f, type: 3}
 --- !u!1 &2078477884

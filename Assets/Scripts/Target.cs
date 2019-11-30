@@ -49,7 +49,7 @@ public class Target : MonoBehaviour {
         if (vibrate == true)
         {
             GamePad.SetVibration((PlayerIndex)controllerID, 1, 1);
-            Debug.Log("vibe");
+            //Debug.Log("vibe");
             vibeTimer += Time.deltaTime;
             if (vibeTimer >= 0.2f)
             {
@@ -58,19 +58,19 @@ public class Target : MonoBehaviour {
                 vibrate = false;
                 vibeTimer = 0.0f;
             }
-            Debug.Log(vibrate);
+            //Debug.Log(vibrate);
         }
     }
 
     private void RumbleOnHit(int controllerID)
     {
         GamePad.SetVibration((PlayerIndex)controllerID, 1, 1);
-        Debug.Log("vibe");
+        //Debug.Log("vibe");
         vibeTimer += Time.deltaTime;
         if (vibeTimer >= 0.2f)
         {
             GamePad.SetVibration((PlayerIndex)controllerID, 0, 0);
-            Debug.Log("no vibe");
+            //Debug.Log("no vibe");
             vibrate = false;
             vibeTimer = 0.0f;
         }
@@ -114,7 +114,7 @@ public class Target : MonoBehaviour {
                 //temp.a = 1;
                 //vignette.color = temp;
                 toFade = true;
-                Debug.Log("Vignetter1");
+                //Debug.Log("Vignetter1");
             }
             if (MovementController.PlayerID == 2)
             {
@@ -132,7 +132,7 @@ public class Target : MonoBehaviour {
                 //temp.a = 1;
                 //vignette.color = temp;
                 toFade = true;
-                Debug.Log("Vignetter2");
+                //Debug.Log("Vignetter2");
             }
 
             MovementController.HealthNumText.text = health.ToString() + "/" + originalHealth.ToString();
@@ -149,7 +149,7 @@ public class Target : MonoBehaviour {
                     temp.a = 1;
                     vignette.color = temp;
                     toFade = false;
-                    Debug.Log("Vignetterrrr1");
+                    //Debug.Log("Vignetterrrr1");
                 }
                 if (MovementController.PlayerID == 2)
                 {
@@ -159,7 +159,7 @@ public class Target : MonoBehaviour {
                     temp.a = 1;
                     vignette.color = temp;
                     toFade = false;
-                    Debug.Log("Vignetterrrr2");
+                    //Debug.Log("Vignetterrrr2");
                 }
             }
         }
@@ -177,7 +177,7 @@ public class Target : MonoBehaviour {
                 gameManager.p1Score++;
                 Debug.Log(gameManager.p1Score);
             }
-
+            Debug.Log("Score Please");
             Die();
         }
     }
