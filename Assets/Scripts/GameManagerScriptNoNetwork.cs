@@ -20,7 +20,7 @@ public class GameManagerScriptNoNetwork : MonoBehaviour
     public int p1Score = 0;
     public int p2Score = 0;
 
-    private float gameTime = 120.0f;
+    private float gameTime = 180.0f;
 
     public Text p1ResultText;
     public Text p2ResultText;
@@ -37,6 +37,8 @@ public class GameManagerScriptNoNetwork : MonoBehaviour
     private bool gameOver;
 
     private float endTime = 0.0f;
+
+    public SceneManage sceneManage;
     // Start is called before the first frame update
     void Start()
     {
@@ -75,8 +77,11 @@ public class GameManagerScriptNoNetwork : MonoBehaviour
         minutes = (int)(gameTime / 60f);
         seconds = (int)(gameTime % 60f);
 
-        timerText1.text = minutes.ToString("00") + ":" + seconds.ToString("00");
-        timerText2.text = minutes.ToString("00") + ":" + seconds.ToString("00");
+        if (!gameOver)
+        {
+            timerText1.text = minutes.ToString("00") + ":" + seconds.ToString("00");
+            timerText2.text = minutes.ToString("00") + ":" + seconds.ToString("00");
+        }     
 
         //Display Score
         scoreText1.text = p1Score.ToString("0");
@@ -86,6 +91,9 @@ public class GameManagerScriptNoNetwork : MonoBehaviour
         //End Conditions
         if (gameTime <= 0.0f || p1Score == 3 || p2Score == 3)
         {
+            //timerText1.text = "00" + ":" + "00";
+            //timerText2.text = "00" + ":" + "00";
+
             if (!gameOver)
             {
                 endTime = gameTime;
@@ -116,8 +124,8 @@ public class GameManagerScriptNoNetwork : MonoBehaviour
             }
 
             if (gameTime < endTime - 3.0f)
-            {
-                SceneManager.LoadScene("MenuScene");
+            {           
+                sceneManage.GoToFirstScene();
             }
         }
 
