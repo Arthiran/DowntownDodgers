@@ -41,10 +41,6 @@ public class DodgeballScript : MonoBehaviour
     }
     private void OnCollisionStay(Collision collision)
     {
-        //rb.AddForce(-gameObject.transform.forward * 20, ForceMode.VelocityChange);
-        if (collision.gameObject.tag == "Ground")
-        {
-            inAir = false;
-        }
+        inAir = false;
     }     
 }
