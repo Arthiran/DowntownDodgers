@@ -45,7 +45,7 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
     public float moveSpeed = 5f;
     public float mass = 1f;
     public float damping = 5f;
-    private float edgeUpForce = 35f;
+    private float edgeUpForce = 50f;
     public float climbSpeed = 100f;
     public float jumpForce = 4f;
     public float dashForce = 4f;
@@ -53,7 +53,7 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
     private float dashCountdownUI;
     private float nextDash;
     private float gravity = Physics.gravity.y;
-    private float distWall = 0.6f;
+    private float distWall = 0.7f;
     public bool isGrounded = false;
     public bool isClimbing = false;
     private bool isFalling = false;
@@ -385,9 +385,12 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
 
     private void ClimbWall()
     {
-        RaycastHit hit;
-        if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.925f, transform.position.z), transform.forward, out hit, distWall))
+        RaycastHit[] hits;
+        hits = Physics.RaycastAll(new Vector3(transform.position.x, transform.position.y + 0.7f, transform.position.z + 0.3f), transform.forward, distWall);
+
+        for (int i = 0; i < hits.Length; i++)
         {
+            RaycastHit hit= hits[i];
             if (hit.collider.tag == "Climable")
             {
                 if ((Input.GetAxisRaw("Vertical") > 0 || Input.GetAxisRaw(LeftAnalogYString) > 0) && (Input.GetButton("Jump") || Input.GetButton(ControllerJumpString)) && tempClimbTimer > 0)
@@ -415,7 +418,7 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
                 }
             }
         }
-        else if (isClimbing == true && isFalling == false)
+        if (isClimbing == true && isFalling == false)
         {
             //Resets Forces on the Y axis
             ResetImpactY();
@@ -433,6 +436,39 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
         {
             tempClimbTimer = climbWallTimer;
         }
+
+        /*RaycastHit hit;
+        if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 1.1f, transform.position.z), transform.forward, out hit, distWall))
+        {
+            if (!hit.collider.isTrigger)
+            {
+                if (hit.collider.tag == "Climable")
+                {
+                    if ((Input.GetAxisRaw("Vertical") > 0 || Input.GetAxisRaw(LeftAnalogYString) > 0) && (Input.GetButton("Jump") || Input.GetButton(ControllerJumpString)) && tempClimbTimer > 0)
+                    {
+                        tempClimbTimer -= Time.deltaTime;
+                        ResetImpactY();
+                        //Gives the Character movement on the Y axis to climb up the wall
+                        CharController.Move(new Vector3(0f, climbSpeed * Time.deltaTime, 0f));
+                        isClimbing = true;
+                        if (inHand == true)
+                        {
+                            sphere.SetActive(false);
+                            inHandStored = inHand;
+                            inHand = false;
+                        }
+                    }
+                    else if (tempClimbTimer <= 0)
+                    {
+                        isClimbing = false;
+                        isFalling = true;
+                    }
+                    else
+                    {
+                        isClimbing = false;
+                    }
+                }
+            }*/
 
     }
 
