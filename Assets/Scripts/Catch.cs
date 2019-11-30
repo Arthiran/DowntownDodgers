@@ -15,7 +15,7 @@ public class Catch : MonoBehaviour
     public PlayerMovementControllerNoNetwork controller;
     public ShootingNoNetwork shooter;
     private GameManagerScriptNoNetwork GMScript;
-    private float oldScale = 1.25f;
+    private float oldScale = 0.75f;
     private float newScale = 0.25f;
 
     private string ControllerCatchString;
@@ -27,12 +27,12 @@ public class Catch : MonoBehaviour
         {
             GMScript = FindObjectOfType<GameManagerScriptNoNetwork>();
             ControllerCatchString = "ControllerCatch" + GetComponentInParent<PlayerRootInfo>().PlayerID.ToString();
-            CatchReticleRT.sizeDelta = new Vector2(410 / GMScript.NumberOfPlayers, 410 / GMScript.NumberOfPlayers);
+            CatchReticleRT.sizeDelta = new Vector2(900 / GMScript.NumberOfPlayers, 900 / GMScript.NumberOfPlayers);
         }
         else
         {
             ControllerCatchString = "ControllerCatch1";
-            CatchReticleRT.sizeDelta = new Vector2(410, 410);
+            CatchReticleRT.sizeDelta = new Vector2(900, 900);
         }
         CatchReticleImg.gameObject.SetActive(false);
 
