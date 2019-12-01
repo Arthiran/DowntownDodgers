@@ -70,8 +70,13 @@ public class GameManagerScriptNoNetwork : MonoBehaviour
 
     private void Update()
     {
-        //Update game time
-        gameTime -= Time.deltaTime;
+		//For quitting to menu
+		if (Input.GetKeyDown(KeyCode.M))
+		{
+			sceneManage.GoToFirstScene();
+		}
+		//Update game time
+		gameTime -= Time.deltaTime;
 
         //Display Time
         minutes = (int)(gameTime / 60f);

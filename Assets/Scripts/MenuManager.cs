@@ -15,11 +15,16 @@ public class MenuManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void LoadLevel(string levelName)
     {
         SceneManager.LoadScene(levelName);
     }
+
+	public void QuitGame()
+	{
+		Application.Quit();
+	}
 }

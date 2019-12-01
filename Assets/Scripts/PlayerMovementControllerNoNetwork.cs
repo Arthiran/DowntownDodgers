@@ -67,8 +67,8 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
     public int tempRandomNum;
     public int PlayerID;
 
-    private float forwardMovement;
-    private float horizontalMovement;
+    public float forwardMovement;
+    public float horizontalMovement;
 
     private int doubleJumpCheck = 0;
 
@@ -182,6 +182,7 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
             {
                 LeftAnalogX = Input.GetAxis(LeftAnalogXString);
                 horizontalMovement = LeftAnalogX;
+				//Debug.Log(horizontalMovement);
             }
             else
             {
@@ -196,7 +197,7 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
         {
             forwardMovement *= 0.7071f;
             horizontalMovement *= 0.7071f;
-            Debug.Log("Bruv");
+            //Debug.Log("Bruv");
         }
 
         //Animations 

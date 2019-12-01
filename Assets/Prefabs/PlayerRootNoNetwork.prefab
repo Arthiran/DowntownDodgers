@@ -1467,7 +1467,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05fe272f563b2ce478f44bd3438ca5cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bobbingSpeed: 0.2
+  bobbingSpeed: 10
   bobbingAmount: 0.2
   Player: {fileID: 2064600520958751005}
   PlayerEmptyChild: {fileID: 1150266295451169682}
@@ -2673,6 +2673,8 @@ MonoBehaviour:
   climbWallTimer: 8
   tempRandomNum: 0
   PlayerID: 0
+  forwardMovement: 0
+  horizontalMovement: 0
 --- !u!114 &7218999085510680558
 MonoBehaviour:
   m_ObjectHideFlags: 0

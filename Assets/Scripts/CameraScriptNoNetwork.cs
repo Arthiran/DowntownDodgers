@@ -127,7 +127,7 @@ public class CameraScriptNoNetwork : MonoBehaviour
         //This is so that the Camera can follow the Player
         transform.localPosition = new Vector3(Player.transform.localPosition.x, Player.transform.localPosition.y + 0.61f, Player.transform.localPosition.z);
 
-        if (Input.GetAxisRaw("Vertical") != 0)
+		/*if (Input.GetAxisRaw("Vertical") != 0)
         {
             vertical = Input.GetAxis("Vertical");
             forwardMovement = vertical;
@@ -155,37 +155,75 @@ public class CameraScriptNoNetwork : MonoBehaviour
         else
         {
             horizontalMovement = Input.GetAxis("Horizontal");
-        }
+        }*/
 
-        if (MovementController.isGrounded)
-        {
-            float waveslice = 0.0f;
+		if (MovementController.isGrounded)
+		{
+			float waveslice = 0.0f;
 
-            if ((Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0) && (Input.GetAxisRaw(LeftAnalogXString) == 0 && Input.GetAxisRaw(LeftAnalogYString) == 0))
-            {
-                timer = 0.0f;
-            }
-            else
-            {
-                waveslice = Mathf.Sin(timer);
-                timer = timer + bobbingSpeed;
-                if (timer > Mathf.PI * 2)
-                {
-                    timer = timer - (Mathf.PI * 2);
-                }
-            }
-            if (waveslice != 0)
-            {
-                float translateChange = waveslice * bobbingAmount;
-                float totalAxes = Mathf.Abs(horizontalMovement + forwardMovement);
-                totalAxes = Mathf.Clamp(totalAxes, 0.0f, 1.0f);
-                translateChange = totalAxes * translateChange;
-                transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + translateChange, transform.localPosition.z);
-            }
-            else
-            {
-                transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z);
-            }
-        }
-    }
+			//Debug.Log(MovementController.horizontalMovement);
+			if ((MovementController.horizontalMovement == 0 && MovementController.forwardMovement == 0))
+			{
+				timer = 0.0f;
+				//Debug.Log("HALLO");
+			}
+			else
+			{
+				waveslice = Mathf.Sin(timer);
+				timer = timer + bobbingSpeed * Time.deltaTime;
+				if (timer > Mathf.PI * 2)
+				{
+					timer = timer - (Mathf.PI * 2);
+				}
+			}
+			if (waveslice != 0)
+			{
+				float translateChange = waveslice * bobbingAmount;
+				float totalAxes = Mathf.Abs(MovementController.horizontalMovement + MovementController.forwardMovement);
+				totalAxes = Mathf.Clamp(totalAxes, 0.0f, 1.0f);
+				translateChange = totalAxes * translateChange;
+				transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + translateChange, transform.localPosition.z);
+			}
+			else
+			{
+				transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z);
+			}
+		}
+	}
+
+	/*private void FixedUpdate()
+	{
+		if (MovementController.isGrounded)
+		{
+			float waveslice = 0.0f;
+
+			//Debug.Log(MovementController.horizontalMovement);
+			if ((MovementController.horizontalMovement == 0 && MovementController.forwardMovement == 0) && (Input.GetAxisRaw(LeftAnalogXString) == 0 && Input.GetAxisRaw(LeftAnalogYString) == 0))
+			{
+				timer = 0.0f;
+				//Debug.Log("HALLO");
+			}
+			else
+			{
+				waveslice = Mathf.Sin(timer);
+				timer = timer + bobbingSpeed;
+				if (timer > Mathf.PI * 2)
+				{
+					timer = timer - (Mathf.PI * 2);
+				}
+			}
+			if (waveslice != 0)
+			{
+				float translateChange = waveslice * bobbingAmount;
+				float totalAxes = Mathf.Abs(MovementController.horizontalMovement + MovementController.forwardMovement);
+				totalAxes = Mathf.Clamp(totalAxes, 0.0f, 1.0f);
+				translateChange = totalAxes * translateChange;
+				transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + translateChange, transform.localPosition.z);
+			}
+			else
+			{
+				transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z);
+			}
+		}
+	}*/
 }
