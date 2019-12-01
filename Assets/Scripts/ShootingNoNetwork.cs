@@ -9,6 +9,7 @@ public class ShootingNoNetwork : MonoBehaviour
 {
     
     private PhotonView PV;
+    private Animator PlayerAnimator;
     //Get transform to spawn dodgeball in and get dodgeball prefab
     public Transform BallShootingTransform;
     public GameObject DodgeballPrefab;
@@ -34,6 +35,7 @@ public class ShootingNoNetwork : MonoBehaviour
     {
         currentScene = SceneManager.GetActiveScene();
 
+        PlayerAnimator = GetComponentInChildren<Animator>();
         sceneName = currentScene.name;
         PV = GetComponent<PhotonView>();
         MovementController = GetComponentInChildren<PlayerMovementControllerNoNetwork>();
@@ -100,9 +102,17 @@ public class ShootingNoNetwork : MonoBehaviour
         GameObject DodgeballInstance = Instantiate(DodgeballPrefab, BallShootingTransform.position, BallShootingTransform.rotation);
         DodgeballInstance.GetComponent<DodgeballScript>().PlayerID = GetComponent<PlayerRootInfo>().PlayerID;
         DodgeballInstance.GetComponent<DodgeballScript>().MovementController = MovementController;
+        StartCoroutine(ShootAnimation());
         //Gives dodgeball a launch force wherever the character is facing
         DodgeballInstance.GetComponent<Rigidbody>().AddForce(DodgeballInstance.transform.forward * dodgeballLaunchForce, ForceMode.Impulse);
         FillSlots[DodgeballsInHand-1].fillAmount = 0f;
         DodgeballsInHand--;
+    }
+
+    private IEnumerator ShootAnimation()
+    {
+        PlayerAnimator.SetBool("Throw", true);
+        yield return new WaitForSeconds(1);
+        PlayerAnimator.SetBool("Throw", false);
     }
 }

@@ -9,6 +9,7 @@ public class Catch : MonoBehaviour
     public Image CatchReticleImg;
     private Color scaleColour = Color.green;
     public RectTransform CatchReticleRT;
+    public Animator PlayerAnimator;
     private Collider capsule;
     public GameObject sphere;
     public GameObject capsuleObj;
@@ -44,7 +45,7 @@ public class Catch : MonoBehaviour
         if (Input.GetKey(KeyCode.Q) || Input.GetAxis(ControllerCatchString) != 0)
         {
             CatchReticleImg.gameObject.SetActive(true);
-
+            PlayerAnimator.SetBool("Catch", true);
             if (capsule.transform.localScale.x > newScale)
             {
                 capsuleObj.transform.localScale -= new Vector3(0.01f, 0.0f, 0.01f);
@@ -54,6 +55,7 @@ public class Catch : MonoBehaviour
         else
         {
             CatchReticleImg.gameObject.SetActive(false);
+            PlayerAnimator.SetBool("Catch", false);
             if (capsule.transform.localScale.x < oldScale)
             {
                 capsuleObj.transform.localScale += new Vector3(0.005f, 0.0f, 0.005f);

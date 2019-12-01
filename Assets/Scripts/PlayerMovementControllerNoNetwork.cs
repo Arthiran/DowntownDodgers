@@ -147,6 +147,7 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
         {
             doubleJumpCheck = 0;
             isClimbing = false;
+            PlayerAnimator.SetBool("ClimbWall", false);
             isFalling = false;
             //inHandStored = inHand;
             tempClimbTimer = climbWallTimer;
@@ -191,16 +192,16 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
 
         /*This is so that when you press W and A at the same time for instance, the player doesn't become faster,
         it remains the same speed*/
-        if ((forwardMovement != 0 && horizontalMovement != 0) && Input.GetAxisRaw("Vertical") != 0 || (Input.GetAxisRaw("Horizontal") != 0))
+        if (forwardMovement != 0 && horizontalMovement != 0)
         {
             forwardMovement *= 0.7071f;
             horizontalMovement *= 0.7071f;
+            Debug.Log("Bruv");
         }
 
         //Animations 
-        /*PlayerAnimator.SetFloat("Vertical", forwardMovement);
+        PlayerAnimator.SetFloat("Vertical", forwardMovement);
         PlayerAnimator.SetFloat("Horizontal", horizontalMovement);
-        Debug.Log(PlayerAnimator.GetFloat("Vertical"));*/
 
         //Jump pls
         Jump();
@@ -307,13 +308,16 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
                     StartCoroutine(ClimbWall(hit.collider));
                 }
             }
-            doubleJumpCheck++;
-            PlayerAnimator.SetBool("Jump", true);
-            //Checks if player is on the ground, if true then character can jump
-            if (doubleJumpCheck == 1 && isFalling == false && CharController.isGrounded == true)
+            else
             {
-                //Custom AddForce function which applies jumpForce in the upward direction
-                AddForce(Vector3.up, jumpForce);
+                doubleJumpCheck++;
+                PlayerAnimator.SetBool("Jump", true);
+                //Checks if player is on the ground, if true then character can jump
+                if (doubleJumpCheck == 1 && isFalling == false && CharController.isGrounded == true)
+                {
+                    //Custom AddForce function which applies jumpForce in the upward direction
+                    AddForce(Vector3.up, jumpForce);
+                }
             }
         }
     }
@@ -322,10 +326,18 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
     {
         if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetAxisRaw(ControllerDashString) > 0) && Time.time > nextDash)
         {
+            StartCoroutine(DashAnimation());
             isDashCooldown = true;
             nextDash = Time.time + dashCooldown;
             AddForce(PlayerCam.transform.forward, dashForce);
         }
+    }
+
+    private IEnumerator DashAnimation()
+    {
+        PlayerAnimator.SetBool("Dash", true);
+        yield return new WaitForSeconds(0.3f);
+        PlayerAnimator.SetBool("Dash", false);
     }
 
     private void LoadDodgeball()
@@ -399,6 +411,8 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
             {
                 if (hit.collider == wallCollider)
                 {
+                    PlayerAnimator.SetBool("ClimbWall", true);
+                    isClimbing = true;
                     ResetImpactY();
                     //Gives the Character movement on the Y axis to climb up the wall
                     CharController.Move(new Vector3(0f, climbSpeed * Time.deltaTime, 0f));
@@ -411,6 +425,7 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
                     }
                     else
                     {
+                        PlayerAnimator.SetBool("ClimbWall", false);
                         isClimbing = false;
                     }
                 }
@@ -428,95 +443,6 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
             AddForce(Vector3.up, edgeUpForce);
         }
     }
-
-    /*private void ClimbWall()
-    {
-        RaycastHit[] hits;
-        hits = Physics.RaycastAll(new Vector3(transform.position.x, transform.position.y + 0.7f, transform.position.z + 0.3f), transform.forward, distWall);
-
-        for (int i = 0; i < hits.Length; i++)
-        {
-            RaycastHit hit= hits[i];
-            if (hit.collider.tag == "Climable")
-            {
-                if ((Input.GetAxisRaw("Vertical") > 0 || Input.GetAxisRaw(LeftAnalogYString) > 0) && (Input.GetButton("Jump") || Input.GetButton(ControllerJumpString)) && tempClimbTimer > 0)
-                {
-                    tempClimbTimer -= Time.deltaTime;
-                    ResetImpactY();
-                    //Gives the Character movement on the Y axis to climb up the wall
-                    CharController.Move(new Vector3(0f, climbSpeed * Time.deltaTime/50, 0f));
-                    isClimbing = true;
-                    if (inHand == true)
-                    {
-                        sphere.SetActive(false);
-                        inHandStored = inHand;
-                        inHand = false;
-                    }
-                }
-                else if (tempClimbTimer <= 0)
-                {
-                    isClimbing = false;
-                    isFalling = true;
-                }
-                else
-                {
-                    isClimbing = false;
-                }
-            }
-        }
-        if (isClimbing == true && isFalling == false)
-        {
-            //Resets Forces on the Y axis
-            ResetImpactY();
-            //This is to nudge the character above the ledge of the top of the wall
-            AddForce(Vector3.up, edgeUpForce);
-            tempClimbTimer = climbWallTimer;
-            isClimbing = false;
-            isFalling = false;
-            if (inHandStored)
-            {
-                sphere.SetActive(true);
-            }
-        }
-        else
-        {
-            tempClimbTimer = climbWallTimer;
-        }
-
-        RaycastHit hit;
-        if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 1.1f, transform.position.z), transform.forward, out hit, distWall))
-        {
-            if (!hit.collider.isTrigger)
-            {
-                if (hit.collider.tag == "Climable")
-                {
-                    if ((Input.GetAxisRaw("Vertical") > 0 || Input.GetAxisRaw(LeftAnalogYString) > 0) && (Input.GetButton("Jump") || Input.GetButton(ControllerJumpString)) && tempClimbTimer > 0)
-                    {
-                        tempClimbTimer -= Time.deltaTime;
-                        ResetImpactY();
-                        //Gives the Character movement on the Y axis to climb up the wall
-                        CharController.Move(new Vector3(0f, climbSpeed * Time.deltaTime, 0f));
-                        isClimbing = true;
-                        if (inHand == true)
-                        {
-                            sphere.SetActive(false);
-                            inHandStored = inHand;
-                            inHand = false;
-                        }
-                    }
-                    else if (tempClimbTimer <= 0)
-                    {
-                        isClimbing = false;
-                        isFalling = true;
-                    }
-                    else
-                    {
-                        isClimbing = false;
-                    }
-                }
-            }
-
-    }*/
 
     private void OnTriggerStay(Collider collider)
     {
