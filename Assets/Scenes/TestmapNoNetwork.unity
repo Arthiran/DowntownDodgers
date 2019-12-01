@@ -17,7 +17,7 @@ RenderSettings:
   m_Fog: 1
   m_FogColor: {r: 0.9339623, g: 0.88231623, b: 0.77095944, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.02
+  m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1526980366}
-  m_IndirectSpecularColor: {r: 0.14161363, g: 0.15034828, b: 0.16579652, a: 1}
+  m_IndirectSpecularColor: {r: 0.16900514, g: 0.17525369, b: 0.15071449, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -539,16 +539,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1150266294808196756, guid: 51b1becf417e14c488de996468cec74f,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.0000002
-      objectReference: {fileID: 0}
-    - target: {fileID: 1150266294808196756, guid: 51b1becf417e14c488de996468cec74f,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.0000002
       objectReference: {fileID: 0}
     - target: {fileID: 1150266293905279359, guid: 51b1becf417e14c488de996468cec74f,
         type: 3}
@@ -2115,7 +2105,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 9
   m_Type: 1
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 0.6226415, g: 0.5877301, b: 0.49047703, a: 1}
   m_Intensity: 1.25
   m_Range: 10
   m_SpotAngle: 30
@@ -2709,11 +2699,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 1052477318369244046, guid: 51b1becf417e14c488de996468cec74f,
-        type: 3}
-      propertyPath: playerIndex
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1150266294631081419, guid: 51b1becf417e14c488de996468cec74f,
         type: 3}

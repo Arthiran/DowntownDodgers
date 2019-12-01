@@ -185,6 +185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CatchReticleImg: {fileID: 4527761915796522857}
   CatchReticleRT: {fileID: 6683886220854935252}
+  PlayerAnimator: {fileID: 6335338094611099111}
   sphere: {fileID: 3374635369968216253}
   capsuleObj: {fileID: 2070749564}
   controller: {fileID: 0}
@@ -510,7 +511,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1097469246621430414}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: bcf79a368151d4f4b8d0889bd66b88eb, type: 3}
+  m_Avatar: {fileID: 9000000, guid: 188ae4564db43604088f2ed2683e8159, type: 3}
   m_Controller: {fileID: 9100000, guid: d77f2748bd601374999c056a62fbc04e, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
@@ -809,7 +810,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 50, y: -20.699951}
+  m_AnchoredPosition: {x: 50, y: -20.69989}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &1150266293918605104
@@ -2516,7 +2517,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -76.90015, y: -21.200195}
+  m_AnchoredPosition: {x: -76.90015, y: -21.200134}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &1330489796576592655
@@ -4088,7 +4089,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 670224309865224971, guid: bcf79a368151d4f4b8d0889bd66b88eb, type: 3}
+  - {fileID: 670224309865224971, guid: 188ae4564db43604088f2ed2683e8159, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4113,7 +4114,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 4881715771457321616, guid: bcf79a368151d4f4b8d0889bd66b88eb, type: 3}
+  m_Mesh: {fileID: 4881715771457321616, guid: 188ae4564db43604088f2ed2683e8159, type: 3}
   m_Bones:
   - {fileID: 4511328374218318363}
   - {fileID: 4518100664807401405}
