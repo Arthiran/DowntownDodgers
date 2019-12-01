@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dffc5842e15a224fa76f06a9afe67c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GravitationalForce: 25
+  GravitationalForce: 15
   damage: 10
   rb: {fileID: 8048425419474693442}
   PlayerID: 0
