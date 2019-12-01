@@ -142,7 +142,7 @@ public class GameManagerScriptNoNetwork : MonoBehaviour
 
     private void SpawnNewDodgeball()
     {
-        LootRandomNum = Random.Range(0, LootSpawnList.Length - 1);
+        LootRandomNum = Random.Range(0, LootSpawnList.Length);
         GameObject DodgeballLootInstance = Instantiate(DodgeballLootPrefab, RandomPointInBounds(LootSpawnList[LootRandomNum].GetComponent<BoxCollider>().bounds), Quaternion.identity);
     }
 

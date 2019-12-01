@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1330404754366169466}
   - component: {fileID: 5389549672108213223}
   - component: {fileID: -5117715837463385673}
+  - component: {fileID: 713810524335732353}
   m_Layer: 0
   m_Name: DodgeballLoot
   m_TagString: Loot
@@ -93,7 +94,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 4.47, z: 0}
 --- !u!198 &5389549672108213223
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -4815,3 +4816,16 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!65 &713810524335732353
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1086040798761678246}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 9.624228, y: 9.847649, z: 1}
+  m_Center: {x: 0.0670286, y: 4.423824, z: 0}

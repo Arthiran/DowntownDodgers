@@ -454,7 +454,7 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
                 interactText.color = new Color(interactText.color.r, interactText.color.g, interactText.color.b, 1f);
             }
 
-            if (Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown(ControllerInteractString))
+            if (Input.GetKey(KeyCode.E) || Input.GetButton(ControllerInteractString))
             {
                 if (shootingScript.DodgeballsInHand < shootingScript.DodgeballCarryLimit)
                 {
