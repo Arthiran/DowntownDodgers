@@ -427,6 +427,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90bf1c4fb1ba2ce4c949dee724670441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skybox1: {fileID: 2100000, guid: b9ad0aaf2d7938749a36daf7fa5bc7d6, type: 2}
+  skybox2: {fileID: 2100000, guid: 3f730e376d856d44b9db52e29839dba2, type: 2}
+  lights:
+  - {fileID: 1191156927}
+  - {fileID: 1204217293}
+  - {fileID: 1064305626}
+  - {fileID: 830389143}
+  - {fileID: 1310094475}
+  - {fileID: 770507755}
+  bulb: {fileID: 9052282942631096364, guid: 8cc27cb204c60b444ac19d5578173528, type: 3}
+  bulbOff: {fileID: 2100000, guid: 5ecd4ff1cd459814bbcd619b9c64f8ba, type: 2}
+  bulbOn: {fileID: 2100000, guid: c96dd0a42dfc7ef4aa62cb4ed9a19ee7, type: 2}
   spawnablePrefabs:
   - {fileID: 8867170031487955047, guid: 1f1df9ed51e0bd14d9ac37151e18cf4f, type: 3}
   - {fileID: 4906998414812080794, guid: 8d86a53a4c3b8da4c88683968457cf6f, type: 3}
@@ -1482,6 +1494,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1837743235645483204, guid: e261cb0d3e8136a41a7b8f73e90b9362,
+        type: 3}
+      propertyPath: m_Name
+      value: GameManagerNoNetwork
+      objectReference: {fileID: 0}
     - target: {fileID: 2829869188681669576, guid: e261cb0d3e8136a41a7b8f73e90b9362,
         type: 3}
       propertyPath: TempSpawnBox
@@ -1552,11 +1569,6 @@ PrefabInstance:
       propertyPath: sceneManage
       value: 
       objectReference: {fileID: 1510925821}
-    - target: {fileID: 1837743235645483204, guid: e261cb0d3e8136a41a7b8f73e90b9362,
-        type: 3}
-      propertyPath: m_Name
-      value: GameManagerNoNetwork
-      objectReference: {fileID: 0}
     - target: {fileID: 1837743235645483206, guid: e261cb0d3e8136a41a7b8f73e90b9362,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2151,7 +2163,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0.0390625, y: -0.046875, z: 0, w: 8.8}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -2630,11 +2642,6 @@ PrefabInstance:
       propertyPath: PlayerID
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 2064600520958751005, guid: 51b1becf417e14c488de996468cec74f,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 1150266294631081421, guid: 51b1becf417e14c488de996468cec74f,
         type: 3}
       propertyPath: m_CullingMask.m_Bits
@@ -2718,6 +2725,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 18.900024
+      objectReference: {fileID: 0}
+    - target: {fileID: 2064600520958751005, guid: 51b1becf417e14c488de996468cec74f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51b1becf417e14c488de996468cec74f, type: 3}
