@@ -32,6 +32,9 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
 
     public GameObject sphere;
 
+    public Material player1Mat;
+    public Material player2Mat;
+
     private bool isDashCooldown;
 
     //Initialize Variables
@@ -86,11 +89,11 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
 
         if (PlayerID == 1)
         {
-            GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.red;
+            GetComponentInChildren<SkinnedMeshRenderer>().material = player1Mat;
         }
         else if (PlayerID == 2)
         {
-            GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.blue;
+            GetComponentInChildren<SkinnedMeshRenderer>().material = player2Mat;
         }
         else if (PlayerID == 3)
         {
