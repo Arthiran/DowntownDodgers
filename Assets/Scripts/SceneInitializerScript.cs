@@ -7,6 +7,13 @@ public class SceneInitializerScript : MonoBehaviour
 {
     private int readParameters = 10;
 
+    public Material skybox1, skybox2;
+
+    public List<Light> lights = new List<Light>();
+
+    public GameObject bulb;
+    public Material bulbOff, bulbOn;
+
     public List<GameObject> spawnablePrefabs = new List<GameObject>();
 
     private const string DLL_NAME = "LevelEditorPlugin";
@@ -33,6 +40,20 @@ public class SceneInitializerScript : MonoBehaviour
 
     private void Start()
     {
+        if (Random.value < 0.5)
+        {
+            RenderSettings.skybox = skybox1;
+            foreach (var light in lights)
+                light.enabled = false;
+            bulb.transform.Find("default").GetComponent<MeshRenderer>().material = bulbOff;
+        }
+        else
+        {
+            RenderSettings.skybox = skybox2;
+            foreach (var light in lights)
+                light.enabled = true;
+            bulb.transform.Find("default").GetComponent<MeshRenderer>().material = bulbOn;
+        }
         fileToSave = folderLocation + levelName + textExtension;
         loadObjects();
     }
