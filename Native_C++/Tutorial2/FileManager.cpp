@@ -4,7 +4,7 @@
 void FileManager::WriteFile(float time)
 {
 	//Open the file
-	write.open("save.txt");
+	write.open("save.txt", std::ios::app);
 	//If the file is open
 	if (write.is_open())
 	{
