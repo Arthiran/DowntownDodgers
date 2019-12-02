@@ -20,6 +20,7 @@ public class Tutorial : MonoBehaviour
     private int counter = 0;
 
     public Quest quest;
+    public SceneManage sceneManage;
     public GiveQuest giveQuest;
    
     // Start is called before the first frame update
@@ -127,6 +128,8 @@ public class Tutorial : MonoBehaviour
             giveQuest.loadQuest(4);
 
             end = true;
+
+            sceneManage.GoToFirstScene();
 
         }
     }

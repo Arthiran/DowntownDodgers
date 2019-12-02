@@ -538,6 +538,7 @@ MonoBehaviour:
   pool: {fileID: 903223005}
   quest:
     isActive: 0
+  sceneManage: {fileID: 0}
   giveQuest: {fileID: 1613394584}
 --- !u!4 &73689243
 Transform:
@@ -1212,6 +1213,7 @@ MonoBehaviour:
   pool: {fileID: 903223005}
   quest:
     isActive: 0
+  sceneManage: {fileID: 0}
   giveQuest: {fileID: 1613394584}
 --- !u!1001 &166265640
 PrefabInstance:
@@ -1890,6 +1892,7 @@ MonoBehaviour:
   pool: {fileID: 903223005}
   quest:
     isActive: 0
+  sceneManage: {fileID: 0}
   giveQuest: {fileID: 1613394584}
 --- !u!4 &267980678
 Transform:
@@ -7003,6 +7006,7 @@ MonoBehaviour:
   pool: {fileID: 903223005}
   quest:
     isActive: 0
+  sceneManage: {fileID: 0}
   giveQuest: {fileID: 1613394584}
 --- !u!4 &1242542235
 Transform:
@@ -8319,7 +8323,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 6.299e-42, y: 1.02e-43, z: 4.5904e-41, w: 0}
+  m_BoundingSphereOverride: {x: 6e-45, y: 1.8e-44, z: 7.34685e-40, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -8534,6 +8538,7 @@ MonoBehaviour:
   pool: {fileID: 903223005}
   quest:
     isActive: 0
+  sceneManage: {fileID: 1077541298}
   giveQuest: {fileID: 1613394584}
 --- !u!114 &1615399607
 MonoBehaviour:
