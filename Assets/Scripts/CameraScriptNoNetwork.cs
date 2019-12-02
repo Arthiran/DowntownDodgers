@@ -47,10 +47,21 @@ public class CameraScriptNoNetwork : MonoBehaviour
         PV = GetComponent<PhotonView>();
         if (SceneManager.GetActiveScene().name != "LevelEditorScene")
         {
-            RightAnalogXString = "RightAnalogX" + GetComponentInParent<PlayerRootInfo>().PlayerID.ToString();
-            RightAnalogYString = "RightAnalogY" + GetComponentInParent<PlayerRootInfo>().PlayerID.ToString();
-            LeftAnalogXString = "LeftAnalogX" + GetComponentInParent<PlayerRootInfo>().PlayerID.ToString();
-            LeftAnalogYString = "LeftAnalogY" + GetComponentInParent<PlayerRootInfo>().PlayerID.ToString();
+            if (SceneManager.GetActiveScene().name == "Tutorial")
+            {
+                RightAnalogXString = "RightAnalogX1";
+                RightAnalogYString = "RightAnalogY1";
+                LeftAnalogXString = "LeftAnalogX1";
+                LeftAnalogYString = "LeftAnalogY1";
+            }
+            else
+            {
+                RightAnalogXString = "RightAnalogX" + GetComponentInParent<PlayerRootInfo>().PlayerID.ToString();
+                RightAnalogYString = "RightAnalogY" + GetComponentInParent<PlayerRootInfo>().PlayerID.ToString();
+                LeftAnalogXString = "LeftAnalogX" + GetComponentInParent<PlayerRootInfo>().PlayerID.ToString();
+                LeftAnalogYString = "LeftAnalogY" + GetComponentInParent<PlayerRootInfo>().PlayerID.ToString();
+            }
+
 
         }
         else

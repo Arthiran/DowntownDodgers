@@ -106,16 +106,29 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name != "LevelEditorScene")
         {
-            //Set Controller Strings
-            LeftAnalogXString = "LeftAnalogX" + PlayerID.ToString();
-            LeftAnalogYString = "LeftAnalogY" + PlayerID.ToString();
-            ControllerJumpString = "ControllerJump" + PlayerID.ToString();
-            ControllerDashString = "ControllerDash" + PlayerID.ToString();
-            ControllerLoadString = "ControllerLoad" + PlayerID.ToString();
-            ControllerInteractString = "ControllerInteract" + PlayerID.ToString();
-            SpawnPointList = GameObject.FindGameObjectsWithTag("PlayerSpawn");
+            if (SceneManager.GetActiveScene().name == "Tutorial")
+            {
+                //Set Controller Strings
+                LeftAnalogXString = "LeftAnalogX1";
+                LeftAnalogYString = "LeftAnalogY1";
+                ControllerJumpString = "ControllerJump1";
+                ControllerDashString = "ControllerDash1";
+                ControllerLoadString = "ControllerLoad1";
+                ControllerInteractString = "ControllerInteract1";
+                SpawnPointList = GameObject.FindGameObjectsWithTag("PlayerSpawn");
+            }
+            else
+            {
+                //Set Controller Strings
+                LeftAnalogXString = "LeftAnalogX" + PlayerID.ToString();
+                LeftAnalogYString = "LeftAnalogY" + PlayerID.ToString();
+                ControllerJumpString = "ControllerJump" + PlayerID.ToString();
+                ControllerDashString = "ControllerDash" + PlayerID.ToString();
+                ControllerLoadString = "ControllerLoad" + PlayerID.ToString();
+                ControllerInteractString = "ControllerInteract" + PlayerID.ToString();
+                SpawnPointList = GameObject.FindGameObjectsWithTag("PlayerSpawn");
+            }
         }
-
         else
         {
             //Set Controller Strings

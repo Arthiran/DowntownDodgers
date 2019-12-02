@@ -15,4 +15,10 @@ public class SceneManage : MonoBehaviour
         SceneManager.LoadScene("TestmapNoNetwork");
         PresistantManage.Instance.value++;
     }
+
+    public void GoToTutorial()
+    {
+        SceneManager.LoadScene("Tutorial");
+        PresistantManage.Instance.value++;
+    }
 }

@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestmapNoNetwork.unity
     guid: 6718c8bc1432ca0478a2145279e8c0a8
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: 4c8052d9736d68d4487b425982fcc5cf
   m_configObjects: {}

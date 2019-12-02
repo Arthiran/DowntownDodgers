@@ -26,9 +26,18 @@ public class Catch : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name != "LevelEditorScene")
         {
-            GMScript = FindObjectOfType<GameManagerScriptNoNetwork>();
-            ControllerCatchString = "ControllerCatch" + GetComponentInParent<PlayerRootInfo>().PlayerID.ToString();
-            CatchReticleRT.sizeDelta = new Vector2(900 / GMScript.NumberOfPlayers, 900 / GMScript.NumberOfPlayers);
+            if (SceneManager.GetActiveScene().name == "Tutorial")
+            {
+                GMScript = FindObjectOfType<GameManagerScriptNoNetwork>();
+                ControllerCatchString = "ControllerCatch1";
+                CatchReticleRT.sizeDelta = new Vector2(900 / GMScript.NumberOfPlayers, 900 / GMScript.NumberOfPlayers);
+            }
+            else
+            {
+                GMScript = FindObjectOfType<GameManagerScriptNoNetwork>();
+                ControllerCatchString = "ControllerCatch" + GetComponentInParent<PlayerRootInfo>().PlayerID.ToString();
+                CatchReticleRT.sizeDelta = new Vector2(900 / GMScript.NumberOfPlayers, 900 / GMScript.NumberOfPlayers);
+            }
         }
         else
         {
