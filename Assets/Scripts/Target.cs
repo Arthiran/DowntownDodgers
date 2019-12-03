@@ -3,7 +3,8 @@ using UnityEngine.UI;
 using Photon.Pun;
 using XInputDotNetPure;
 
-public class Target : MonoBehaviour {
+public class Target : MonoBehaviour
+{
 
     //Initialize Variables
     public float health = 30f;
@@ -119,7 +120,7 @@ public class Target : MonoBehaviour {
             {
                 vibrate = true;
                 //if (vibrate)
-                    //RumbleOnHit(1);
+                //RumbleOnHit(1);
                 controllerID = 0;
                 vignette.canvasRenderer.SetAlpha(1.0f);
                 vignette.enabled = true;
@@ -209,5 +210,4 @@ public class Target : MonoBehaviour {
             Destroy(gameObject);
         }
     }
-
 }

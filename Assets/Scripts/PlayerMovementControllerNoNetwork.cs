@@ -83,6 +83,16 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
     private string ControllerLoadString;
     private string ControllerInteractString;
 
+    //MakeyMakey Things
+    public Image p1Vision;
+    public Image p2Vision;
+
+    private float visionTime1 = 0.0f;
+    private float visionTime2 = 0.0f;
+
+    private bool blockVision1 = false;
+    private bool blockVision2 = false;
+
     private void Start()
     {
         PlayerID = GetComponentInParent<PlayerRootInfo>().PlayerID;
@@ -153,11 +163,15 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
         dashCountdownUI = dashCooldown + 1;
 
         sphere.SetActive(false);
+
+        p1Vision = p1Vision.GetComponent<Image>();
+        p2Vision = p2Vision.GetComponent<Image>();
     }
 
     //Any Input(Keyboard or Mouse) should be in Update function
     private void Update()
     {
+        vision();
         //Checks if Player is on the ground, if true set Y Velocity to 0
         if (isGrounded && velocityY < 0f)
         {
@@ -523,5 +537,48 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
         hitmarkerIMG.gameObject.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         hitmarkerIMG.gameObject.SetActive(false);
+    }
+
+    void vision()
+    {
+        if (!blockVision1)
+        {
+            if (Input.GetKeyDown(KeyCode.H))
+            {
+                p1Vision.enabled = true;
+                blockVision1 = true;
+            }
+        }
+
+        if (!blockVision2)
+        {
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                p2Vision.enabled = true;
+                blockVision2 = true;
+            }
+        }
+
+        if (blockVision1)
+        {
+            visionTime1 += Time.deltaTime;
+
+            if (visionTime1 >= 5.0f)
+            {
+                p1Vision.enabled = false;
+                visionTime1 = 0.0f;
+            }
+        }
+
+        if (blockVision2)
+        {
+            visionTime2 += Time.deltaTime;
+
+            if (visionTime2 >= 5.0f)
+            {
+                p2Vision.enabled = false;
+                visionTime2 = 0.0f;
+            }
+        }
     }
 }
