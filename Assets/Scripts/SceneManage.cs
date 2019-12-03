@@ -12,7 +12,7 @@ public class SceneManage : MonoBehaviour
     }
     public void GoToSecondScene()
     {
-        SceneManager.LoadScene("TestmapNoNetwork");
+        SceneManager.LoadScene("Testmap");
         PresistantManage.Instance.value++;
     }
 

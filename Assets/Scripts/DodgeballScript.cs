@@ -11,7 +11,7 @@ public class DodgeballScript : MonoBehaviour
     public int PlayerID = 0;
     public bool inAir;
 
-    public PlayerMovementControllerNoNetwork MovementController;
+    public PlayerMovementController MovementController;
 
     private void Start()
     {
@@ -27,7 +27,7 @@ public class DodgeballScript : MonoBehaviour
         //If it does, apply the damage to the object's health
         if (target != null)
         {
-            if (collision.gameObject.GetComponentInParent<PlayerMovementControllerNoNetwork>().PlayerID != PlayerID)
+            if (collision.gameObject.GetComponentInParent<PlayerMovementController>().PlayerID != PlayerID)
             {
                 float step = GravitationalForce * Time.deltaTime;
                 transform.position = Vector3.MoveTowards(transform.position, collision.gameObject.transform.position, step);

@@ -13,9 +13,9 @@ public class Catch : MonoBehaviour
     private Collider capsule;
     public GameObject sphere;
     public GameObject capsuleObj;
-    public PlayerMovementControllerNoNetwork controller;
-    public ShootingNoNetwork shooter;
-    private GameManagerScriptNoNetwork GMScript;
+    public PlayerMovementController controller;
+    public Shooting shooter;
+    private GameManagerScript GMScript;
     private float oldScale = 0.75f;
     private float newScale = 0.25f;
 
@@ -28,13 +28,13 @@ public class Catch : MonoBehaviour
         {
             if (SceneManager.GetActiveScene().name == "Tutorial")
             {
-                GMScript = FindObjectOfType<GameManagerScriptNoNetwork>();
+                GMScript = FindObjectOfType<GameManagerScript>();
                 ControllerCatchString = "ControllerCatch1";
                 CatchReticleRT.sizeDelta = new Vector2(900 / GMScript.NumberOfPlayers, 900 / GMScript.NumberOfPlayers);
             }
             else
             {
-                GMScript = FindObjectOfType<GameManagerScriptNoNetwork>();
+                GMScript = FindObjectOfType<GameManagerScript>();
                 ControllerCatchString = "ControllerCatch" + GetComponentInParent<PlayerRootInfo>().PlayerID.ToString();
                 CatchReticleRT.sizeDelta = new Vector2(900 / GMScript.NumberOfPlayers, 900 / GMScript.NumberOfPlayers);
             }

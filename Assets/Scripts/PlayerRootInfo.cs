@@ -2,25 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Photon.Pun;
 
 public class PlayerRootInfo : MonoBehaviour
 {
     public int PlayerID;
-    private Camera Camera;
+    public Camera Camera;
     private GameObject GMScript;
     // Start is called before the first frame update 
     void Start()
     {
         GMScript = GameObject.FindGameObjectWithTag("GameManager");
-        Camera = GetComponentInChildren<Camera>();
         if (SceneManager.GetActiveScene().name != "LevelEditorScene")
         {
-            if (GMScript.GetComponent<GameManagerScriptNoNetwork>().NumberOfPlayers == 1)
+            if (GMScript.GetComponent<GameManagerScript>().NumberOfPlayers == 1)
             {
                 Camera.rect = new Rect(0f, 0f, 1f, 1f);
             }
-            else if (GMScript.GetComponent<GameManagerScriptNoNetwork>().NumberOfPlayers == 2)
+            else if (GMScript.GetComponent<GameManagerScript>().NumberOfPlayers == 2)
             {
                 if (PlayerID == 1)
                 {
@@ -31,7 +29,7 @@ public class PlayerRootInfo : MonoBehaviour
                     Camera.rect = new Rect(0f, 0f, 1f, 0.5f);
                 }
             }
-            else if (GMScript.GetComponent<GameManagerScriptNoNetwork>().NumberOfPlayers == 3)
+            else if (GMScript.GetComponent<GameManagerScript>().NumberOfPlayers == 3)
             {
                 if (PlayerID == 1)
                 {
@@ -46,7 +44,7 @@ public class PlayerRootInfo : MonoBehaviour
                     Camera.rect = new Rect(0.5f, 0f, 0.5f, 0.5f);
                 }
             }
-            else if (GMScript.GetComponent<GameManagerScriptNoNetwork>().NumberOfPlayers == 4)
+            else if (GMScript.GetComponent<GameManagerScript>().NumberOfPlayers == 4)
             {
                 if (PlayerID == 1)
                 {

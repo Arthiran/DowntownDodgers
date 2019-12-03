@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using UnityEngine;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-public class ShootingTut : MonoBehaviour
+public class Shooting : MonoBehaviour
 {
+    private Animator PlayerAnimator;
     //Get transform to spawn dodgeball in and get dodgeball prefab
     public Transform BallShootingTransform;
     public GameObject DodgeballPrefab;
@@ -23,11 +25,24 @@ public class ShootingTut : MonoBehaviour
     private string ControllerShootString;
 
     public GiveQuest giveQuest;
+    Scene currentScene;
+    string sceneName;
 
     private void Start()
     {
+        currentScene = SceneManager.GetActiveScene();
+
+        PlayerAnimator = GetComponentInChildren<Animator>();
+        sceneName = currentScene.name;
         MovementController = GetComponentInChildren<PlayerMovementController>();
-        ControllerShootString = "ControllerShoot1"; //+ GetComponent<PlayerRootInfo>().PlayerID.ToString();
+        if (SceneManager.GetActiveScene().name != "LevelEditorScene")
+        {
+            ControllerShootString = "ControllerShoot" + GetComponent<PlayerRootInfo>().PlayerID.ToString();
+        }
+        else
+        {
+            ControllerShootString = "ControllerShoot1";
+        }
     }
 
     //Checks if left mouse button was clicked
@@ -77,12 +92,23 @@ public class ShootingTut : MonoBehaviour
     //Fires Dodgeball
     private void Shoot()
     {
+        if (sceneName == "Tutorial")
         giveQuest.loadQuest(2);
         //Spawns an instance of the dodgeball prefab at the spawn transform
         GameObject DodgeballInstance = Instantiate(DodgeballPrefab, BallShootingTransform.position, BallShootingTransform.rotation);
+        DodgeballInstance.GetComponent<DodgeballScript>().PlayerID = GetComponent<PlayerRootInfo>().PlayerID;
+        DodgeballInstance.GetComponent<DodgeballScript>().MovementController = MovementController;
+        StartCoroutine(ShootAnimation());
         //Gives dodgeball a launch force wherever the character is facing
-        DodgeballInstance.GetComponent<Rigidbody>().AddForce(DodgeballInstance.transform.forward * dodgeballLaunchForce, ForceMode.VelocityChange);
-        FillSlots[DodgeballsInHand - 1].fillAmount = 0f;
+        DodgeballInstance.GetComponent<Rigidbody>().AddForce(DodgeballInstance.transform.forward * dodgeballLaunchForce, ForceMode.Impulse);
+        FillSlots[DodgeballsInHand-1].fillAmount = 0f;
         DodgeballsInHand--;
+    }
+
+    private IEnumerator ShootAnimation()
+    {
+        PlayerAnimator.SetBool("Throw", true);
+        yield return new WaitForSeconds(1);
+        PlayerAnimator.SetBool("Throw", false);
     }
 }

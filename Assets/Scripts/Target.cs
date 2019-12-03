@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using Photon.Pun;
 using XInputDotNetPure;
 
 public class Target : MonoBehaviour {
@@ -8,11 +7,10 @@ public class Target : MonoBehaviour {
     //Initialize Variables
     public float health = 30f;
     public float originalHealth;
-    private PlayerMovementControllerNoNetwork MovementController;
-    public GameManagerScriptNoNetwork gameManager;
+    private PlayerMovementController MovementController;
+    public GameManagerScript gameManager;
     public Image vignette;
     bool toFade = false;
-    private PhotonView PV;
     bool vibrate;
     int controllerID;
     float vibeTimer = 0.0f;
@@ -21,19 +19,8 @@ public class Target : MonoBehaviour {
 
     private void Start()
     {
-        PV = GetComponent<PhotonView>();
-        /*if (PV.IsMine)
-        {
-            originalHealth = health;
-            MovementController = GetComponent<PlayerMovementController>();
-            if (gameObject.tag == "Player")
-            {
-                MovementController.HealthNumText.text = health.ToString() + "/" + originalHealth.ToString();
-                MovementController.filledHealthbarIMG.fillAmount = health / originalHealth;
-            }
-        }*/
         originalHealth = health;
-        MovementController = GetComponent<PlayerMovementControllerNoNetwork>();
+        MovementController = GetComponent<PlayerMovementController>();
         controller = GameObject.FindObjectOfType<XInputTestCS>();
         vignette = vignette.GetComponent<Image>();
 
@@ -77,22 +64,8 @@ public class Target : MonoBehaviour {
     }
 
     //Calculates the amount of damage taken from shot, dies if under 0 health
-    //[PunRPC]
     public void TakeDamage(float amount)
     {
-        /*if (PV.IsMine)
-        {
-            health -= amount;
-            if (gameObject.tag == "Player")
-            {
-                MovementController.HealthNumText.text = health.ToString() + "/" + originalHealth.ToString();
-                MovementController.filledHealthbarIMG.fillAmount = health / originalHealth;
-            }
-            if (health <= 0f)
-            {
-                Die();
-            }
-        }*/
         health -= amount;
         if (gameObject.tag == "Player")
         {
@@ -186,9 +159,12 @@ public class Target : MonoBehaviour {
         DodgeballScript dodgeballScript = collision.gameObject.GetComponent<DodgeballScript>();
         if (dodgeballScript != null)
         {
-            TakeDamage(dodgeballScript.damage);
-            dodgeballScript.MovementController.StartCoroutine(dodgeballScript.MovementController.Hitmarker());
-            Destroy(collision.gameObject);
+            if (dodgeballScript.inAir == true)
+            {
+                TakeDamage(dodgeballScript.damage);
+                dodgeballScript.MovementController.StartCoroutine(dodgeballScript.MovementController.Hitmarker());
+                Destroy(collision.gameObject);
+            }
         }
     }
 

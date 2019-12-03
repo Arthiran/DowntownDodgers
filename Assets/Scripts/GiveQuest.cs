@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class GiveQuest : MonoBehaviour
 {
     public string currQuest;
-    //public PlayerMovementControllerNoNetwork player;
+    //public PlayerMovementController player;
     public GameObject moveQuest;
     public GameObject throwQuest;
     public GameObject climbQuest;

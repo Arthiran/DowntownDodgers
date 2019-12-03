@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2753328640296715305}
-  - component: {fileID: 2753328640296715306}
+  - component: {fileID: 2930983612445515017}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2753328640296715306
+--- !u!114 &2930983612445515017
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,12 +40,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 2753328640296715307}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48ff183cc25fe8840b790d277e043ecf, type: 3}
+  m_Script: {fileID: 11500000, guid: 0a4d8263adf2bbf488c35dd456bb1be7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NumberOfPlayers: 1
-  PlayerPrefab: {fileID: 1150266294808196759, guid: 51b1becf417e14c488de996468cec74f,
-    type: 3}
-  DodgeballLootPrefab: {fileID: 1086040798761678246, guid: 4513a5ad1377d1843a2b336c592efbd5,
-    type: 3}
-  TempSpawnBox: {fileID: 0}
+  NumberOfPlayers: 2
+  PlayerPrefab: {fileID: 0}
+  DodgeballLootPrefab: {fileID: 0}
+  p1Score: 0
+  p2Score: 0
+  p1ResultText: {fileID: 0}
+  p2ResultText: {fileID: 0}
+  timerText1: {fileID: 0}
+  timerText2: {fileID: 0}
+  scoreText1: {fileID: 0}
+  scoreText2: {fileID: 0}
+  seconds: 0
+  minutes: 0
+  sceneManage: {fileID: 0}

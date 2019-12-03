@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Photon.Pun;
 
 public class CameraScriptNoNetwork : MonoBehaviour
 {
@@ -14,12 +13,10 @@ public class CameraScriptNoNetwork : MonoBehaviour
     private float forwardMovement;
     private float horizontalMovement;
 
-    //Networking
-    private PhotonView PV;
     //Get Character properties
     public GameObject Player;
     public GameObject PlayerEmptyChild;
-    public PlayerMovementControllerNoNetwork MovementController;
+    public PlayerMovementController MovementController;
 
     //Initialize Variables
     public float mouseX;
@@ -44,7 +41,6 @@ public class CameraScriptNoNetwork : MonoBehaviour
 
     private void Start()
     {
-        PV = GetComponent<PhotonView>();
         if (SceneManager.GetActiveScene().name != "LevelEditorScene")
         {
             if (SceneManager.GetActiveScene().name == "Tutorial")
