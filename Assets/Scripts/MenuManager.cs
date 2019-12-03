@@ -12,12 +12,6 @@ public class MenuManager : MonoBehaviour
         Cursor.visible = true;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void LoadLevel(string levelName)
     {
         SceneManager.LoadScene(levelName);
