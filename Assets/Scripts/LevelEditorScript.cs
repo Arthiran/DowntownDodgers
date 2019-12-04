@@ -159,7 +159,8 @@ public class LevelEditorScript : MonoBehaviour
             {
                 for (int j = 0; j < spawnables.Count; j++)
                 {
-                    if (spawnablePrefabs[i].name.ToLower() == spawnables[j].name.Substring(0, spawnables[j].gameObject.name.Length - 7).ToLower() || spawnablePrefabs[i].name.ToLower() == spawnables[j].name.ToLower())
+                    if (spawnablePrefabs[i].name.ToLower() == spawnables[j].name.Substring(0, spawnables[j].gameObject.name.Length - 7).ToLower() || 
+                        spawnablePrefabs[i].name.ToLower() == spawnables[j].name.ToLower())
                     {
                         ReadInto(i, spawnables[j].transform.position.x, spawnables[j].transform.position.y, spawnables[j].transform.position.z,
                             spawnables[j].transform.eulerAngles.x, spawnables[j].transform.eulerAngles.y, spawnables[j].transform.eulerAngles.z,
@@ -187,7 +188,9 @@ public class LevelEditorScript : MonoBehaviour
                     for (int i = 0; i <= (returnLines(fileToSave) / readParameters); i++)
                     {
                         GameObject tempSpawnableObject;
-                        tempSpawnableObject = Instantiate(spawnablePrefabs[Mathf.RoundToInt(ReadOut(0 + objectSet, fileToSave))], new Vector3(ReadOut(1 + objectSet, fileToSave), ReadOut(2 + objectSet, fileToSave), ReadOut(3 + objectSet, fileToSave)), Quaternion.Euler(ReadOut(4 + objectSet, fileToSave), ReadOut(5 + objectSet, fileToSave), ReadOut(6 + objectSet, fileToSave)));
+                        tempSpawnableObject = Instantiate(spawnablePrefabs[Mathf.RoundToInt(ReadOut(0 + objectSet, fileToSave))], new Vector3(ReadOut(1 + objectSet, fileToSave), 
+                            ReadOut(2 + objectSet, fileToSave), ReadOut(3 + objectSet, fileToSave)), Quaternion.Euler(ReadOut(4 + objectSet, fileToSave), ReadOut(5 + objectSet, fileToSave), 
+                            ReadOut(6 + objectSet, fileToSave)));
                         tempSpawnableObject.transform.localScale = new Vector3(ReadOut(7 + objectSet, fileToSave), ReadOut(8 + objectSet, fileToSave), ReadOut(8 + objectSet, fileToSave));
                         objectSet = objectSet + readParameters;
                         if (objectSet == returnLines(fileToSave))
