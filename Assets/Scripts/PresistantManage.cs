@@ -12,6 +12,9 @@ public class PresistantManage : MonoBehaviour
 
     public int value;
 
+    public int p1Wins;
+    public int p2Wins;
+
     private void Awake()
     {
         if (Instance == null)

@@ -70,8 +70,12 @@ public class GameManagerScriptNoNetwork : MonoBehaviour
 
     private void Update()
     {
-		//For quitting to menu
-		if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            sceneManage.GoToScore();
+        }
+        //For quitting to menu
+        if (Input.GetKeyDown(KeyCode.M))
 		{
 			sceneManage.GoToFirstScene();
 		}
@@ -114,12 +118,14 @@ public class GameManagerScriptNoNetwork : MonoBehaviour
             {  
                 p1ResultText.text = "You Win!";
                 p2ResultText.text = "You Lose!";
+                PresistantManage.Instance.p1Wins += 1;
             }
             //P2 wins
             else if (p2Score > p1Score)
             {
                 p1ResultText.text = "You Lose!";
                 p2ResultText.text = "You Win!";
+                PresistantManage.Instance.p2Wins += 1;
             }
             //Tie game
             else
