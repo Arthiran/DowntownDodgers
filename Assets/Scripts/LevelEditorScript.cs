@@ -94,7 +94,7 @@ public class LevelEditorScript : MonoBehaviour
     void Update()
     {
         checkObjectEditable();
-        deleteObject();
+        //deleteObject(_gameObject);
 
         if (Input.GetKeyDown(KeyCode.X))
         {
@@ -211,7 +211,7 @@ public class LevelEditorScript : MonoBehaviour
         }
     }
 
-    private void objectSpawner(GameObject _gameObject)
+    public void objectSpawner(GameObject _gameObject)
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -265,7 +265,7 @@ public class LevelEditorScript : MonoBehaviour
         }
     }
 
-    private void deleteObject()
+    public void deleteObject(GameObject _gameObject)
     {
         if (Input.GetMouseButtonDown(1) && !EventSystem.current.IsPointerOverGameObject())
         {
