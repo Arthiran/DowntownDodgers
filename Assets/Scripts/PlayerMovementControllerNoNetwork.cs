@@ -532,11 +532,11 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
         tempRandomNum = Random.Range(0, SpawnPointList.Length - 1);
         gameObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
         gameObject.GetComponent<CharacterController>().enabled = false;
+        shootingScript.DodgeballsInHand = 0;
         yield return new WaitForSeconds(3);
         transform.position = SpawnPointList[tempRandomNum].transform.position;
         transform.eulerAngles = SpawnPointList[tempRandomNum].transform.eulerAngles;
         isRespawning = false;
-        shootingScript.DodgeballsInHand = 0;
         nextDash = nextDash - dashCooldown;
         isDashCooldown = true;
         dashCooldownIMG.fillAmount = 1f;
