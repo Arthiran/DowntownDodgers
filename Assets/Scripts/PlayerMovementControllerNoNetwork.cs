@@ -80,6 +80,7 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
     private string LeftAnalogYString;
     private string ControllerJumpString;
     private string ControllerDashString;
+    private string ControllerBackwardDashString;
     private string ControllerLoadString;
     private string ControllerInteractString;
 
@@ -123,6 +124,7 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
                 LeftAnalogYString = "LeftAnalogY1";
                 ControllerJumpString = "ControllerJump1";
                 ControllerDashString = "ControllerDash1";
+                ControllerBackwardDashString = "ControllerBackwardDash1";
                 ControllerLoadString = "ControllerLoad1";
                 ControllerInteractString = "ControllerInteract1";
                 SpawnPointList = GameObject.FindGameObjectsWithTag("PlayerSpawn");
@@ -134,6 +136,7 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
                 LeftAnalogYString = "LeftAnalogY" + PlayerID.ToString();
                 ControllerJumpString = "ControllerJump" + PlayerID.ToString();
                 ControllerDashString = "ControllerDash" + PlayerID.ToString();
+                ControllerBackwardDashString = "ControllerBackwardDash" + PlayerID.ToString();
                 ControllerLoadString = "ControllerLoad" + PlayerID.ToString();
                 ControllerInteractString = "ControllerInteract" + PlayerID.ToString();
                 SpawnPointList = GameObject.FindGameObjectsWithTag("PlayerSpawn");
@@ -146,6 +149,7 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
             LeftAnalogYString = "LeftAnalogY1";
             ControllerJumpString = "ControllerJump1";
             ControllerDashString = "ControllerDash1";
+            ControllerBackwardDashString = "ControllerBackwardDash1";
             ControllerLoadString = "ControllerLoad1";
             ControllerInteractString = "ControllerInteract1";
             SpawnPointList = GameObject.FindGameObjectsWithTag("PlayerSpawn");
@@ -219,6 +223,7 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
                 horizontalMovement = Input.GetAxis("Horizontal");
             } 
             Dash();
+            BackwardDash();
         }
 
         /*This is so that when you press W and A at the same time for instance, the player doesn't become faster,
@@ -360,7 +365,17 @@ public class PlayerMovementControllerNoNetwork : MonoBehaviour
             StartCoroutine(DashAnimation());
             isDashCooldown = true;
             nextDash = Time.time + dashCooldown;
-            AddForce(PlayerCam.transform.forward, dashForce);
+            AddForce(transform.forward, dashForce);
+        }
+    }
+    private void BackwardDash()
+    {
+        if ((Input.GetKeyDown(KeyCode.LeftControl) || Input.GetAxisRaw(ControllerBackwardDashString) > 0) && Time.time > nextDash)
+        {
+            StartCoroutine(DashAnimation());
+            isDashCooldown = true;
+            nextDash = Time.time + dashCooldown;
+            AddForce(transform.forward, -dashForce);
         }
     }
 

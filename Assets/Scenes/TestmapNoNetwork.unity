@@ -599,11 +599,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1150266294631081421, guid: 51b1becf417e14c488de996468cec74f,
-        type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 2871
-      objectReference: {fileID: 0}
     - target: {fileID: 1150266294631081419, guid: 51b1becf417e14c488de996468cec74f,
         type: 3}
       propertyPath: m_ShowCustomSorter
@@ -2698,11 +2693,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 1150266294631081421, guid: 51b1becf417e14c488de996468cec74f,
-        type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 1847
       objectReference: {fileID: 0}
     - target: {fileID: 1150266294631081419, guid: 51b1becf417e14c488de996468cec74f,
         type: 3}
