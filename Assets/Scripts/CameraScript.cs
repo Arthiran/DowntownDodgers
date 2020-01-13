@@ -8,22 +8,20 @@ public class CameraScript : MonoBehaviour
     private float timer = 0.0f;
     public float bobbingSpeed = 0.18f;
     public float bobbingAmount = 0.2f;
-    private float vertical;
-    private float horizontal;
-    private float forwardMovement;
-    private float horizontalMovement;
+
     //Get Character properties
     public GameObject Player;
     public GameObject PlayerEmptyChild;
     public PlayerMovementController MovementController;
 
     //Initialize Variables
+    public float CameraMoveSpeed = 120.0f;
+    public GameObject CameraFollowObj;
+    Vector3 FollowPOS;
     public float mouseX;
     public float mouseY;
     public float RightAnalogX;
     public float RightAnalogY;
-    private float LeftAnalogX;
-    private float LeftAnalogY;
     public float inputSens = 150.0f;
     [Range(0.0f, 1.0f)]
     public float aimAssistFactor = 0.5f;
@@ -34,9 +32,6 @@ public class CameraScript : MonoBehaviour
     private float distWall = 1f;
     private string RightAnalogXString;
     private string RightAnalogYString;
-    private string LeftAnalogXString;
-    private string LeftAnalogYString;
-    private bool hitOuterCollision;
 
     private void Start()
     {
@@ -46,15 +41,11 @@ public class CameraScript : MonoBehaviour
             {
                 RightAnalogXString = "RightAnalogX1";
                 RightAnalogYString = "RightAnalogY1";
-                LeftAnalogXString = "LeftAnalogX1";
-                LeftAnalogYString = "LeftAnalogY1";
             }
             else
             {
                 RightAnalogXString = "RightAnalogX" + GetComponentInParent<PlayerRootInfo>().PlayerID.ToString();
                 RightAnalogYString = "RightAnalogY" + GetComponentInParent<PlayerRootInfo>().PlayerID.ToString();
-                LeftAnalogXString = "LeftAnalogX" + GetComponentInParent<PlayerRootInfo>().PlayerID.ToString();
-                LeftAnalogYString = "LeftAnalogY" + GetComponentInParent<PlayerRootInfo>().PlayerID.ToString();
             }
 
 
@@ -63,8 +54,6 @@ public class CameraScript : MonoBehaviour
         {
             RightAnalogXString = "RightAnalogX1";
             RightAnalogYString = "RightAnalogY1";
-            LeftAnalogXString = "LeftAnalogX1";
-            LeftAnalogYString = "LeftAnalogY1";
         }
         //Finds the character which has a tag set to Player
         //Rotation variables are set
@@ -105,9 +94,8 @@ public class CameraScript : MonoBehaviour
         //Clamps the rotation vertically so you can't view things upside down
         rotX = Mathf.Clamp(rotX, -clampAngle, clampAngle);
 
-        //Assigns the rotation to a variable and also sets a variable for the rotation of the player
-        //Actually changes the rotation
-        transform.eulerAngles = new Vector3(rotX, rotY, 0.0f);
+        Quaternion localRotation = Quaternion.Euler(rotX, rotY, 0.0f);
+        transform.rotation = localRotation;
 
         PlayerEmptyChild.transform.eulerAngles = new Vector3(0.0f, rotY, 0.0f);
         RaycastHit hit;
@@ -129,39 +117,6 @@ public class CameraScript : MonoBehaviour
                 }
             }
         }
-
-        //This is so that the Camera can follow the Player
-        transform.localPosition = new Vector3(Player.transform.localPosition.x, Player.transform.localPosition.y + 0.61f, Player.transform.localPosition.z);
-
-		/*if (Input.GetAxisRaw("Vertical") != 0)
-        {
-            vertical = Input.GetAxis("Vertical");
-            forwardMovement = vertical;
-        }
-        else if (Input.GetAxisRaw(LeftAnalogYString) != 0)
-        {
-            LeftAnalogY = Input.GetAxis(LeftAnalogYString);
-            forwardMovement = LeftAnalogY;
-        }
-        else
-        {
-            forwardMovement = Input.GetAxis("Vertical"); ;
-        }
-
-        if (Input.GetAxisRaw("Horizontal") != 0)
-        {
-            horizontal = Input.GetAxis("Horizontal");
-            horizontalMovement = horizontal;
-        }
-        else if (Input.GetAxisRaw(LeftAnalogXString) != 0)
-        {
-            LeftAnalogX = Input.GetAxis(LeftAnalogXString);
-            horizontalMovement = LeftAnalogX;
-        }
-        else
-        {
-            horizontalMovement = Input.GetAxis("Horizontal");
-        }*/
 
 		if (MovementController.isGrounded)
 		{
@@ -196,40 +151,15 @@ public class CameraScript : MonoBehaviour
 			}
 		}
 	}
+    private void LateUpdate()
+    {
+        CameraUpdater();
+    }
 
-	/*private void FixedUpdate()
-	{
-		if (MovementController.isGrounded)
-		{
-			float waveslice = 0.0f;
-
-			//Debug.Log(MovementController.horizontalMovement);
-			if ((MovementController.horizontalMovement == 0 && MovementController.forwardMovement == 0) && (Input.GetAxisRaw(LeftAnalogXString) == 0 && Input.GetAxisRaw(LeftAnalogYString) == 0))
-			{
-				timer = 0.0f;
-				//Debug.Log("HALLO");
-			}
-			else
-			{
-				waveslice = Mathf.Sin(timer);
-				timer = timer + bobbingSpeed;
-				if (timer > Mathf.PI * 2)
-				{
-					timer = timer - (Mathf.PI * 2);
-				}
-			}
-			if (waveslice != 0)
-			{
-				float translateChange = waveslice * bobbingAmount;
-				float totalAxes = Mathf.Abs(MovementController.horizontalMovement + MovementController.forwardMovement);
-				totalAxes = Mathf.Clamp(totalAxes, 0.0f, 1.0f);
-				translateChange = totalAxes * translateChange;
-				transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + translateChange, transform.localPosition.z);
-			}
-			else
-			{
-				transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z);
-			}
-		}
-	}*/
+    void CameraUpdater()
+    {
+        Transform target = CameraFollowObj.transform;
+        float step = CameraMoveSpeed * Time.deltaTime;
+        transform.position = Vector3.MoveTowards(transform.position, target.position, step);
+    }
 }

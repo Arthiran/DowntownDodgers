@@ -8,7 +8,7 @@ public class Target : MonoBehaviour {
     public float health = 30f;
     public float originalHealth;
     private PlayerMovementController MovementController;
-    public GameManagerScript gameManager;
+    private GameManagerScript gameManager;
     public Image vignette;
     bool toFade = false;
     bool vibrate;
@@ -23,6 +23,7 @@ public class Target : MonoBehaviour {
         MovementController = GetComponent<PlayerMovementController>();
         controller = GameObject.FindObjectOfType<XInputTestCS>();
         vignette = vignette.GetComponent<Image>();
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManagerScript>();
 
         if (gameObject.tag == "Player")
         {
