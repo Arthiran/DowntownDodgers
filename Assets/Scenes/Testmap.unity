@@ -822,6 +822,16 @@ PrefabInstance:
       propertyPath: radarPrefab
       value: 
       objectReference: {fileID: 873065111}
+    - target: {fileID: 6849751954521267632, guid: 51b1becf417e14c488de996468cec74f,
+        type: 3}
+      propertyPath: player1Mat
+      value: 
+      objectReference: {fileID: 2100000, guid: dad0d167479d11c47ba04bf8c7d087dc, type: 2}
+    - target: {fileID: 6849751954521267632, guid: 51b1becf417e14c488de996468cec74f,
+        type: 3}
+      propertyPath: player2Mat
+      value: 
+      objectReference: {fileID: 2100000, guid: 6e399aa4ca707ee4e821daaa55bf4406, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51b1becf417e14c488de996468cec74f, type: 3}
 --- !u!1 &456487983
@@ -2320,6 +2330,16 @@ PrefabInstance:
       propertyPath: radarPrefab
       value: 
       objectReference: {fileID: 1644394938}
+    - target: {fileID: 6849751954521267632, guid: 51b1becf417e14c488de996468cec74f,
+        type: 3}
+      propertyPath: player1Mat
+      value: 
+      objectReference: {fileID: 2100000, guid: dad0d167479d11c47ba04bf8c7d087dc, type: 2}
+    - target: {fileID: 6849751954521267632, guid: 51b1becf417e14c488de996468cec74f,
+        type: 3}
+      propertyPath: player2Mat
+      value: 
+      objectReference: {fileID: 2100000, guid: 6e399aa4ca707ee4e821daaa55bf4406, type: 2}
     - target: {fileID: 2064600520958751005, guid: 51b1becf417e14c488de996468cec74f,
         type: 3}
       propertyPath: m_TagString
@@ -2330,6 +2350,11 @@ PrefabInstance:
       propertyPath: m_Texture
       value: 
       objectReference: {fileID: 8400000, guid: 797c63799c446a4489de0bd5ca569ff0, type: 2}
+    - target: {fileID: 3639033689864827406, guid: 51b1becf417e14c488de996468cec74f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6e399aa4ca707ee4e821daaa55bf4406, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51b1becf417e14c488de996468cec74f, type: 3}
 --- !u!1001 &8413330062909210524
