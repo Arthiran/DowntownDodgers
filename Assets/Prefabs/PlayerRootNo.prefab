@@ -2542,8 +2542,8 @@ MonoBehaviour:
     type: 3}
   BallCarrierTransform: {fileID: 1150266293726577362}
   sphere: {fileID: 3374635369968216253}
-  player1Mat: {fileID: 2100000, guid: 19b6bc789bcc4994a95d2f189b6949fb, type: 2}
-  player2Mat: {fileID: 2100000, guid: d87983e3214b8b94288efac0700602b7, type: 2}
+  player1Mat: {fileID: 2100000, guid: dad0d167479d11c47ba04bf8c7d087dc, type: 2}
+  player2Mat: {fileID: 2100000, guid: 6e399aa4ca707ee4e821daaa55bf4406, type: 2}
   moveSpeed: 12.5
   mass: 1
   damping: 5
@@ -4140,7 +4140,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 670224309865224971, guid: 188ae4564db43604088f2ed2683e8159, type: 3}
+  - {fileID: 2100000, guid: dad0d167479d11c47ba04bf8c7d087dc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
