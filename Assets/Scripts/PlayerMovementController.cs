@@ -31,8 +31,18 @@ public class PlayerMovementController : MonoBehaviour
 
     public GameObject sphere;
 
+    //Player materials
     public Material player1Mat;
     public Material player2Mat;
+    public Material respawn1Mat;
+    public Material respawn2Mat;
+    public Material despawn1Mat;
+    public Material despawn2Mat;
+
+    private float despawnVal = 0;
+    private float spawnVal = 0;
+    private bool isDissolved = false;
+    private bool isSpawning = false;
 
     private bool isDashCooldown;
 
@@ -155,6 +165,23 @@ public class PlayerMovementController : MonoBehaviour
     //Any Input(Keyboard or Mouse) should be in Update function
     private void Update()
     {
+        if (isSpawning)
+        {
+            spawnVal += Time.deltaTime;
+            //Respawn Effect
+            if (PlayerID == 1)
+            {
+                GetComponentInChildren<SkinnedMeshRenderer>().material = respawn1Mat;
+                respawn1Mat.SetFloat("val", spawnVal);
+                //GetComponentInChildren<MeshRenderer>().material.color = Color.blue;
+            }
+            else if (PlayerID == 2)
+            {
+                GetComponentInChildren<SkinnedMeshRenderer>().material = respawn2Mat;
+                respawn2Mat.SetFloat("val", spawnVal);
+                //GetComponentInChildren<MeshRenderer>().material.color = Color.red;
+            }
+        }
         //Checks if Player is on the ground, if true set Y Velocity to 0
         if (isGrounded && velocityY < 0f)
         {
@@ -239,6 +266,27 @@ public class PlayerMovementController : MonoBehaviour
             {
                 dashIconIMG.color = new Color(dashIconIMG.color.r, dashIconIMG.color.g, dashIconIMG.color.b, 0.1f);
                 dashCooldownText.text = dashCountdownUI.ToString();
+            }
+        }
+
+        if (isRespawning)
+        {
+            //Debug.Log("Dissolve");
+            if (!isDissolved)
+            {
+                despawnVal += Time.deltaTime;
+                if (PlayerID == 1)
+                {
+                    GetComponentInChildren<SkinnedMeshRenderer>().material = despawn1Mat;
+                    despawn1Mat.SetFloat("val", despawnVal);
+                    //GetComponentInChildren<MeshRenderer>().material.color = Color.blue;
+                }
+                else if (PlayerID == 2)
+                {
+                    GetComponentInChildren<SkinnedMeshRenderer>().material = despawn2Mat;
+                    despawn2Mat.SetFloat("val", despawnVal);
+                    //GetComponentInChildren<MeshRenderer>().material.color = Color.red;
+                }
             }
         }
     }
@@ -509,13 +557,18 @@ public class PlayerMovementController : MonoBehaviour
         isRespawning = true;
         RespawningText.color = new Color(RespawningText.color.r, RespawningText.color.g, RespawningText.color.b, 1f);
         tempRandomNum = Random.Range(0, SpawnPointList.Length - 1);
-        gameObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
         gameObject.GetComponent<CharacterController>().enabled = false;
         shootingScript.DodgeballsInHand = 0;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
+        despawnVal = 0.0f;
+        spawnVal = 0.0f;
+        isDissolved = true;
+        gameObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
+        //yield return new WaitForSeconds(2);
         transform.position = SpawnPointList[tempRandomNum].transform.position;
         transform.eulerAngles = SpawnPointList[tempRandomNum].transform.eulerAngles;
         isRespawning = false;
+        isDissolved = false;
         nextDash = nextDash - dashCooldown;
         isDashCooldown = true;
         dashCooldownIMG.fillAmount = 1f;
@@ -523,6 +576,10 @@ public class PlayerMovementController : MonoBehaviour
         HealthNumText.text = PlayerHealth.originalHealth.ToString() + "/" + PlayerHealth.originalHealth.ToString();
         filledHealthbarIMG.fillAmount = PlayerHealth.originalHealth / PlayerHealth.originalHealth;
         gameObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
+        yield return new WaitForSeconds(1);
+        isSpawning = true;
+        yield return new WaitForSeconds(1);
+        isSpawning = false;
         gameObject.GetComponent<CharacterController>().enabled = true;
     }
 

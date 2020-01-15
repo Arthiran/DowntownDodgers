@@ -1,4 +1,4 @@
-﻿Shader "Custom/SpawnIn" {
+﻿Shader "Custom/Respawn" {
 	Properties{
 		_Color("Color", Color) = (1,1,1,1)
 		_MainTex("Albedo (RGB)", 2D) = "white" {}
@@ -33,14 +33,15 @@
 			//Dissolve properties
 			sampler2D _DissolveTexture;
 			half _Amount;
+			float val = 0;
 
 			void surf(Input IN, inout SurfaceOutputStandard o) {
 
 				//Dissolve function
 				half dissolve_value = tex2D(_DissolveTexture, IN.uv_MainTex).r;
-				clip(dissolve_value - (_Amount - _Time.y));
+				clip(dissolve_value - (_Amount - val));
 
-				o.Emission = fixed3(0, 1, 0) * step(dissolve_value - (_Amount - _Time.y), 0.005f); //emits green color with 0.005 border size
+				o.Emission = fixed3(0, 1, 0) * step(dissolve_value - (_Amount - val), 0.005f); //emits green color with 0.005 border size
 
 				//Basic shader function
 				fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * _Color;

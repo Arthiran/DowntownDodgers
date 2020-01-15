@@ -2544,6 +2544,10 @@ MonoBehaviour:
   sphere: {fileID: 3374635369968216253}
   player1Mat: {fileID: 2100000, guid: dad0d167479d11c47ba04bf8c7d087dc, type: 2}
   player2Mat: {fileID: 2100000, guid: 6e399aa4ca707ee4e821daaa55bf4406, type: 2}
+  respawn1Mat: {fileID: 2100000, guid: 321403353316711429c113d77a2786be, type: 2}
+  respawn2Mat: {fileID: 2100000, guid: 2d543e3093d4bf848aa10fef05fa2119, type: 2}
+  despawn1Mat: {fileID: 2100000, guid: 8674b758517b6674aacda255e8e28d4f, type: 2}
+  despawn2Mat: {fileID: 2100000, guid: 449be202a91f3f347bb3fffb3528bef8, type: 2}
   moveSpeed: 12.5
   mass: 1
   damping: 5
@@ -2574,6 +2578,8 @@ MonoBehaviour:
   health: 30
   originalHealth: 0
   vignette: {fileID: 4196307080080427468}
+  despawn1Mat: {fileID: 2100000, guid: 8674b758517b6674aacda255e8e28d4f, type: 2}
+  despawn2Mat: {fileID: 2100000, guid: 449be202a91f3f347bb3fffb3528bef8, type: 2}
 --- !u!1 &2115354408233466904
 GameObject:
   m_ObjectHideFlags: 0
