@@ -139,18 +139,6 @@ public class Target : MonoBehaviour {
 
         if (health <= 0f)
         {
-            //Increase scores
-            if (MovementController.PlayerID == 1)
-            {
-                gameManager.p2Score++;
-                Debug.Log(gameManager.p2Score);
-            }
-            if (MovementController.PlayerID == 2)
-            {
-                gameManager.p1Score++;
-                Debug.Log(gameManager.p1Score);
-            }
-            Debug.Log("Score Please");
             Die();
         }
     }

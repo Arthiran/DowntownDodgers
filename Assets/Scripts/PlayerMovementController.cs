@@ -327,7 +327,7 @@ public class PlayerMovementController : MonoBehaviour
         }
 
         //Takes the velocity and actually moves the Character
-        if (isRespawning == false)
+        if (isRespawning == false && gameObject.GetComponent<CharacterController>().enabled)
         {
             CharController.Move(velocity * Time.fixedDeltaTime);
         }
