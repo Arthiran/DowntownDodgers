@@ -2344,6 +2344,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: build3
       objectReference: {fileID: 0}
+    - target: {fileID: 7946066766791843898, guid: f8646519f8ea97b4e82815912df83be8,
+        type: 3}
+      propertyPath: m_TagString
+      value: Climable
+      objectReference: {fileID: 0}
     - target: {fileID: 6349301724351353385, guid: f8646519f8ea97b4e82815912df83be8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6964,6 +6969,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: build1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1904747033590680649, guid: a987853a234867949a9fdba118c7a633,
+        type: 3}
+      propertyPath: m_TagString
+      value: Climable
       objectReference: {fileID: 0}
     - target: {fileID: 3185272598119333466, guid: a987853a234867949a9fdba118c7a633,
         type: 3}
@@ -12184,6 +12194,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: build4
       objectReference: {fileID: 0}
+    - target: {fileID: 3525964342357034504, guid: ff7d6abf3b14b614196b243ac9890634,
+        type: 3}
+      propertyPath: m_TagString
+      value: Climable
+      objectReference: {fileID: 0}
     - target: {fileID: 483543480211371035, guid: ff7d6abf3b14b614196b243ac9890634,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14836,6 +14851,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: build2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7896089167531373511, guid: 553afe411fc7d814ebec770d6df9dcbd,
+        type: 3}
+      propertyPath: m_TagString
+      value: Climable
       objectReference: {fileID: 0}
     - target: {fileID: 6615737944383848916, guid: 553afe411fc7d814ebec770d6df9dcbd,
         type: 3}
