@@ -11,6 +11,7 @@ TagManager:
   - GameManager
   - OuterCollision
   - LootSpawn
+  - Boundary
   layers:
   - Default
   - TransparentFX
