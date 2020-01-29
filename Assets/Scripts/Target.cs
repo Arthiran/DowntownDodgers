@@ -7,7 +7,7 @@ public class Target : MonoBehaviour {
     //Initialize Variables
     public float health = 30f;
     public float originalHealth;
-    private PlayerMovementController MovementController;
+    public PlayerMovementController MovementController;
     private GameManagerScript gameManager;
     public Image vignette;
     bool toFade = false;
