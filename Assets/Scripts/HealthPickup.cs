@@ -38,15 +38,16 @@ public class HealthPickup : MonoBehaviour
                         gameObject.GetComponent<Target>().health += 10.0f;
 
                         //Update UI
-                        gameObject.GetComponent<Target>().MovementController.HealthNumText.text = 
+                        gameObject.GetComponent<Target>().MovementController.HealthNumText.text =
                             gameObject.GetComponent<Target>().health.ToString() + "/" + gameObject.GetComponent<Target>().originalHealth.ToString();
 
-                        gameObject.GetComponent<Target>().MovementController.filledHealthbarIMG.fillAmount = 
+                        gameObject.GetComponent<Target>().MovementController.filledHealthbarIMG.fillAmount =
                             gameObject.GetComponent<Target>().health / gameObject.GetComponent<Target>().originalHealth;
 
-                        //Destroy the pickup
-                        Destroy(other.gameObject);
                     }
+
+                    //Destroy the pickup
+                    Destroy(other.gameObject);
                 }
             }
         }
