@@ -1,16 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthPickup : MonoBehaviour
 {
     //Global Variables
     private float pickupTimer;
+    public Image reticle;
+    public float timeToPickup = 4.0f;
 
     // Start is called before the first frame update
     void Start()
     {
         pickupTimer = 0.0f;
+
+        reticle = reticle.GetComponent<Image>();
     }
 
     // Update is called once per frame
@@ -19,6 +24,7 @@ public class HealthPickup : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.E))
         {
             pickupTimer = 0.0f;
+            reticle.fillAmount = 0.0f;
         }
     }
 
@@ -30,7 +36,9 @@ public class HealthPickup : MonoBehaviour
             {
                 pickupTimer += Time.deltaTime;
 
-                if (pickupTimer >= 4.0f)
+                reticle.fillAmount += Time.deltaTime / timeToPickup;
+
+                if (pickupTimer >= timeToPickup)
                 {
                     if (gameObject.GetComponent<Target>().health < 30.0f)
                     {
@@ -46,10 +54,21 @@ public class HealthPickup : MonoBehaviour
 
                     }
 
+                    reticle.fillAmount = 0.0f;
+
                     //Destroy the pickup
                     Destroy(other.gameObject);
                 }
             }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Health")
+        {
+            reticle.fillAmount = 0.0f;
+            pickupTimer = 0.0f;
         }
     }
 }
