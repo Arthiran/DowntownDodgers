@@ -2467,7 +2467,7 @@ MonoBehaviour:
   respawn2Mat: {fileID: 2100000, guid: 2d543e3093d4bf848aa10fef05fa2119, type: 2}
   despawn1Mat: {fileID: 2100000, guid: 8674b758517b6674aacda255e8e28d4f, type: 2}
   despawn2Mat: {fileID: 2100000, guid: 449be202a91f3f347bb3fffb3528bef8, type: 2}
-  moveSpeed: 12.5
+  moveSpeed: 7.5
   mass: 1
   damping: 5
   climbSpeed: 13
