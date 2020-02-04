@@ -65,6 +65,7 @@ public class HealthPickup : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        //Reset pickup action
         if (other.tag == "Health")
         {
             reticle.fillAmount = 0.0f;

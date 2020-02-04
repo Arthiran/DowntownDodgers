@@ -13,6 +13,7 @@ TagManager:
   - LootSpawn
   - Boundary
   - Health
+  - HealthSpawn
   layers:
   - Default
   - TransparentFX
