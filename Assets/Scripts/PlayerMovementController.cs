@@ -43,6 +43,8 @@ public class PlayerMovementController : MonoBehaviour
     private float spawnVal = 0;
     private bool isDissolved = false;
     private bool isSpawning = false;
+    [HideInInspector]
+    public bool stunned = false;
 
     private bool isDashCooldown;
 
@@ -62,6 +64,7 @@ public class PlayerMovementController : MonoBehaviour
     public float jumpForce = 4f;
     public float dashForce = 4f;
     public float dashCooldown = 5f;
+    public float hitStunDuration = 1.0f;
     private float dashCountdownUI;
     private float nextDash;
     private float gravity = Physics.gravity.y;
@@ -196,29 +199,32 @@ public class PlayerMovementController : MonoBehaviour
         }
 
         //Get Input from Horizontal and Vertical Axis and store them in variables
-        if (Input.GetAxisRaw("Vertical") != 0)
+        if ((Input.GetAxisRaw("Vertical") != 0) && stunned == false)
         {
             vertical = Input.GetAxis("Vertical");
             forwardMovement = vertical;
         }
-        else if (Input.GetAxis(LeftAnalogYString) != 0)
+        else if ((Input.GetAxis(LeftAnalogYString) != 0) && stunned == false)
         {
             LeftAnalogY = Input.GetAxis(LeftAnalogYString);
             forwardMovement = LeftAnalogY;
         }
         else
         {
-            forwardMovement = Input.GetAxis("Vertical"); ;
+            if (stunned == false)
+            {
+                forwardMovement = Input.GetAxis("Vertical");
+            }
         }
 
         if (isClimbing == false)
         {
-            if (Input.GetAxisRaw("Horizontal") != 0)
+            if ((Input.GetAxisRaw("Horizontal") != 0) && stunned == false)
             {
                 horizontal = Input.GetAxis("Horizontal");
                 horizontalMovement = horizontal;
             }
-            else if (Input.GetAxis(LeftAnalogXString) != 0)
+            else if ((Input.GetAxis(LeftAnalogXString) != 0) && stunned == false)
             {
                 LeftAnalogX = Input.GetAxis(LeftAnalogXString);
                 horizontalMovement = LeftAnalogX;
@@ -226,7 +232,10 @@ public class PlayerMovementController : MonoBehaviour
             }
             else
             {
-                horizontalMovement = Input.GetAxis("Horizontal");
+                if (stunned == false)
+                {
+                    horizontalMovement = Input.GetAxis("Horizontal");
+                }
             } 
             Dash();
             BackwardDash();
@@ -361,7 +370,7 @@ public class PlayerMovementController : MonoBehaviour
     private void Jump()
     {
         //Checks if Space was pressed
-        if (Input.GetButtonDown("Jump") || Input.GetButtonDown(ControllerJumpString))
+        if ((Input.GetButtonDown("Jump") || Input.GetButtonDown(ControllerJumpString)) && stunned == false)
         {
             RaycastHit hit;
             if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 1.1f, transform.position.z), transform.forward, out hit, distWall))
@@ -387,7 +396,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void Dash()
     {
-        if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetAxisRaw(ControllerDashString) > 0) && Time.time > nextDash)
+        if (((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetAxisRaw(ControllerDashString) > 0) && Time.time > nextDash) && stunned == false)
         {
             StartCoroutine(DashAnimation());
             isDashCooldown = true;
@@ -397,7 +406,7 @@ public class PlayerMovementController : MonoBehaviour
     }
     private void BackwardDash()
     {
-        if ((Input.GetKeyDown(KeyCode.LeftControl) || Input.GetAxisRaw(ControllerBackwardDashString) > 0) && Time.time > nextDash)
+        if (((Input.GetKeyDown(KeyCode.LeftControl) || Input.GetAxisRaw(ControllerBackwardDashString) > 0) && Time.time > nextDash) && stunned == false)
         {
             StartCoroutine(DashAnimation());
             isDashCooldown = true;
@@ -473,6 +482,13 @@ public class PlayerMovementController : MonoBehaviour
     {
         //Adds the force to the current amount of forces being applied to the game object
         currentImpact += direction.normalized * magnitude / mass;
+    }
+
+    public IEnumerator HitStun()
+    {
+        stunned = true;
+        yield return new WaitForSeconds(hitStunDuration);
+        stunned = false;
     }
 
     private IEnumerator ClimbWall(Collider wallCollider)
@@ -581,6 +597,7 @@ public class PlayerMovementController : MonoBehaviour
         yield return new WaitForSeconds(1);
         isSpawning = false;
         gameObject.GetComponent<CharacterController>().enabled = true;
+        stunned = false;
     }
 
     public IEnumerator Hitmarker()

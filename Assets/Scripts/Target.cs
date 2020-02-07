@@ -76,6 +76,7 @@ public class Target : MonoBehaviour {
                 vibrate = true;
                 //if (vibrate)
                 //RumbleOnHit(0);
+                StartCoroutine(MovementController.HitStun());
                 controllerID = 1;
                 vignette.canvasRenderer.SetAlpha(1.0f);
                 vignette.enabled = true;
@@ -93,7 +94,8 @@ public class Target : MonoBehaviour {
             {
                 vibrate = true;
                 //if (vibrate)
-                    //RumbleOnHit(1);
+                //RumbleOnHit(1);
+                StartCoroutine(MovementController.HitStun());
                 controllerID = 0;
                 vignette.canvasRenderer.SetAlpha(1.0f);
                 vignette.enabled = true;
