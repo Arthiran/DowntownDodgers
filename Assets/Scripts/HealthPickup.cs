@@ -9,6 +9,7 @@ public class HealthPickup : MonoBehaviour
     private float pickupTimer;
     public Image reticle;
     public float timeToPickup = 4.0f;
+    private HealthSpawn healthSpawn;
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +17,8 @@ public class HealthPickup : MonoBehaviour
         pickupTimer = 0.0f;
 
         reticle = reticle.GetComponent<Image>();
+
+        healthSpawn = GameObject.FindObjectOfType<HealthSpawn>();
     }
 
     // Update is called once per frame
@@ -58,6 +61,8 @@ public class HealthPickup : MonoBehaviour
 
                     //Destroy the pickup
                     Destroy(other.gameObject);
+
+                    healthSpawn.healthSpawned = false;
                 }
             }
         }
