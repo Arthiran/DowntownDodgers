@@ -1,16 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Boundaries : MonoBehaviour
 {
     private bool OB; //OB means Out of Bounds
     public float killTimer = 5.0f;
+    //private float flashTimer = 0.0f;
+
+    public Text obText;
+    public Text obTimeText;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        //obText = GameObject.Find("OutOfBoundsText").GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -19,6 +24,22 @@ public class Boundaries : MonoBehaviour
         if (OB)
         {
             killTimer -= Time.deltaTime;
+            //flashTimer += Time.deltaTime;
+
+            obText.enabled = true;
+            obTimeText.enabled = true;
+
+            //Make text flash
+            /*if (flashTimer < 1.0f)
+                obText.enabled = true;
+            else if (flashTimer >= 1.0f && flashTimer < 1.5f)
+                obText.enabled = false;
+            else if (flashTimer >= 1.5f)
+                flashTimer = 0.0f;*/
+
+            obText.text = "Out of Bounds:\n" + "Return to Playing Field in:\n";
+            obTimeText.text = ((int)killTimer).ToString();
+
             //Debug.Log(killTimer);
             if (killTimer <= 0.0f)
             {
@@ -29,6 +50,12 @@ public class Boundaries : MonoBehaviour
                 OB = false;
             }
         }
+        else
+        {
+            obText.enabled = false;
+            obTimeText.enabled = false;
+        }
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -36,6 +63,7 @@ public class Boundaries : MonoBehaviour
         if (other.tag == "Boundary")
         {
             killTimer = 5.0f;
+            //flashTimer = 0.0f;
             OB = true;
             Debug.Log("DQ");
         }
@@ -46,6 +74,7 @@ public class Boundaries : MonoBehaviour
         if (other.tag == "Boundary")
         {
             OB = false;
+            //flashTimer = 0.0f;
             Debug.Log("NO DQ");
         }
     }
