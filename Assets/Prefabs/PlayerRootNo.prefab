@@ -2392,6 +2392,7 @@ GameObject:
   - component: {fileID: 6849751954521267632}
   - component: {fileID: 7218999085510680558}
   - component: {fileID: 1537543308992003055}
+  - component: {fileID: 7933459783627751554}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2467,6 +2468,7 @@ MonoBehaviour:
   respawn2Mat: {fileID: 2100000, guid: 2d543e3093d4bf848aa10fef05fa2119, type: 2}
   despawn1Mat: {fileID: 2100000, guid: 8674b758517b6674aacda255e8e28d4f, type: 2}
   despawn2Mat: {fileID: 2100000, guid: 449be202a91f3f347bb3fffb3528bef8, type: 2}
+  stunned: 0
   moveSpeed: 7.5
   mass: 1
   damping: 5
@@ -2474,6 +2476,7 @@ MonoBehaviour:
   jumpForce: 15
   dashForce: 70
   dashCooldown: 8
+  hitStunDuration: 1
   isGrounded: 0
   isClimbing: 0
   inHand: 1
@@ -2512,6 +2515,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   reticle: {fileID: 2531975077706928385}
   timeToPickup: 4
+--- !u!114 &7933459783627751554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2064600520958751005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ddc93a8e38d6874fa21a26d6dc1fdc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  killTimer: 5
 --- !u!1 &2115354408233466904
 GameObject:
   m_ObjectHideFlags: 0

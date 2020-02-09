@@ -160,7 +160,7 @@ public class Target : MonoBehaviour {
     }
 
     //Destroys game object
-    void Die()
+    public void Die()
     {
 
         if (gameObject.tag == "Player")
