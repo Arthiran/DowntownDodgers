@@ -43,12 +43,14 @@ public class PlayerMovementController : MonoBehaviour
     private float spawnVal = 0;
     private bool isDissolved = false;
     private bool isSpawning = false;
+    private bool isPlaying = false;
     [HideInInspector]
     public bool stunned = false;
-
+    
     private bool isDashCooldown;
 
     //Initialize Variables
+    private int soundCounter = 0;
     private float vertical;
     private float horizontal;
     private float LeftAnalogX;
@@ -79,6 +81,7 @@ public class PlayerMovementController : MonoBehaviour
     private float tempClimbTimer;
     private float respawnTimer = 1f;
     private float tempRespawnTimer;
+    private int movementSoundCounter = 0;
     public int tempRandomNum;
     public int PlayerID;
 
@@ -198,16 +201,24 @@ public class PlayerMovementController : MonoBehaviour
             velocityY = 0f;   
         }
 
+        
+
+
+
         //Get Input from Horizontal and Vertical Axis and store them in variables
         if ((Input.GetAxisRaw("Vertical") != 0) && stunned == false)
         {
             vertical = Input.GetAxis("Vertical");
             forwardMovement = vertical;
+            movementSoundCounter++;
+
         }
         else if ((Input.GetAxis(LeftAnalogYString) != 0) && stunned == false)
         {
             LeftAnalogY = Input.GetAxis(LeftAnalogYString);
             forwardMovement = LeftAnalogY;
+            movementSoundCounter++;
+
         }
         else
         {
@@ -223,12 +234,17 @@ public class PlayerMovementController : MonoBehaviour
             {
                 horizontal = Input.GetAxis("Horizontal");
                 horizontalMovement = horizontal;
+                movementSoundCounter++;
+
+
             }
             else if ((Input.GetAxis(LeftAnalogXString) != 0) && stunned == false)
             {
                 LeftAnalogX = Input.GetAxis(LeftAnalogXString);
                 horizontalMovement = LeftAnalogX;
-				//Debug.Log(horizontalMovement);
+                movementSoundCounter++;
+
+                //	Debug.Log("Hello");
             }
             else
             {
@@ -300,6 +316,27 @@ public class PlayerMovementController : MonoBehaviour
         }
     }
 
+    private void movementSound()
+    {
+       
+    }
+    private IEnumerator footstepSound()
+    {
+
+        if (!isPlaying)
+        {
+            if (horizontalMovement == 1 || forwardMovement == 1)
+            {
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Footstep", GetComponent<Transform>().position);
+                isPlaying = true;
+            }
+        }
+        yield return new WaitForSeconds(3.0f);
+        Debug.Log("hi");
+
+
+    }
+
     //All Physics and Movement should be handled in FixedUpdate()
     private void FixedUpdate()
     {
@@ -339,6 +376,8 @@ public class PlayerMovementController : MonoBehaviour
         if (isRespawning == false && gameObject.GetComponent<CharacterController>().enabled)
         {
             CharController.Move(velocity * Time.fixedDeltaTime);
+       //     FMODUnity.RuntimeManager.PlayOneShot("event:/Footstep", GetComponent<Transform>().position);
+
         }
 
         isGrounded = CharController.isGrounded;
@@ -346,10 +385,13 @@ public class PlayerMovementController : MonoBehaviour
         if (isGrounded)
         {
             PlayerAnimator.SetBool("Jump", false);
+            StartCoroutine(footstepSound());
+
         }
 
         //Interpolates the effects of forces for smooth movement
         currentImpact = Vector3.Lerp(currentImpact, Vector3.zero, damping * Time.deltaTime);
+
     }
 
     //Resets all forces
@@ -359,11 +401,19 @@ public class PlayerMovementController : MonoBehaviour
         velocityY = 0f;
     }
 
+
     //Resets forces on the Y axis
     private void ResetImpactY()
     {
         currentImpact.y = 0f;
         velocityY = 0f;
+    }
+
+
+    private void gameSound()
+    {
+
+
     }
 
     //Jump Function
@@ -402,6 +452,8 @@ public class PlayerMovementController : MonoBehaviour
             isDashCooldown = true;
             nextDash = Time.time + dashCooldown;
             AddForce(transform.forward, dashForce);
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Dash", GetComponent<Transform>().position);
+            Debug.Log("Hello");
         }
     }
     private void BackwardDash()

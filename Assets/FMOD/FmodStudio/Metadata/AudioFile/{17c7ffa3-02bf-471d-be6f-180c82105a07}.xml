@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{17c7ffa3-02bf-471d-be6f-180c82105a07}">
+		<property name="assetPath">
+			<value>running_feet_-Cam-942211296.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>3.0182086167800453</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{47291d30-6015-410f-9431-8270cac847a7}</destination>
+		</relationship>
+	</object>
+</objects>
