@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2555060649250289435}
   - component: {fileID: 2969462685745325000}
   - component: {fileID: 5771086246017093432}
+  - component: {fileID: 6208553248035920386}
   m_Layer: 0
   m_Name: default
   m_TagString: Untagged
@@ -78,6 +79,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &6208553248035920386
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3264171461203997613}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.501369, y: 1.01379, z: 0.51716197}
+  m_Center: {x: -3.0835795, y: 0.506895, z: 0.008580998}
 --- !u!1 &9025459986656974384
 GameObject:
   m_ObjectHideFlags: 0
@@ -88,7 +102,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5412123684928627747}
   - component: {fileID: 66403085705099078}
-  - component: {fileID: -8661787054175551439}
   m_Layer: 0
   m_Name: postBox
   m_TagString: Untagged
@@ -123,17 +136,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 429ded89c44fb0546aa5d0b38d22fa96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!64 &-8661787054175551439
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9025459986656974384}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: -2432090755550338912, guid: c49f8b3b07d10224fb73a358749c1f55, type: 3}
