@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{ca7a1f09-928d-49c5-bcac-75d02e08edf6}">
+		<property name="assetPath">
+			<value>zapsplat_household_first_aid_kit_pouch_fabric_cellephane_wrapped_bandages_inside_open_velcro_002_30225.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>96</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>2.0400208333333332</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{47291d30-6015-410f-9431-8270cac847a7}</destination>
+		</relationship>
+	</object>
+</objects>

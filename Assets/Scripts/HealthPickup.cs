@@ -10,6 +10,7 @@ public class HealthPickup : MonoBehaviour
     public Image reticle;
     public float timeToPickup = 4.0f;
     private HealthSpawn healthSpawn;
+    private bool isPlaying = false;
 
     // Start is called before the first frame update
     void Start()
@@ -37,14 +38,26 @@ public class HealthPickup : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.E))
             {
+                if (!isPlaying)
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Bandaging", GetComponent<Transform>().position);
+                    isPlaying = true;
+                }
+
                 pickupTimer += Time.deltaTime;
 
                 reticle.fillAmount += Time.deltaTime / timeToPickup;
 
                 if (pickupTimer >= timeToPickup)
                 {
+                    Debug.Log("Heel'd");
+                    isPlaying = false;
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Heal", GetComponent<Transform>().position);
+
                     if (gameObject.GetComponent<Target>().health < 30.0f)
                     {
+                      
+
                         //Add Health
                         gameObject.GetComponent<Target>().health += 10.0f;
 

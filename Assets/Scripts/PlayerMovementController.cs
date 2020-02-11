@@ -332,7 +332,7 @@ public class PlayerMovementController : MonoBehaviour
             }
         }
         yield return new WaitForSeconds(3.0f);
-        Debug.Log("hi");
+     //   Debug.Log("hi");
 
 
     }
@@ -422,9 +422,12 @@ public class PlayerMovementController : MonoBehaviour
         //Checks if Space was pressed
         if ((Input.GetButtonDown("Jump") || Input.GetButtonDown(ControllerJumpString)) && stunned == false)
         {
+            Debug.Log("Hello");
+            
             RaycastHit hit;
             if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 1.1f, transform.position.z), transform.forward, out hit, distWall))
             {
+                //FMODUnity.RuntimeManager.PlayOneShot("event:/Dash", GetComponent<Transform>().position);
                 if (hit.collider.tag == "Climable")
                 {
                     StartCoroutine(ClimbWall(hit.collider));

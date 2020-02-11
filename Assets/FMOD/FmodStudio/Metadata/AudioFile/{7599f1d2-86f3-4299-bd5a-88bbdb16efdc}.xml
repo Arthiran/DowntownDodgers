@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{7599f1d2-86f3-4299-bd5a-88bbdb16efdc}">
+		<property name="assetPath">
+			<value>zapsplat_sport_ball_netball_single_cheap_bounce_court_003_31148.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>96</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.27802083333333333</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{47291d30-6015-410f-9431-8270cac847a7}</destination>
+		</relationship>
+	</object>
+</objects>

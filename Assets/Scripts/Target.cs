@@ -155,6 +155,7 @@ public class Target : MonoBehaviour {
                 TakeDamage(dodgeballScript.damage);
                 dodgeballScript.MovementController.StartCoroutine(dodgeballScript.MovementController.Hitmarker());
                 Destroy(collision.gameObject);
+
             }
         }
     }
