@@ -25,6 +25,7 @@ public class PlayerMovementController : MonoBehaviour
     private GameObject DodgeballInstance;
     private Target PlayerHealth;
     private GameObject[] SpawnPointList;
+    private FMODUnity.StudioEventEmitter eventEmitter;
 
     public GameObject DodgeballPrefab;
     public Transform BallCarrierTransform;
@@ -159,6 +160,7 @@ public class PlayerMovementController : MonoBehaviour
         CharController = GetComponent<CharacterController>();
         shootingScript = GetComponentInParent<Shooting>();
         PlayerHealth = GetComponent<Target>();
+        eventEmitter = GetComponentInParent<FMODUnity.StudioEventEmitter>();
 
         tempClimbTimer = climbWallTimer;
         tempRespawnTimer = respawnTimer;
@@ -318,27 +320,6 @@ public class PlayerMovementController : MonoBehaviour
         }
     }
 
-    private void movementSound()
-    {
-       
-    }
-    private IEnumerator footstepSound()
-    {
-
-        if (!isPlaying)
-        {
-            if (horizontalMovement == 1 || forwardMovement == 1)
-            {
-                FMODUnity.RuntimeManager.PlayOneShot("event:/Footstep", GetComponent<Transform>().position);
-                isPlaying = true;
-            }
-        }
-        yield return new WaitForSeconds(3.0f);
-        Debug.Log("hi");
-
-
-    }
-
     //All Physics and Movement should be handled in FixedUpdate()
     private void FixedUpdate()
     {
@@ -387,8 +368,10 @@ public class PlayerMovementController : MonoBehaviour
         if (isGrounded)
         {
             PlayerAnimator.SetBool("Jump", false);
-            StartCoroutine(footstepSound());
-
+            if (!eventEmitter.IsPlaying())
+            {
+                eventEmitter.Play();
+            }
         }
 
         //Interpolates the effects of forces for smooth movement
@@ -409,13 +392,6 @@ public class PlayerMovementController : MonoBehaviour
     {
         currentImpact.y = 0f;
         velocityY = 0f;
-    }
-
-
-    private void gameSound()
-    {
-
-
     }
 
     //Jump Function
