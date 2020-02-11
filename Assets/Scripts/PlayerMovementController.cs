@@ -25,7 +25,9 @@ public class PlayerMovementController : MonoBehaviour
     private GameObject DodgeballInstance;
     private Target PlayerHealth;
     private GameObject[] SpawnPointList;
-    private FMODUnity.StudioEventEmitter eventEmitter;
+    private FMODUnity.StudioEventEmitter[] eventEmitter;
+  
+
 
     public GameObject DodgeballPrefab;
     public Transform BallCarrierTransform;
@@ -160,7 +162,7 @@ public class PlayerMovementController : MonoBehaviour
         CharController = GetComponent<CharacterController>();
         shootingScript = GetComponentInParent<Shooting>();
         PlayerHealth = GetComponent<Target>();
-        eventEmitter = GetComponentInParent<FMODUnity.StudioEventEmitter>();
+        eventEmitter = GetComponentsInParent<FMODUnity.StudioEventEmitter>();
 
         tempClimbTimer = climbWallTimer;
         tempRespawnTimer = respawnTimer;
@@ -368,9 +370,9 @@ public class PlayerMovementController : MonoBehaviour
         if (isGrounded)
         {
             PlayerAnimator.SetBool("Jump", false);
-            if (!eventEmitter.IsPlaying())
+            if (!eventEmitter[0].IsPlaying())
             {
-                eventEmitter.Play();
+                eventEmitter[0].Play();
             }
         }
 
@@ -433,8 +435,12 @@ public class PlayerMovementController : MonoBehaviour
             isDashCooldown = true;
             nextDash = Time.time + dashCooldown;
             AddForce(transform.forward, dashForce);
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Dash", GetComponent<Transform>().position);
-            Debug.Log("Hello");
+
+            if (!eventEmitter[1].IsPlaying())
+            {
+                eventEmitter[1].Play();
+            }
+        //    Debug.Log("Hello");
         }
     }
     private void BackwardDash()

@@ -12,7 +12,7 @@ public class PlayerRootInfo : MonoBehaviour
     void Start()
     {
         GMScript = GameObject.FindGameObjectWithTag("GameManager");
-        if (SceneManager.GetActiveScene().name != "LevelEditorScene")
+        if (SceneManager.GetActiveScene().name != "LevelEditor")
         {
             if (GMScript.GetComponent<GameManagerScript>().NumberOfPlayers == 1)
             {
