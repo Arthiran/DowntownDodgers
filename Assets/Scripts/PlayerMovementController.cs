@@ -165,7 +165,9 @@ public class PlayerMovementController : MonoBehaviour
 
         dashCountdownUI = dashCooldown + 1;
 
-        sphere.SetActive(false);
+        sphere.SetActive(true);
+
+        shootingScript.DodgeballsInHand = 2;
     }
 
     //Any Input(Keyboard or Mouse) should be in Update function
