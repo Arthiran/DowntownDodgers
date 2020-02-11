@@ -177,6 +177,7 @@ public class PlayerMovementController : MonoBehaviour
     //Any Input(Keyboard or Mouse) should be in Update function
     private void Update()
     {
+        Debug.Log(eventEmitter.Length);
         if (isSpawning)
         {
             spawnVal += Time.deltaTime;
