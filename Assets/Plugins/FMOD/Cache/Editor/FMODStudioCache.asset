@@ -51,7 +51,7 @@ MonoBehaviour:
   Path: event:/Footstep
   guid: 3a33ceb09c24154683554bdec4362770
   Banks:
-  - {fileID: -2704479718764347440}
+  - {fileID: 4766338642602166526}
   IsStream: 1
   Is3D: 1
   IsOneShot: 1
@@ -74,7 +74,7 @@ MonoBehaviour:
   Path: event:/Dash
   guid: 2ff5f11ab8ec7e4eb2330bd82fdbbb38
   Banks:
-  - {fileID: -2704479718764347440}
+  - {fileID: 4766338642602166526}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -114,17 +114,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: 2018101016854640938}
-  - {fileID: -2704479718764347440}
+  - {fileID: 4766338642602166526}
   EditorEvents:
   - {fileID: 5018118128538790359}
   - {fileID: -2833963005792845019}
   - {fileID: -2891439783423262133}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -2704479718764347440}
+  - {fileID: 4766338642602166526}
   StringsBanks:
   - {fileID: 2018101016854640938}
-  stringsBankWriteTime: 637169466815961740
+  stringsBankWriteTime: 637170106222588665
   cacheVersion: 3
 --- !u!114 &1814982036711046611
 MonoBehaviour:
@@ -158,7 +158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: Assets/FMOD/FmodStudio/Build/Desktop/Master.strings.bank
   SubDir: 
-  lastModified: 637169466815961740
+  lastModified: 637170106222588665
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -218,6 +218,24 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &4766338642602166526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/FMOD/FmodStudio/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637170106222538803
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &5018118128538790359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,7 +251,7 @@ MonoBehaviour:
   Path: event:/Test
   guid: 0652859a0675634d8603c4f935c92fcb
   Banks:
-  - {fileID: -2704479718764347440}
+  - {fileID: 4766338642602166526}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1

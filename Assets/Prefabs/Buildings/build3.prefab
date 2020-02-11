@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3491309549741048081}
   - component: {fileID: 4193800141527471554}
   - component: {fileID: 4832922923983911218}
-  - component: {fileID: 2116459724762399634}
+  - component: {fileID: 6206812145091060255}
   m_Layer: 0
   m_Name: default
   m_TagString: Climable
@@ -79,8 +79,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &2116459724762399634
-MeshCollider:
+--- !u!65 &6206812145091060255
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -89,10 +89,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: -2432090755550338912, guid: a09dc0bd1dc01ce4ca6839a8c57b36aa, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 5.614212, y: 9.885001, z: 3.347688}
+  m_Center: {x: 0.00048708916, y: 4.9425006, z: 0.006103158}
 --- !u!1 &7946066766791843898
 GameObject:
   m_ObjectHideFlags: 0
@@ -102,6 +101,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6349301724351353385}
+  - component: {fileID: 666887007418374350}
   m_Layer: 0
   m_Name: build3
   m_TagString: Climable
@@ -124,3 +124,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &666887007418374350
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7946066766791843898}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: -2432090755550338912, guid: a09dc0bd1dc01ce4ca6839a8c57b36aa, type: 3}
