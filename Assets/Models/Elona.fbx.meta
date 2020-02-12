@@ -4,44 +4,32 @@ ModelImporter:
   serializedVersion: 26
   internalIDToNameTable:
   - first:
-      74: -6842666708266138392
-    second: Armature|Armature.001|mixamo.com|Layer0
+      74: 3469780582115016909
+    second: Armature|Armature|Armature|Backpedal|Armature|Backpedal
   - first:
-      74: -5849203476035394275
-    second: Armature|Armature.001|mixamo.com|Layer0.001
+      74: 2217027747230003368
+    second: Armature|Armature|Armature|Death|Armature|Death
   - first:
-      74: -3865379262170353974
-    second: Armature|Armature.001|mixamo.com|Layer0.002
+      74: 3949184196891408138
+    second: Armature|Armature|Armature|Idle|Armature|Idle
   - first:
-      74: 3618420698690315038
-    second: Armature|Armature.001|mixamo.com|Layer0.003
+      74: -5932302099567958627
+    second: Armature|Armature|Armature|Injury|Armature|Injury
   - first:
-      74: 6141500024023750523
-    second: Armature|Armature.001|mixamo.com|Layer0.004
+      74: -5370286374201188833
+    second: Armature|Armature|Armature|Jump|Armature|Jump
   - first:
-      74: -8863752359954458708
-    second: Armature|Armature.001|mixamo.com|Layer0.005
+      74: -8015247887383579603
+    second: Armature|Armature|Armature|Run|Armature|Run
   - first:
-      74: -1158240670398560096
-    second: Armature|Armature.001|mixamo.com|Layer0.006
+      74: -4479389231407712586
+    second: Armature|Armature|Armature|Shot|Armature|Shot
   - first:
-      74: 3907357275003174507
-    second: Armature|Armature.001|mixamo.com|Layer0.007
+      74: -1039792671305045775
+    second: Armature|Armature|Armature|Tpose|Armature|Tpose
   - first:
-      74: 3113117382131862522
-    second: Armature|Armature.001|mixamo.com|Layer0.008
-  - first:
-      74: -2033652251625404294
-    second: Armature|Armature.001|mixamo.com|Layer0.009
-  - first:
-      74: 8615753467271355134
-    second: Armature|Armature.001|mixamo.com|Layer0.010
-  - first:
-      74: 8681341803691543144
-    second: Armature|Armature.001|mixamo.com|Layer0.011
-  - first:
-      74: -4791504522942941401
-    second: Armature|Armature|mixamo.com|Layer0
+      74: 4723013478565749037
+    second: Armature|Armature|Armature|Wall Climb|Armature|Wall Climb
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -62,7 +50,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -123,10 +111,10 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 3
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
