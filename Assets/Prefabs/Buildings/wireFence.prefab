@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 875433602491615911}
   - component: {fileID: 461314065356086900}
   - component: {fileID: 9170534436820595332}
+  - component: {fileID: 5512489401162104935}
   m_Layer: 0
   m_Name: default
-  m_TagString: Untagged
+  m_TagString: Climable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,6 +79,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &5512489401162104935
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153094353573137937}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 21.74523, y: 14.495419, z: 1.1571705}
+  m_Center: {x: -0.38885212, y: 7.2477093, z: -0.0000003874302}
 --- !u!1 &5914260055038929804
 GameObject:
   m_ObjectHideFlags: 0
@@ -89,7 +103,7 @@ GameObject:
   - component: {fileID: 7226296046382897567}
   m_Layer: 0
   m_Name: wireFence
-  m_TagString: Untagged
+  m_TagString: Climable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
