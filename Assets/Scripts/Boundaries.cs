@@ -11,10 +11,12 @@ public class Boundaries : MonoBehaviour
 
     public Text obText;
     public Text obTimeText;
+    public Image vignette;
 
     // Start is called before the first frame update
     void Start()
     {
+        vignette = vignette.GetComponent<Image>();
         //obText = GameObject.Find("OutOfBoundsText").GetComponent<Text>();
     }
 
@@ -29,6 +31,8 @@ public class Boundaries : MonoBehaviour
             obText.enabled = true;
             obTimeText.enabled = true;
 
+            vignette.canvasRenderer.SetAlpha(1.0f);
+            vignette.enabled = true; 
             //Make text flash
             /*if (flashTimer < 1.0f)
                 obText.enabled = true;
@@ -37,7 +41,7 @@ public class Boundaries : MonoBehaviour
             else if (flashTimer >= 1.5f)
                 flashTimer = 0.0f;*/
 
-            obText.text = "Out of Bounds:\n" + "Return to Playing Field in:\n";
+            obText.text = "Return to Playing Field: \n";
             obTimeText.text = ((int)killTimer).ToString();
 
             //Debug.Log(killTimer);

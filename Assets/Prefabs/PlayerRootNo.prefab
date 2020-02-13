@@ -833,7 +833,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 50, y: -20.69983}
+  m_AnchoredPosition: {x: 50, y: -20.69986}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &1150266293918605104
@@ -2532,7 +2532,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -76.90015, y: -21.200073}
+  m_AnchoredPosition: {x: -76.90015, y: -21.200104}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &1197668104678490044
@@ -3141,7 +3141,7 @@ MonoBehaviour:
   despawn1Mat: {fileID: 2100000, guid: 8674b758517b6674aacda255e8e28d4f, type: 2}
   despawn2Mat: {fileID: 2100000, guid: 449be202a91f3f347bb3fffb3528bef8, type: 2}
   stunned: 0
-  moveSpeed: 7.5
+  moveSpeed: 9
   mass: 1
   damping: 5
   climbSpeed: 13
@@ -3202,6 +3202,7 @@ MonoBehaviour:
   killTimer: 5
   obText: {fileID: 990344780}
   obTimeText: {fileID: 8102170906612547731}
+  vignette: {fileID: 4196307080080427468}
 --- !u!114 &3660801020213775331
 MonoBehaviour:
   m_ObjectHideFlags: 0

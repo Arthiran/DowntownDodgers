@@ -28,7 +28,7 @@ public class CameraScript : MonoBehaviour
     public float controllerInputSens = 150.0f;
     private float rotY = 0.0f;
     private float rotX = 0.0f;
-    private float clampAngle = 30.0f;
+    private float clampAngle = 40.0f;
     private float distWall = 1f;
     private string RightAnalogXString;
     private string RightAnalogYString;
