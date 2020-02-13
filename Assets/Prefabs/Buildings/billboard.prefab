@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8839952200863891927}
   m_Layer: 0
   m_Name: billboard
-  m_TagString: Climable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 8372654970720675840}
   - component: {fileID: 9111175525492210899}
   - component: {fileID: 527984484464676899}
+  - component: {fileID: 6773833956895150950}
   m_Layer: 0
   m_Name: default
   m_TagString: Climable
@@ -124,3 +125,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &6773833956895150950
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8793394735472094390}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.7174, y: 2.9810147, z: 0.28923}
+  m_Center: {x: 0, y: 2.4393516, z: 0.071484}

@@ -171,7 +171,7 @@ public class PlayerMovementController : MonoBehaviour
 
         sphere.SetActive(true);
 
-        shootingScript.DodgeballsInHand = 2;
+        shootingScript.DodgeballsInHand = 1;
     }
 
     //Any Input(Keyboard or Mouse) should be in Update function
