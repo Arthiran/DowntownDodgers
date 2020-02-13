@@ -177,7 +177,6 @@ public class PlayerMovementController : MonoBehaviour
     //Any Input(Keyboard or Mouse) should be in Update function
     private void Update()
     {
-        Debug.Log(eventEmitter.Length);
         if (isSpawning)
         {
             spawnVal += Time.deltaTime;
@@ -261,7 +260,7 @@ public class PlayerMovementController : MonoBehaviour
                 }
             } 
             Dash();
-            BackwardDash();
+            //BackwardDash();
         }
 
         /*This is so that when you press W and A at the same time for instance, the player doesn't become faster,
@@ -371,7 +370,7 @@ public class PlayerMovementController : MonoBehaviour
         if (isGrounded)
         {
             PlayerAnimator.SetBool("Jump", false);
-            if (!eventEmitter[0].IsPlaying())
+            if ((horizontalMovement != 0 || forwardMovement != 0) && !eventEmitter[0].IsPlaying())
             {
                 eventEmitter[0].Play();
             }
@@ -402,16 +401,25 @@ public class PlayerMovementController : MonoBehaviour
     {
         //Checks if Space was pressed
         if ((Input.GetButtonDown("Jump") || Input.GetButtonDown(ControllerJumpString)) && stunned == false)
-        {
-            Debug.Log("Hello");
-            
+        { 
             RaycastHit hit;
             if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 1.1f, transform.position.z), transform.forward, out hit, distWall))
             {
                 //FMODUnity.RuntimeManager.PlayOneShot("event:/Dash", GetComponent<Transform>().position);
-                if (hit.collider.tag == "Climable")
+                if (hit.collider.tag == "Climable" && (Input.GetAxisRaw("Vertical") > 0 || Input.GetAxisRaw(LeftAnalogYString) > 0))
                 {
                     StartCoroutine(ClimbWall(hit.collider));
+                }
+                else
+                {
+                    doubleJumpCheck++;
+                    PlayerAnimator.SetBool("Jump", true);
+                    //Checks if player is on the ground, if true then character can jump
+                    if (doubleJumpCheck == 1 && isFalling == false && CharController.isGrounded == true)
+                    {
+                        //Custom AddForce function which applies jumpForce in the upward direction
+                        AddForce(Vector3.up, jumpForce);
+                    }
                 }
             }
             else
@@ -541,6 +549,7 @@ public class PlayerMovementController : MonoBehaviour
                 if (hit.collider == wallCollider)
                 {
                     PlayerAnimator.SetBool("ClimbWall", true);
+                    PlayerAnimator.SetBool("Jump", false);
                     isClimbing = true;
                     ResetImpactY();
                     //Gives the Character movement on the Y axis to climb up the wall
