@@ -13,6 +13,7 @@ public class Shooting : MonoBehaviour
     public GameObject[] BallSlots;
     public Text dodgeballsText;
     private PlayerMovementController MovementController;
+    private ParticleSystem shootDust;
 
     //Initializes Variables
     public float dodgeballLaunchForce;
@@ -31,6 +32,7 @@ public class Shooting : MonoBehaviour
     {
         currentScene = SceneManager.GetActiveScene();
 
+        shootDust = GetComponentInChildren<ParticleSystem>();
         PlayerAnimator = GetComponentInChildren<Animator>();
         sceneName = currentScene.name;
         MovementController = GetComponentInChildren<PlayerMovementController>();
@@ -83,6 +85,7 @@ public class Shooting : MonoBehaviour
         StartCoroutine(ShootAnimation());
         //Gives dodgeball a launch force wherever the character is facing
         DodgeballInstance.GetComponent<Rigidbody>().AddForce(DodgeballInstance.transform.forward * dodgeballLaunchForce, ForceMode.Impulse);
+        shootDust.Play();
         BallSlots[DodgeballsInHand - 1].SetActive(false);
         DodgeballsInHand--;
     }
