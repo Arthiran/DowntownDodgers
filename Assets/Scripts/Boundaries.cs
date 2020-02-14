@@ -16,7 +16,7 @@ public class Boundaries : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        vignette = vignette.GetComponent<Image>();
+        //vignette = vignette.GetComponent<Image>();
         //obText = GameObject.Find("OutOfBoundsText").GetComponent<Text>();
     }
 
@@ -31,8 +31,8 @@ public class Boundaries : MonoBehaviour
             obText.enabled = true;
             obTimeText.enabled = true;
 
-            vignette.canvasRenderer.SetAlpha(1.0f);
-            vignette.enabled = true; 
+           // vignette.canvasRenderer.SetAlpha(1.0f);
+         //   vignette.enabled = true; 
             //Make text flash
             /*if (flashTimer < 1.0f)
                 obText.enabled = true;
@@ -58,6 +58,7 @@ public class Boundaries : MonoBehaviour
         {
             obText.enabled = false;
             obTimeText.enabled = false;
+            vignette.enabled = false;
         }
 
     }
@@ -66,6 +67,7 @@ public class Boundaries : MonoBehaviour
     {
         if (other.tag == "Boundary")
         {
+            vignette.enabled = true;
             killTimer = 5.0f;
             //flashTimer = 0.0f;
             OB = true;
