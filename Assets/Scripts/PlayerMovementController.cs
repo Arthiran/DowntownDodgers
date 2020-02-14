@@ -10,7 +10,8 @@ public class PlayerMovementController : MonoBehaviour
     public GiveQuest quest;
     //Get Character Properties
     private Transform Player;
-    private Animator PlayerAnimator;
+    [HideInInspector]
+    public Animator PlayerAnimator;
     private CharacterController CharController;
     public Transform PlayerCam;
     public Image dashIconIMG;
@@ -29,7 +30,7 @@ public class PlayerMovementController : MonoBehaviour
   
 
 
-    public GameObject DodgeballPrefab;
+    //public GameObject DodgeballPrefab;
     public Transform BallCarrierTransform;
 
     public GameObject sphere;
@@ -78,8 +79,6 @@ public class PlayerMovementController : MonoBehaviour
     public bool isClimbing = false;
     private bool isFalling = false;
     private bool isRespawning = false;
-    public bool inHand = true;
-    private bool inHandStored = false;
     public float climbWallTimer = 1f;
     private float tempClimbTimer;
     private float respawnTimer = 1f;
@@ -201,7 +200,6 @@ public class PlayerMovementController : MonoBehaviour
             isClimbing = false;
             PlayerAnimator.SetBool("ClimbWall", false);
             isFalling = false;
-            //inHandStored = inHand;
             tempClimbTimer = climbWallTimer;
             tempRespawnTimer = respawnTimer;
             velocityY = 0f;   
@@ -278,7 +276,6 @@ public class PlayerMovementController : MonoBehaviour
 
         //Jump pls
         Jump();
-        LoadDodgeball();
 
         if (isDashCooldown)
         {
@@ -337,14 +334,7 @@ public class PlayerMovementController : MonoBehaviour
         velocityY += gravity * Time.deltaTime;
 
         //Vector which stores the overall effect of gravity on the Character's position
-        if (inHand == true)
-        {
-            velocity = movement * moveSpeed + Vector3.up * velocityY;
-        }
-        else
-        {
-            velocity = movement * moveSpeed * 1.2f + Vector3.up * velocityY;
-        }
+        velocity = movement * moveSpeed * 1.2f + Vector3.up * velocityY;
 
         //sets the velocity to take all forces into account
         if (currentImpact.magnitude > 0.2f)
@@ -470,61 +460,6 @@ public class PlayerMovementController : MonoBehaviour
         PlayerAnimator.SetBool("Dash", false);
     }
 
-    private void LoadDodgeball()
-    {
-        if (Input.GetKeyDown(KeyCode.R) || Input.GetButtonDown(ControllerLoadString))
-        {
-            if (shootingScript.DodgeballsInHand != 0 && inHand == false)
-            {
-                inHand = true;
-                sphere.SetActive(true);
-                //DodgeballInstance = Instantiate(DodgeballPrefab, BallCarrierTransform.position, BallCarrierTransform.rotation);
-            }
-            else if (shootingScript.DodgeballsInHand != 0 && inHand == true)
-            {
-                inHand = false;
-                sphere.SetActive(false);
-                inHandStored = inHand;
-                //Destroy(DodgeballInstance);
-            }
-        }
-        else if (shootingScript.DodgeballsInHand == 0)
-        {
-            if (inHand == false)
-            {
-                sphere.SetActive(false);
-                if (DodgeballInstance != null)
-                {
-                    //Destroy(DodgeballInstance);
-                }
-            }
-            else if (inHand == true)
-            {
-                if (inHandStored != true)
-                {
-                    sphere.SetActive(false);
-                    inHandStored = inHand;
-                    inHand = false;
-                }
-                inHand = false;
-            }
-        }
-        else if (shootingScript.DodgeballsInHand != 0)
-        {
-            if (DodgeballInstance == null && inHandStored == true && isClimbing == false)
-            {
-                //DodgeballInstance = Instantiate(DodgeballPrefab, BallCarrierTransform.position, BallCarrierTransform.rotation);
-                sphere.SetActive(true);
-                inHand = true;
-            }
-            else if (DodgeballInstance != null && inHand == false)
-            {
-                sphere.SetActive(false);
-                //Destroy(DodgeballInstance);
-            }
-        }
-    }
-
     //Custom AddForce function, not to be mistakened with Rigidbody.AddForce()
     public void AddForce(Vector3 direction, float magnitude)
     {
@@ -537,6 +472,7 @@ public class PlayerMovementController : MonoBehaviour
         stunned = true;
         yield return new WaitForSeconds(hitStunDuration);
         stunned = false;
+        PlayerAnimator.SetBool("Stunned", false);
     }
 
     private IEnumerator ClimbWall(Collider wallCollider)
@@ -555,17 +491,8 @@ public class PlayerMovementController : MonoBehaviour
                     //Gives the Character movement on the Y axis to climb up the wall
                     CharController.Move(new Vector3(0f, climbSpeed * Time.deltaTime, 0f));
                     yield return null;
-                    if (inHand == true)
-                    {
-                        sphere.SetActive(false);
-                        inHandStored = inHand;
-                        inHand = false;
-                    }
-                    else
-                    {
-                        PlayerAnimator.SetBool("ClimbWall", false);
-                        isClimbing = false;
-                    }
+                    PlayerAnimator.SetBool("ClimbWall", false);
+                    isClimbing = false;
                 }
                 else
                 {

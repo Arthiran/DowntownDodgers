@@ -76,6 +76,7 @@ public class Target : MonoBehaviour {
                 vibrate = true;
                 //if (vibrate)
                 //RumbleOnHit(0);
+                MovementController.PlayerAnimator.SetBool("Stunned", true);
                 StartCoroutine(MovementController.HitStun());
                 controllerID = 1;
                 vignette.canvasRenderer.SetAlpha(1.0f);
