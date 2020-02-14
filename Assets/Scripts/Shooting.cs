@@ -10,9 +10,8 @@ public class Shooting : MonoBehaviour
     //Get transform to spawn dodgeball in and get dodgeball prefab
     public Transform BallShootingTransform;
     public GameObject DodgeballPrefab;
-    public Image[] FillSlots;
+    public GameObject[] BallSlots;
     public Text dodgeballsText;
-    public Text inHandText;
     private PlayerMovementController MovementController;
 
     //Initializes Variables
@@ -48,7 +47,7 @@ public class Shooting : MonoBehaviour
     //Checks if left mouse button was clicked
     void Update()
     {
-        if (((Input.GetMouseButton(0) || (Input.GetAxisRaw(ControllerShootString) > 0)) && DodgeballsInHand > 0 && DodgeballsInHand <= 3 && Time.time > nextFire && MovementController.inHand == true) && MovementController.stunned == false)
+        if (((Input.GetMouseButton(0) || (Input.GetAxisRaw(ControllerShootString) > 0)) && DodgeballsInHand > 0 && DodgeballsInHand <= 3 && Time.time > nextFire) && MovementController.stunned == false)
         {
             nextFire = Time.time + fireRate;
             //Starts dodgeball shooting coroutine
@@ -59,34 +58,17 @@ public class Shooting : MonoBehaviour
         {
             if (DodgeballsInHand != 0)
             {
-                FillSlots[i].fillAmount = 1f;
+                BallSlots[i].SetActive(true);
             }
         }
 
         if (DodgeballsInHand == 0)
         {
-            for (int i = 0; i < FillSlots.Length; i++)
-                FillSlots[i].fillAmount = 0f;
-        }
-
-        if (MovementController.inHand == true)
-        {
-            if (inHandText.text == "Ball Not In Hand")
+            for (int i = 0; i < BallSlots.Length; i++)
             {
-                inHandText.text = "Ball In Hand";
-                inHandText.color = new Color(0f, 128f, 0f);
+                BallSlots[i].SetActive(false);
             }
         }
-        else
-        {
-            if (inHandText.text == "Ball In Hand")
-            {
-                inHandText.text = "Ball Not In Hand";
-                inHandText.color = new Color(255f, 0f, 0f);
-            }
-        }
-
-        dodgeballsText.text = DodgeballsInHand.ToString() + "/" + DodgeballCarryLimit.ToString();
     }
 
     //Fires Dodgeball
@@ -101,7 +83,7 @@ public class Shooting : MonoBehaviour
         StartCoroutine(ShootAnimation());
         //Gives dodgeball a launch force wherever the character is facing
         DodgeballInstance.GetComponent<Rigidbody>().AddForce(DodgeballInstance.transform.forward * dodgeballLaunchForce, ForceMode.Impulse);
-        FillSlots[DodgeballsInHand-1].fillAmount = 0f;
+        BallSlots[DodgeballsInHand - 1].SetActive(false);
         DodgeballsInHand--;
     }
 
