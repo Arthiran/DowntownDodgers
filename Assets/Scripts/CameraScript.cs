@@ -13,6 +13,7 @@ public class CameraScript : MonoBehaviour
     public GameObject Player;
     public GameObject PlayerEmptyChild;
     public PlayerMovementController MovementController;
+    private Camera playerCam;
 
     //Initialize Variables
     public float CameraMoveSpeed = 120.0f;
@@ -28,10 +29,14 @@ public class CameraScript : MonoBehaviour
     public float controllerInputSens = 150.0f;
     private float rotY = 0.0f;
     private float rotX = 0.0f;
-    private float clampAngle = 35.0f;
+    private float clampAngle = 80.0f;
     private float distWall = 1f;
     private string RightAnalogXString;
     private string RightAnalogYString;
+    private float playerFOV;
+    private float scopedFOV;
+    private float currentFOV;
+    private float targetFOV;
 
     private void Start()
     {
@@ -63,6 +68,11 @@ public class CameraScript : MonoBehaviour
         //Locks the mouse to the center of the screen and then hides it
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        playerCam = GetComponentInChildren<Camera>();
+        playerFOV = playerCam.fieldOfView;
+        scopedFOV = 30f;
+        currentFOV = playerCam.fieldOfView;
+        targetFOV = playerCam.fieldOfView;
     }
 
     // Update is called once per frame, Camera movement should always be in LateUpdate()
@@ -83,6 +93,17 @@ public class CameraScript : MonoBehaviour
             RightAnalogX = 0f;
             RightAnalogY = 0f;
         }
+
+        if (Input.GetMouseButton(1))
+        {
+            targetFOV = scopedFOV;
+        }
+        else if (Input.GetMouseButtonUp(1))
+        {
+            targetFOV = playerFOV;
+        }
+        currentFOV = playerCam.fieldOfView;
+        playerCam.fieldOfView = Mathf.Lerp(currentFOV, targetFOV, 0.25f);
 
         //Takes the mouse input and multiplies it by the sensitivity and then multiplied by Time.deltaTime for frame rate
         rotY += mouseX * inputSens * Time.deltaTime;

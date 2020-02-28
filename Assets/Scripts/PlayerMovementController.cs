@@ -91,6 +91,7 @@ public class PlayerMovementController : MonoBehaviour
     public float horizontalMovement;
 
     private int doubleJumpCheck = 0;
+    private int climbWallCheck = 0;
 
     //ControllerStrings
     private string LeftAnalogXString;
@@ -197,6 +198,7 @@ public class PlayerMovementController : MonoBehaviour
         if (isGrounded && velocityY < 0f)
         {
             doubleJumpCheck = 0;
+            climbWallCheck = 0;
             isClimbing = false;
             PlayerAnimator.SetBool("ClimbWall", false);
             isFalling = false;
@@ -391,7 +393,19 @@ public class PlayerMovementController : MonoBehaviour
     {
         //Checks if Space was pressed
         if ((Input.GetButtonDown("Jump") || Input.GetButtonDown(ControllerJumpString)) && stunned == false)
-        { 
+        {
+            doubleJumpCheck++;
+            PlayerAnimator.SetBool("Jump", true);
+            //Checks if player is on the ground, if true then character can jump
+            if (doubleJumpCheck == 1 && isFalling == false && CharController.isGrounded == true)
+            {
+                //Custom AddForce function which applies jumpForce in the upward direction
+                AddForce(Vector3.up, jumpForce);
+            }
+        }
+
+        if ((Input.GetButton("Jump") || Input.GetButton(ControllerJumpString)) && stunned == false && climbWallCheck == 0)
+        {
             RaycastHit hit;
             if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 1.1f, transform.position.z), transform.forward, out hit, distWall))
             {
@@ -399,30 +413,13 @@ public class PlayerMovementController : MonoBehaviour
                 if (hit.collider.tag == "Climable" && (Input.GetAxisRaw("Vertical") > 0 || Input.GetAxisRaw(LeftAnalogYString) > 0))
                 {
                     StartCoroutine(ClimbWall(hit.collider));
-                }
-                else
-                {
-                    doubleJumpCheck++;
-                    PlayerAnimator.SetBool("Jump", true);
-                    //Checks if player is on the ground, if true then character can jump
-                    if (doubleJumpCheck == 1 && isFalling == false && CharController.isGrounded == true)
-                    {
-                        //Custom AddForce function which applies jumpForce in the upward direction
-                        AddForce(Vector3.up, jumpForce);
-                    }
+                    climbWallCheck++;
                 }
             }
-            else
-            {
-                doubleJumpCheck++;
-                PlayerAnimator.SetBool("Jump", true);
-                //Checks if player is on the ground, if true then character can jump
-                if (doubleJumpCheck == 1 && isFalling == false && CharController.isGrounded == true)
-                {
-                    //Custom AddForce function which applies jumpForce in the upward direction
-                    AddForce(Vector3.up, jumpForce);
-                }
-            }
+        }
+        else if (Input.GetButtonUp("Jump") || Input.GetButtonUp(ControllerJumpString))
+        {
+            climbWallCheck = 0;
         }
     }
 

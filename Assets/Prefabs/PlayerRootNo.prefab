@@ -2377,7 +2377,7 @@ MonoBehaviour:
   climbSpeed: 13
   jumpForce: 15
   dashForce: 70
-  dashCooldown: 8
+  dashCooldown: 4
   hitStunDuration: 1
   isGrounded: 0
   isClimbing: 0
