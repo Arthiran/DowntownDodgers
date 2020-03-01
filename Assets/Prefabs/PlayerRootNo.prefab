@@ -752,7 +752,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.20215273, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.20392157, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2295,6 +2295,7 @@ GameObject:
   - component: {fileID: 7933459783627751554}
   - component: {fileID: 3660801020213775331}
   - component: {fileID: 1128560757822359774}
+  - component: {fileID: 1389318744892635534}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2479,6 +2480,20 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
+--- !u!114 &1389318744892635534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2064600520958751005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7455c77657784584da06f777f73d1b3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reticle: {fileID: 1150266294125017400}
+  cam: {fileID: 1150266294631081421}
 --- !u!1 &2096458810919814370
 GameObject:
   m_ObjectHideFlags: 0
