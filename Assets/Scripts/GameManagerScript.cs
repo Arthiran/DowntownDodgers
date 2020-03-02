@@ -21,6 +21,8 @@ public class GameManagerScript : MonoBehaviour
 
     public Text timerText1;
     public Text timerText2;
+    public Text timerText3;
+    public Text timerText4;
 
     public float seconds;
     public float minutes;
@@ -40,6 +42,8 @@ public class GameManagerScript : MonoBehaviour
         //Initialize UI elements
         timerText1 = timerText1.GetComponent<Text>();
         timerText2 = timerText2.GetComponent<Text>();
+        timerText3 = timerText3.GetComponent<Text>();
+        timerText4 = timerText4.GetComponent<Text>();
     }
 
     private void Update()
@@ -60,6 +64,8 @@ public class GameManagerScript : MonoBehaviour
         {
             timerText1.text = minutes.ToString("00") + ":" + seconds.ToString("00");
             timerText2.text = minutes.ToString("00") + ":" + seconds.ToString("00");
+            timerText3.text = minutes.ToString("00") + ":" + seconds.ToString("00");
+            timerText4.text = minutes.ToString("00") + ":" + seconds.ToString("00");
         }     
 
 
