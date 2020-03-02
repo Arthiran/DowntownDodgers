@@ -110,6 +110,44 @@ public class Target : MonoBehaviour {
                 toFade = true;
                 //Debug.Log("Vignetter2");
             }
+            if (MovementController.PlayerID == 3)
+            {
+                vibrate = true;
+                //if (vibrate)
+                //RumbleOnHit(1);
+                StartCoroutine(MovementController.HitStun());
+                controllerID = 0;
+                vignette.canvasRenderer.SetAlpha(1.0f);
+                vignette.enabled = true;
+                var temp = vignette.color;
+                temp.a = 1;
+                vignette.color = temp;
+                //vignette.CrossFadeAlpha(0, 1.5f, false);
+                //vignette.enabled = false;
+                //temp.a = 1;
+                //vignette.color = temp;
+                toFade = true;
+                //Debug.Log("Vignetter2");
+            }
+            if (MovementController.PlayerID == 4)
+            {
+                vibrate = true;
+                //if (vibrate)
+                //RumbleOnHit(1);
+                StartCoroutine(MovementController.HitStun());
+                controllerID = 0;
+                vignette.canvasRenderer.SetAlpha(1.0f);
+                vignette.enabled = true;
+                var temp = vignette.color;
+                temp.a = 1;
+                vignette.color = temp;
+                //vignette.CrossFadeAlpha(0, 1.5f, false);
+                //vignette.enabled = false;
+                //temp.a = 1;
+                //vignette.color = temp;
+                toFade = true;
+                //Debug.Log("Vignetter2");
+            }
 
             MovementController.HealthNumText.text = health.ToString() + "/" + originalHealth.ToString();
             MovementController.filledHealthbarIMG.fillAmount = health / originalHealth;
@@ -128,6 +166,26 @@ public class Target : MonoBehaviour {
                     //Debug.Log("Vignetterrrr1");
                 }
                 if (MovementController.PlayerID == 2)
+                {
+                    //vignette.CrossFadeAlpha(1, 2.0f, false);
+                    var temp = vignette.color;
+                    vignette.CrossFadeAlpha(0, 1.5f, false);
+                    temp.a = 1;
+                    vignette.color = temp;
+                    toFade = false;
+                    //Debug.Log("Vignetterrrr2");
+                }
+                if (MovementController.PlayerID == 3)
+                {
+                    //vignette.CrossFadeAlpha(1, 2.0f, false);
+                    var temp = vignette.color;
+                    vignette.CrossFadeAlpha(0, 1.5f, false);
+                    temp.a = 1;
+                    vignette.color = temp;
+                    toFade = false;
+                    //Debug.Log("Vignetterrrr2");
+                }
+                if (MovementController.PlayerID == 4)
                 {
                     //vignette.CrossFadeAlpha(1, 2.0f, false);
                     var temp = vignette.color;

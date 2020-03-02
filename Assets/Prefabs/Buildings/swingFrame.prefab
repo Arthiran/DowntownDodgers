@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1492416770320777787}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.033, y: 0.033, z: 0.033}
   m_Children:
   - {fileID: 5369319019429683984}
   - {fileID: 2918711886396780095}
@@ -48,7 +48,21 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: -2432090755550338912, guid: 5c1c8f332b30e5649987b3512013e9df, type: 3}
---- !u!54 &8068510277522808159
+--- !u!64 &3553694221764051702
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2223090636464397356}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: -2432090755550338912, guid: 7ea3ad1c547988748a97f045449b4cb0, type: 3}
+--- !u!54 &8882373948128821577
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -64,21 +78,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &3553694221764051702
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2223090636464397356}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 14
-  m_Mesh: {fileID: -2432090755550338912, guid: 7ea3ad1c547988748a97f045449b4cb0, type: 3}
---- !u!59 &956236022419969103
+--- !u!59 &2069757394414529585
 HingeJoint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -89,7 +89,7 @@ HingeJoint:
   m_Anchor: {x: 1.92, y: 5.56, z: 0}
   m_Axis: {x: 0, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 1.92, y: 5.31, z: 0}
+  m_ConnectedAnchor: {x: 0.06336, y: 0.17523, z: 0}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -217,7 +217,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.4597268, y: 0.15955019, z: 0.366759}
   m_Center: {x: 2.2855566, y: 1.0805459, z: 0.1301825}
---- !u!54 &1783251317428381901
+--- !u!64 &1007176262385381163
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9059500074642820220}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: -2432090755550338912, guid: 9cf44119396235a49ad6a99792c1b47e, type: 3}
+--- !u!54 &5638225090833624917
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -233,21 +247,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &1007176262385381163
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9059500074642820220}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 14
-  m_Mesh: {fileID: -2432090755550338912, guid: 9cf44119396235a49ad6a99792c1b47e, type: 3}
---- !u!59 &843790957785061832
+--- !u!59 &6710392288303891055
 HingeJoint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -258,7 +258,7 @@ HingeJoint:
   m_Anchor: {x: -2.36, y: 5.55, z: 0}
   m_Axis: {x: 0, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -2.36, y: 5.3, z: 0}
+  m_ConnectedAnchor: {x: -0.077879995, y: 0.17490001, z: 0}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -293,6 +293,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: swing2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2534866581884222612, guid: 9cf44119396235a49ad6a99792c1b47e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 9cf44119396235a49ad6a99792c1b47e,
         type: 3}
