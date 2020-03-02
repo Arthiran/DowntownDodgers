@@ -74,7 +74,7 @@ public class Shooting : MonoBehaviour
         Ray camRay2 = camObj.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         targetpoint = camRay2.GetPoint(targetRange);
 
-        if (Physics.Raycast(camRay2.origin, camRay2.direction * targetRange, out hit))
+        if (Physics.Raycast(camRay2.origin, camRay2.direction, out hit, targetRange))
         {
             tempVec = (hit.point - shootTransform.position).normalized;
         }
