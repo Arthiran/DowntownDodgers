@@ -33,6 +33,7 @@ public class CameraScript : MonoBehaviour
     private float distWall = 1f;
     private string RightAnalogXString;
     private string RightAnalogYString;
+    private string ControllerAimString;
     private float playerFOV;
     private float scopedFOV;
     private float currentFOV;
@@ -46,11 +47,13 @@ public class CameraScript : MonoBehaviour
             {
                 RightAnalogXString = "RightAnalogX1";
                 RightAnalogYString = "RightAnalogY1";
+                ControllerAimString = "ControllerAim1";
             }
             else
             {
                 RightAnalogXString = "RightAnalogX" + GetComponentInParent<PlayerRootInfo>().PlayerID.ToString();
                 RightAnalogYString = "RightAnalogY" + GetComponentInParent<PlayerRootInfo>().PlayerID.ToString();
+                ControllerAimString = "ControllerAim" + GetComponentInParent<PlayerRootInfo>().PlayerID.ToString();
             }
 
 
@@ -59,6 +62,7 @@ public class CameraScript : MonoBehaviour
         {
             RightAnalogXString = "RightAnalogX1";
             RightAnalogYString = "RightAnalogY1";
+            ControllerAimString = "ControllerAim1";
         }
         //Finds the character which has a tag set to Player
         //Rotation variables are set
@@ -94,11 +98,12 @@ public class CameraScript : MonoBehaviour
             RightAnalogY = 0f;
         }
 
-        if (Input.GetMouseButton(1))
+        //Debug.Log(ControllerAimString);
+        if (Input.GetMouseButton(1) || Input.GetAxisRaw(ControllerAimString) > 0)
         {
             targetFOV = scopedFOV;
         }
-        else if (Input.GetMouseButtonUp(1))
+        else if (Input.GetMouseButtonUp(1) || Input.GetAxisRaw(ControllerAimString) == 0)
         {
             targetFOV = playerFOV;
         }

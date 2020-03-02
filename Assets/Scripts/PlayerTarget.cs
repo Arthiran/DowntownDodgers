@@ -23,7 +23,7 @@ public class PlayerTarget : MonoBehaviour
         {
             if (hit.transform.gameObject.name == "Player")
             {
-                Debug.Log("Hit");
+                //Debug.Log("Hit");
                 reticle.color = Color.red;
             }
             else
