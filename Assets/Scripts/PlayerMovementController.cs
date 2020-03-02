@@ -365,6 +365,7 @@ public class PlayerMovementController : MonoBehaviour
             if ((horizontalMovement != 0 || forwardMovement != 0) && !eventEmitter[0].IsPlaying())
             {
                 eventEmitter[0].Play();
+                
             }
         }
 
