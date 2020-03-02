@@ -1216,7 +1216,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1150266294631081420}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1150266293905279358
 GameObject:
@@ -1400,9 +1400,9 @@ Transform:
   m_LocalPosition: {x: 0.7, y: 0, z: -1.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1150266295430779082}
   - {fileID: 1150266293726577362}
   - {fileID: 1150266294702848162}
+  - {fileID: 6376801021712988697}
   m_Father: {fileID: 5073365078709289730}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1570,7 +1570,7 @@ RectTransform:
   - {fileID: 5304000479056555817}
   - {fileID: 2433836389107875437}
   m_Father: {fileID: 1150266294631081420}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1685,7 +1685,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 637c324bec70c4a4d8e5c092eca4f415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BallShootingTransform: {fileID: 1150266295430779082}
   DodgeballPrefab: {fileID: 1880751298986934537, guid: 50bbc98ab97689a43a6c2ebede2afb45,
     type: 3}
   BallSlots:
@@ -1693,7 +1692,9 @@ MonoBehaviour:
   - {fileID: 3654799137558048603}
   - {fileID: 1472983853061890437}
   dodgeballsText: {fileID: 0}
-  dodgeballLaunchForce: 20
+  camObj: {fileID: 1150266294631081421}
+  shootTransform: {fileID: 8379788487433764638}
+  dodgeballLaunchForce: 50
   fireRate: 0.75
   DodgeballsInHand: 0
   DodgeballCarryLimit: 3
@@ -1879,37 +1880,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '''X'' TO PICKUP'
---- !u!1 &1150266295430779085
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1150266295430779082}
-  m_Layer: 0
-  m_Name: BallShootingTransform
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1150266295430779082
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1150266295430779085}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1150266294631081420}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Text: Pickup dodgeball
 --- !u!1 &1150266295451169682
 GameObject:
   m_ObjectHideFlags: 0
@@ -3294,6 +3265,7 @@ Transform:
   - {fileID: 2350324073505665755}
   - {fileID: 1733475376564584065}
   - {fileID: 9009325446989626493}
+  - {fileID: 8379788487433764638}
   m_Father: {fileID: 1150266294808196756}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3347,7 +3319,7 @@ MonoBehaviour:
   despawn1Mat: {fileID: 2100000, guid: 8674b758517b6674aacda255e8e28d4f, type: 2}
   despawn2Mat: {fileID: 2100000, guid: 449be202a91f3f347bb3fffb3528bef8, type: 2}
   stunned: 0
-  moveSpeed: 9
+  moveSpeed: 300
   mass: 1
   damping: 5
   climbSpeed: 13
@@ -6768,7 +6740,7 @@ MonoBehaviour:
   m_Text: 'Time
 
 '
---- !u!1 &5032920138252757070
+--- !u!1 &5045146308022925685
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6776,27 +6748,27 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5424039093888847248}
+  - component: {fileID: 8379788487433764638}
   m_Layer: 0
-  m_Name: Bone.003_end
+  m_Name: DodgeballShoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5424039093888847248
+--- !u!4 &8379788487433764638
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5032920138252757070}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.060877893, z: 0}
+  m_GameObject: {fileID: 5045146308022925685}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.299, y: 0.327, z: 0.563}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 9124658527144213314}
-  m_RootOrder: 0
+  m_Father: {fileID: 865417066015951210}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5053537731145694212
 GameObject:
@@ -14089,7 +14061,7 @@ Transform:
   m_Father: {fileID: 3909901021432108016}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7362424784103353332
+--- !u!1 &7339934024822770308
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14097,29 +14069,27 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1794852905722762923}
+  - component: {fileID: 6376801021712988697}
   m_Layer: 0
-  m_Name: mixamorig:LeftHandMiddle4
+  m_Name: CamShootingTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1794852905722762923
+--- !u!4 &6376801021712988697
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7362424784103353332}
-  m_LocalRotation: {x: 3.5108513e-26, y: -0.0000000032596297, z: -0.0000000011641537,
-    w: 1}
-  m_LocalPosition: {x: -0.00004000664, y: 0.026036749, z: 0.000000052452087}
-  m_LocalScale: {x: 1, y: 0.99999994, z: 1.0000001}
-  m_Children:
-  - {fileID: 6691418777428180818}
-  m_Father: {fileID: 2399852474114359260}
-  m_RootOrder: 0
+  m_GameObject: {fileID: 7339934024822770308}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1150266294631081420}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7378700523304407404
 GameObject:

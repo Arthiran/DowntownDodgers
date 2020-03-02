@@ -8,12 +8,22 @@ public class Shooting : MonoBehaviour
 {
     private Animator PlayerAnimator;
     //Get transform to spawn dodgeball in and get dodgeball prefab
-    public Transform BallShootingTransform;
     public GameObject DodgeballPrefab;
     public GameObject[] BallSlots;
     public Text dodgeballsText;
     private PlayerMovementController MovementController;
     private ParticleSystem shootDust;
+    public Camera camObj;
+    public Transform shootTransform;
+    private Transform camShootTransform;
+    private Vector3 VectorDifference;
+    private float distance;
+    private Vector3 direction;
+    private Ray camRay;
+    Vector3 tempVec = new Vector3(0, 0, 0);
+
+    private Vector3 targetpoint;
+    private int targetRange = 99999999;
 
     //Initializes Variables
     public float dodgeballLaunchForce;
@@ -49,12 +59,31 @@ public class Shooting : MonoBehaviour
     //Checks if left mouse button was clicked
     void Update()
     {
+        RaycastHit hit;
+        if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 1.1f, transform.position.z), transform.forward, out hit))
+        {
+            camShootTransform = hit.transform;
+        }
         if (((Input.GetMouseButton(0) || (Input.GetAxisRaw(ControllerShootString) > 0)) && DodgeballsInHand > 0 && DodgeballsInHand <= 3 && Time.time > nextFire) && MovementController.stunned == false)
         {
             nextFire = Time.time + fireRate;
             //Starts dodgeball shooting coroutine
             Shoot();
         }
+
+        Ray camRay2 = camObj.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        targetpoint = camRay2.GetPoint(targetRange);
+
+        if (Physics.Raycast(camRay2.origin, camRay2.direction * targetRange, out hit))
+        {
+            tempVec = (hit.point - shootTransform.position).normalized;
+        }
+        else
+        {
+            tempVec = targetpoint;
+        }
+
+        Debug.DrawRay(shootTransform.position, tempVec * targetRange, Color.yellow);
 
         for (int i = 0; i < DodgeballsInHand; i++)
         {
@@ -78,13 +107,25 @@ public class Shooting : MonoBehaviour
     {
         if (sceneName == "Tutorial")
         giveQuest.loadQuest(2);
+        camRay = camObj.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        RaycastHit hit;
+        if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 1.1f, transform.position.z), transform.forward, out hit))
+        {
+            direction = (hit.point - shootTransform.position).normalized;
+        }
+        else
+        {
+            direction = camRay.direction;
+        }
+        Quaternion rot = Quaternion.FromToRotation(DodgeballPrefab.transform.forward, direction);
         //Spawns an instance of the dodgeball prefab at the spawn transform
-        GameObject DodgeballInstance = Instantiate(DodgeballPrefab, BallShootingTransform.position, BallShootingTransform.rotation);
+        GameObject DodgeballInstance = Instantiate(DodgeballPrefab, shootTransform.position, rot);
         DodgeballInstance.GetComponent<DodgeballScript>().PlayerID = GetComponent<PlayerRootInfo>().PlayerID;
         DodgeballInstance.GetComponent<DodgeballScript>().MovementController = MovementController;
         StartCoroutine(ShootAnimation());
         //Gives dodgeball a launch force wherever the character is facing
-        DodgeballInstance.GetComponent<Rigidbody>().AddForce(DodgeballInstance.transform.forward * dodgeballLaunchForce, ForceMode.Impulse);
+        DodgeballInstance.GetComponent<Rigidbody>().velocity = tempVec * dodgeballLaunchForce;
+        DodgeballInstance.GetComponent<Rigidbody>().AddForce(tempVec * dodgeballLaunchForce, ForceMode.Impulse);
         shootDust.Play();
         BallSlots[DodgeballsInHand - 1].SetActive(false);
         DodgeballsInHand--;

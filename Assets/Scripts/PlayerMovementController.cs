@@ -272,12 +272,41 @@ public class PlayerMovementController : MonoBehaviour
             //Debug.Log("Bruv");
         }
 
+        //Create a Vector to store the overall movement
+        movement = new Vector3(horizontalMovement, 0, forwardMovement);
+        Vector3 velocity;
+
+        /*Takes the movement vector and converts the position from Local Space to World Space and stores 
+        it back in the movement variable*/
+        movement = transform.TransformDirection(movement);
+
+        //Calculates gravity and stores it in variable
+        velocityY += gravity * Time.deltaTime;
+
+        //Vector which stores the overall effect of gravity on the Character's position
+        velocity = movement * moveSpeed * Time.deltaTime * 1.2f + Vector3.up * velocityY;
+
+        //sets the velocity to take all forces into account
+        if (currentImpact.magnitude > 0.2f)
+        {
+            velocity += currentImpact;
+        }
+        //Takes the velocity and actually moves the Character
+        if (isRespawning == false && gameObject.GetComponent<CharacterController>().enabled)
+        {
+            CharController.Move(velocity * Time.fixedDeltaTime);
+            //     FMODUnity.RuntimeManager.PlayOneShot("event:/Footstep", GetComponent<Transform>().position);
+
+        }
+        isGrounded = CharController.isGrounded;
         //Animations 
         PlayerAnimator.SetFloat("Vertical", forwardMovement);
         PlayerAnimator.SetFloat("Horizontal", horizontalMovement);
 
         //Jump pls
         Jump();
+        //Interpolates the effects of forces for smooth movement
+        currentImpact = Vector3.Lerp(currentImpact, Vector3.zero, damping * Time.deltaTime);
 
         if (isDashCooldown)
         {
@@ -318,58 +347,21 @@ public class PlayerMovementController : MonoBehaviour
                     //GetComponentInChildren<MeshRenderer>().material.color = Color.red;
                 }
             }
+
+            if (isGrounded)
+            {
+                PlayerAnimator.SetBool("Jump", false);
+                if ((horizontalMovement != 0 || forwardMovement != 0) && !eventEmitter[0].IsPlaying())
+                {
+                    eventEmitter[0].Play();
+                }
+            }
         }
     }
 
     //All Physics and Movement should be handled in FixedUpdate()
     private void FixedUpdate()
     {
-        //Create a Vector to store the overall movement
-        movement = new Vector3(horizontalMovement, 0, forwardMovement);
-        Vector3 velocity;
-
-        /*Takes the movement vector and converts the position from Local Space to World Space and stores 
-        it back in the movement variable*/
-        movement = transform.TransformDirection(movement);
-
-        //Calculates gravity and stores it in variable
-        velocityY += gravity * Time.deltaTime;
-
-        //Vector which stores the overall effect of gravity on the Character's position
-        velocity = movement * moveSpeed * 1.2f + Vector3.up * velocityY;
-
-        //sets the velocity to take all forces into account
-        if (currentImpact.magnitude > 0.2f)
-        {
-            velocity += currentImpact;
-        }
-
-        if (DodgeballInstance != null)
-        {
-            //DodgeballInstance.transform.position = BallCarrierTransform.position;
-        }
-
-        //Takes the velocity and actually moves the Character
-        if (isRespawning == false && gameObject.GetComponent<CharacterController>().enabled)
-        {
-            CharController.Move(velocity * Time.fixedDeltaTime);
-       //     FMODUnity.RuntimeManager.PlayOneShot("event:/Footstep", GetComponent<Transform>().position);
-
-        }
-
-        isGrounded = CharController.isGrounded;
-
-        if (isGrounded)
-        {
-            PlayerAnimator.SetBool("Jump", false);
-            if ((horizontalMovement != 0 || forwardMovement != 0) && !eventEmitter[0].IsPlaying())
-            {
-                eventEmitter[0].Play();
-            }
-        }
-
-        //Interpolates the effects of forces for smooth movement
-        currentImpact = Vector3.Lerp(currentImpact, Vector3.zero, damping * Time.deltaTime);
 
     }
 
