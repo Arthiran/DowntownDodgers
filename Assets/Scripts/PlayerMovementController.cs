@@ -201,6 +201,7 @@ public class PlayerMovementController : MonoBehaviour
             climbWallCheck = 0;
             isClimbing = false;
             PlayerAnimator.SetBool("ClimbWall", false);
+            PlayerAnimator.SetBool("Jump", false);
             isFalling = false;
             tempClimbTimer = climbWallTimer;
             tempRespawnTimer = respawnTimer;

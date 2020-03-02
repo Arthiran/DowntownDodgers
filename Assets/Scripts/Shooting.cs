@@ -108,7 +108,21 @@ public class Shooting : MonoBehaviour
         if (sceneName == "Tutorial")
         giveQuest.loadQuest(2);
         camRay = camObj.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-        RaycastHit hit;
+        RaycastHit[] hits;
+        hits = Physics.RaycastAll(new Vector3(transform.position.x, transform.position.y + 1.1f, transform.position.z), transform.forward, 99999.0f);
+        for (int i = 0; i < hits.Length; i++)
+        {
+            RaycastHit rayHit = hits[i];
+            if (rayHit.transform.gameObject.name == "Player")
+            {
+                direction = (rayHit.point - shootTransform.position).normalized;
+            }
+            else
+            {
+                direction = camRay.direction;
+            }
+        }
+        /*RaycastHit hit;
         if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 1.1f, transform.position.z), transform.forward, out hit))
         {
             direction = (hit.point - shootTransform.position).normalized;
@@ -116,7 +130,7 @@ public class Shooting : MonoBehaviour
         else
         {
             direction = camRay.direction;
-        }
+        }*/
         Quaternion rot = Quaternion.FromToRotation(DodgeballPrefab.transform.forward, direction);
         //Spawns an instance of the dodgeball prefab at the spawn transform
         GameObject DodgeballInstance = Instantiate(DodgeballPrefab, shootTransform.position, rot);
