@@ -16,11 +16,11 @@ public class PlayerTarget : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RaycastHit hit;
-        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-        
-        if (Physics.Raycast(ray, out hit, 1000.0f))
+        RaycastHit[] hits;
+        hits = Physics.RaycastAll(cam.transform.position, cam.transform.forward, 99999.0f);
+        for (int i = 0; i < hits.Length; i++)
         {
+            RaycastHit hit = hits[i];
             if (hit.transform.gameObject.name == "Player")
             {
                 //Debug.Log("Hit");
@@ -30,10 +30,6 @@ public class PlayerTarget : MonoBehaviour
             {
                 reticle.color = new Color(0.0f, 1.0f, 0.2f);
             }
-        }
-        else
-        {
-            reticle.color = new Color(0.0f, 1.0f, 0.2f);
         }
     }
 }
