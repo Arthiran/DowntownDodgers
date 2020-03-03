@@ -169,7 +169,7 @@ public class PlayerMovementController : MonoBehaviour
 
         dashCountdownUI = dashCooldown + 1;
 
-        sphere.SetActive(true);
+        //sphere.SetActive(true);
 
         shootingScript.DodgeballsInHand = 1;
     }

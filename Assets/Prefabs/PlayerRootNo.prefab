@@ -1522,7 +1522,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minDistance: 1
-  maxDistance: 1.75
+  maxDistance: 4
   smooth: 10
   dollyDirAdjusted: {x: 0, y: 0, z: 0}
   distance: 0
@@ -1694,8 +1694,8 @@ MonoBehaviour:
   dodgeballsText: {fileID: 0}
   camObj: {fileID: 1150266294631081421}
   shootTransform: {fileID: 8379788487433764638}
-  dodgeballLaunchForce: 50
-  fireRate: 0.75
+  dodgeballLaunchForce: 20
+  fireRate: 2
   DodgeballsInHand: 0
   DodgeballCarryLimit: 3
   giveQuest: {fileID: 0}
@@ -3311,25 +3311,25 @@ MonoBehaviour:
   HealthNumText: {fileID: 3104052798400555184}
   RespawningText: {fileID: 1150266294849731926}
   BallCarrierTransform: {fileID: 1150266293726577362}
-  sphere: {fileID: 3374635369968216253}
-  player1Mat: {fileID: 2100000, guid: dad0d167479d11c47ba04bf8c7d087dc, type: 2}
-  player2Mat: {fileID: 2100000, guid: 6e399aa4ca707ee4e821daaa55bf4406, type: 2}
-  respawn1Mat: {fileID: 2100000, guid: 321403353316711429c113d77a2786be, type: 2}
-  respawn2Mat: {fileID: 2100000, guid: 2d543e3093d4bf848aa10fef05fa2119, type: 2}
-  despawn1Mat: {fileID: 2100000, guid: 8674b758517b6674aacda255e8e28d4f, type: 2}
-  despawn2Mat: {fileID: 2100000, guid: 449be202a91f3f347bb3fffb3528bef8, type: 2}
+  sphere: {fileID: 0}
+  player1Mat: {fileID: 0}
+  player2Mat: {fileID: 0}
+  respawn1Mat: {fileID: 0}
+  respawn2Mat: {fileID: 0}
+  despawn1Mat: {fileID: 0}
+  despawn2Mat: {fileID: 0}
   stunned: 0
   moveSpeed: 300
   mass: 1
   damping: 5
-  climbSpeed: 13
-  jumpForce: 15
-  dashForce: 70
-  dashCooldown: 4
+  climbSpeed: 0
+  jumpForce: 40
+  dashForce: 4
+  dashCooldown: 5
   hitStunDuration: 1
   isGrounded: 0
   isClimbing: 0
-  climbWallTimer: 8
+  climbWallTimer: 1
   tempRandomNum: 0
   PlayerID: 0
   forwardMovement: 0
@@ -3362,7 +3362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61823a64f1a781e47a76304494fd81ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reticle: {fileID: 2531975077706928385}
+  reticle: {fileID: 1150266294125017400}
   timeToPickup: 4
 --- !u!114 &7933459783627751554
 MonoBehaviour:
@@ -3393,16 +3393,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/Footstep
+  Event: 
   PlayEvent: 0
   StopEvent: 0
-  AllowFadeout: 0
+  AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
   Params: []
   OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  OverrideMinDistance: -1
+  OverrideMaxDistance: -1
 --- !u!114 &1128560757822359774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3416,16 +3416,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/Dash
+  Event: 
   PlayEvent: 0
   StopEvent: 0
-  AllowFadeout: 0
+  AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
   Params: []
   OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  OverrideMinDistance: -1
+  OverrideMaxDistance: -1
 --- !u!114 &1389318744892635534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15698,7 +15698,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05fe272f563b2ce478f44bd3438ca5cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bobbingSpeed: 10
+  bobbingSpeed: 0.18
   bobbingAmount: 0.2
   Player: {fileID: 2064600520958751005}
   PlayerEmptyChild: {fileID: 1150266295451169682}
@@ -15710,7 +15710,7 @@ MonoBehaviour:
   RightAnalogX: 0
   RightAnalogY: 0
   inputSens: 150
-  aimAssistFactor: 0.25
+  aimAssistFactor: 0.5
   controllerInputSens: 150
 --- !u!1 &8454180077343735546
 GameObject:
