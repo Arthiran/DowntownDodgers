@@ -99,11 +99,11 @@ public class CameraScript : MonoBehaviour
         }
 
         //Debug.Log(ControllerAimString);
-        if (Input.GetMouseButton(1) || Input.GetAxisRaw(ControllerAimString) > 0)
+        if (Input.GetMouseButton(1))
         {
             targetFOV = scopedFOV;
         }
-        else if (Input.GetMouseButtonUp(1) || Input.GetAxisRaw(ControllerAimString) == 0)
+        else if (Input.GetMouseButtonUp(1))
         {
             targetFOV = playerFOV;
         }

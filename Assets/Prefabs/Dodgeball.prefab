@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dffc5842e15a224fa76f06a9afe67c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GravitationalForce: 15
+  GravitationalForce: 25
   damage: 10
   rb: {fileID: 8048425419474693442}
   PlayerID: 0
@@ -262,13 +262,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/Bounce
-  PlayEvent: 7
-  StopEvent: 8
-  AllowFadeout: 0
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
   Params: []
   OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  OverrideMinDistance: -1
+  OverrideMaxDistance: -1
