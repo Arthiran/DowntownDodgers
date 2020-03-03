@@ -65,7 +65,7 @@ public class PlayerMovementController : MonoBehaviour
     public float moveSpeed = 5f;
     public float mass = 1f;
     public float damping = 5f;
-    private float edgeUpForce = 30f;
+    private float edgeUpForce = 50f;
     public float climbSpeed = 0f;
     public float jumpForce = 4f;
     public float dashForce = 4f;

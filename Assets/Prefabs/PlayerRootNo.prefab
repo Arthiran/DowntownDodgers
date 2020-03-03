@@ -3322,14 +3322,14 @@ MonoBehaviour:
   moveSpeed: 300
   mass: 1
   damping: 5
-  climbSpeed: 0
-  jumpForce: 40
-  dashForce: 4
-  dashCooldown: 5
+  climbSpeed: 6
+  jumpForce: 30
+  dashForce: 1000
+  dashCooldown: 4
   hitStunDuration: 1
   isGrounded: 0
   isClimbing: 0
-  climbWallTimer: 1
+  climbWallTimer: 20
   tempRandomNum: 0
   PlayerID: 0
   forwardMovement: 0
