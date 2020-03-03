@@ -208,10 +208,6 @@ public class PlayerMovementController : MonoBehaviour
             velocityY = 0f;   
         }
 
-        
-
-
-
         //Get Input from Horizontal and Vertical Axis and store them in variables
         if ((Input.GetAxisRaw("Vertical") != 0) && stunned == false)
         {
@@ -260,10 +256,8 @@ public class PlayerMovementController : MonoBehaviour
                     horizontalMovement = Input.GetAxis("Horizontal");
                 }
             } 
-            Dash();
             //BackwardDash();
         }
-
         /*This is so that when you press W and A at the same time for instance, the player doesn't become faster,
         it remains the same speed*/
         if (forwardMovement != 0 && horizontalMovement != 0)
@@ -306,6 +300,7 @@ public class PlayerMovementController : MonoBehaviour
 
         //Jump pls
         Jump();
+        Dash();
         //Interpolates the effects of forces for smooth movement
         currentImpact = Vector3.Lerp(currentImpact, Vector3.zero, damping * Time.deltaTime);
 
@@ -360,12 +355,6 @@ public class PlayerMovementController : MonoBehaviour
         }
     }
 
-    //All Physics and Movement should be handled in FixedUpdate()
-    private void FixedUpdate()
-    {
-
-    }
-
     //Resets all forces
     private void ResetImpact()
     {
@@ -393,7 +382,7 @@ public class PlayerMovementController : MonoBehaviour
             if (doubleJumpCheck == 1 && isFalling == false && CharController.isGrounded == true)
             {
                 //Custom AddForce function which applies jumpForce in the upward direction
-                AddForce(Vector3.up, jumpForce);
+                AddForce(Vector3.up, jumpForce * Time.deltaTime);
             }
         }
 
@@ -423,13 +412,12 @@ public class PlayerMovementController : MonoBehaviour
             StartCoroutine(DashAnimation());
             isDashCooldown = true;
             nextDash = Time.time + dashCooldown;
-            AddForce(transform.forward, dashForce);
+            AddForce(transform.forward, dashForce * Time.deltaTime);
 
             if (!eventEmitter[1].IsPlaying())
             {
                 eventEmitter[1].Play();
             }
-        //    Debug.Log("Hello");
         }
     }
     private void BackwardDash()

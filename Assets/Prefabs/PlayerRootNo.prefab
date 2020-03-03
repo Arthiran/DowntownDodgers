@@ -3323,8 +3323,8 @@ MonoBehaviour:
   mass: 1
   damping: 5
   climbSpeed: 6
-  jumpForce: 30
-  dashForce: 1000
+  jumpForce: 750
+  dashForce: 3000
   dashCooldown: 4
   hitStunDuration: 1
   isGrounded: 0
