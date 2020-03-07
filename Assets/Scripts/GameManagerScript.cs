@@ -12,6 +12,7 @@ public class GameManagerScript : MonoBehaviour
     public int NumberOfPlayers = 1;
     public GameObject PlayerPrefab;
     private GameObject[] LootSpawnList;
+    //private GameObject[] PlayerList;
 
     public GameObject DodgeballLootPrefab;
 
@@ -24,10 +25,16 @@ public class GameManagerScript : MonoBehaviour
     public Text timerText3;
     public Text timerText4;
 
+    public Text countDownText1;
+    public Text countDownText2;
+    public Text countDownText3;
+    public Text countDownText4;
+
     public float seconds;
     public float minutes;
 
     private bool gameOver;
+    public bool gameStart;
 
     private float endTime = 0.0f;
 
@@ -35,6 +42,18 @@ public class GameManagerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        /*for (int i = 0; i < NumberOfPlayers; i++)
+        {
+            PlayerList[i] = GameObject.Find("Player" + i + 1);
+            PlayerList[i].GetComponentInChildren<PlayerMovementController>().enabled = false;
+        }*/
+        gameStart = false;
+        countDownText1 = countDownText1.GetComponent<Text>();
+        countDownText2 = countDownText2.GetComponent<Text>();
+        countDownText3 = countDownText3.GetComponent<Text>();
+        countDownText4 = countDownText4.GetComponent<Text>();
+        StartCoroutine(Countdown(3));
+
         LootSpawnList = GameObject.FindGameObjectsWithTag("LootSpawn");
 
         gameOver = false;
@@ -44,6 +63,44 @@ public class GameManagerScript : MonoBehaviour
         timerText2 = timerText2.GetComponent<Text>();
         timerText3 = timerText3.GetComponent<Text>();
         timerText4 = timerText4.GetComponent<Text>();
+
+        timerText1.text = "";
+        timerText2.text = "";
+        timerText3.text = "";
+        timerText4.text = "";
+    }
+
+    IEnumerator Countdown(int seconds)
+    {
+        int count = seconds;
+
+        while (count > 0)
+        {
+            //PlayerPrefab.GetComponent<PlayerMovementController>().enabled = false;
+            countDownText1.text = count.ToString();
+            countDownText2.text = count.ToString();
+            countDownText3.text = count.ToString();
+            countDownText4.text = count.ToString();
+            yield return new WaitForSeconds(1);
+            count--;
+            if (count == 0)
+            {
+                /*for (int i = 0; i < NumberOfPlayers; i++)
+                {
+                    PlayerList[i].GetComponentInChildren<PlayerMovementController>().enabled = true;
+                }*/
+                gameStart = true;
+                countDownText1.text = "GO!";
+                countDownText2.text = "GO!";
+                countDownText3.text = "GO!";
+                countDownText4.text = "GO!";
+                yield return new WaitForSeconds(1);
+                countDownText1.enabled = false;
+                countDownText2.enabled = false;
+                countDownText3.enabled = false;
+                countDownText4.enabled = false;
+            }
+        }
     }
 
     private void Update()
@@ -53,37 +110,41 @@ public class GameManagerScript : MonoBehaviour
 		{
 			sceneManage.GoToFirstScene();
 		}
-		//Update game time
-		gameTime -= Time.deltaTime;
 
-        //Display Time
-        minutes = (int)(gameTime / 60f);
-        seconds = (int)(gameTime % 60f);
-
-        if (!gameOver)
+        if (gameStart)
         {
-            timerText1.text = minutes.ToString("00") + ":" + seconds.ToString("00");
-            timerText2.text = minutes.ToString("00") + ":" + seconds.ToString("00");
-            timerText3.text = minutes.ToString("00") + ":" + seconds.ToString("00");
-            timerText4.text = minutes.ToString("00") + ":" + seconds.ToString("00");
-        }     
+            //Update game time
+            gameTime -= Time.deltaTime;
 
-
-        //End Conditions
-        if (gameTime <= 0.0f)
-        {
-            //timerText1.text = "00" + ":" + "00";
-            //timerText2.text = "00" + ":" + "00";
+            //Display Time
+            minutes = (int)(gameTime / 60f);
+            seconds = (int)(gameTime % 60f);
 
             if (!gameOver)
             {
-                endTime = gameTime;
-                gameOver = true;
+                timerText1.text = minutes.ToString("00") + ":" + seconds.ToString("00");
+                timerText2.text = minutes.ToString("00") + ":" + seconds.ToString("00");
+                timerText3.text = minutes.ToString("00") + ":" + seconds.ToString("00");
+                timerText4.text = minutes.ToString("00") + ":" + seconds.ToString("00");
             }
 
-            if (gameTime < endTime - 3.0f)
-            {           
-                sceneManage.GoToFirstScene();
+
+            //End Conditions
+            if (gameTime <= 0.0f)
+            {
+                //timerText1.text = "00" + ":" + "00";
+                //timerText2.text = "00" + ":" + "00";
+
+                if (!gameOver)
+                {
+                    endTime = gameTime;
+                    gameOver = true;
+                }
+
+                if (gameTime < endTime - 3.0f)
+                {
+                    sceneManage.GoToFirstScene();
+                }
             }
         }
 

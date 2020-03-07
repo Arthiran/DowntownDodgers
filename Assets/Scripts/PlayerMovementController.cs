@@ -27,8 +27,8 @@ public class PlayerMovementController : MonoBehaviour
     private Target PlayerHealth;
     private GameObject[] SpawnPointList;
     private FMODUnity.StudioEventEmitter[] eventEmitter;
-  
 
+    public GameManagerScript gameManager;
 
     //public GameObject DodgeballPrefab;
     public Transform BallCarrierTransform;
@@ -38,10 +38,18 @@ public class PlayerMovementController : MonoBehaviour
     //Player materials
     public Material player1Mat;
     public Material player2Mat;
-    public Material respawn1Mat;
-    public Material respawn2Mat;
+    public Material player3Mat;
+    public Material player4Mat;
+    public Material spawn1Mat;
+    public Material spawn2Mat;
+    public Material spawn3Mat;
+    public Material spawn4Mat;
     public Material despawn1Mat;
     public Material despawn2Mat;
+    public Material despawn3Mat;
+    public Material despawn4Mat;
+
+    private bool materialsSet = false;
 
     private float despawnVal = 0;
     private float spawnVal = 0;
@@ -108,13 +116,23 @@ public class PlayerMovementController : MonoBehaviour
 
         if (PlayerID == 1)
         {
-            GetComponentInChildren<SkinnedMeshRenderer>().material = player1Mat;
+            GetComponentInChildren<SkinnedMeshRenderer>().material = spawn1Mat;
             GetComponentInChildren<MeshRenderer>().material.color = Color.blue;
         }
         else if (PlayerID == 2)
         {
-            GetComponentInChildren<SkinnedMeshRenderer>().material = player2Mat;
+            GetComponentInChildren<SkinnedMeshRenderer>().material = spawn2Mat;
             GetComponentInChildren<MeshRenderer>().material.color = Color.red;
+        }
+        else if (PlayerID == 3)
+        {
+            GetComponentInChildren<SkinnedMeshRenderer>().material = spawn3Mat;
+            GetComponentInChildren<MeshRenderer>().material.color = Color.yellow;
+        }
+        else if (PlayerID == 4)
+        {
+            GetComponentInChildren<SkinnedMeshRenderer>().material = spawn4Mat;
+            GetComponentInChildren<MeshRenderer>().material.color = Color.green;
         }
 
         if (SceneManager.GetActiveScene().name != "LevelEditorScene")
@@ -177,7 +195,7 @@ public class PlayerMovementController : MonoBehaviour
     //Any Input(Keyboard or Mouse) should be in Update function
     private void Update()
     {
-        if (isSpawning)
+        /*if (isSpawning)
         {
             spawnVal += Time.deltaTime;
             //Respawn Effect
@@ -193,7 +211,38 @@ public class PlayerMovementController : MonoBehaviour
                 respawn2Mat.SetFloat("val", spawnVal);
                 //GetComponentInChildren<MeshRenderer>().material.color = Color.red;
             }
+        }*/
+
+        if (gameManager.gameStart == false)
+        {
+            gameObject.GetComponent<CharacterController>().enabled = false;
         }
+
+        //Change amterial so things can be transparent :/
+        if (gameManager.gameStart == true && materialsSet == false)
+        {
+            gameObject.GetComponent<CharacterController>().enabled = true;
+
+            if (PlayerID == 1)
+            {
+                GetComponentInChildren<SkinnedMeshRenderer>().material = player1Mat;
+            }
+            else if (PlayerID == 2)
+            {
+                GetComponentInChildren<SkinnedMeshRenderer>().material = player2Mat;
+            }
+            else if (PlayerID == 3)
+            {
+                GetComponentInChildren<SkinnedMeshRenderer>().material = player3Mat;
+            }
+            else if (PlayerID == 4)
+            {
+                GetComponentInChildren<SkinnedMeshRenderer>().material = player4Mat;
+            }
+
+            materialsSet = true;
+        }
+
         //Checks if Player is on the ground, if true set Y Velocity to 0
         if (isGrounded && velocityY < 0f)
         {
@@ -339,6 +388,18 @@ public class PlayerMovementController : MonoBehaviour
                 else if (PlayerID == 2)
                 {
                     GetComponentInChildren<SkinnedMeshRenderer>().material = despawn2Mat;
+                    despawn2Mat.SetFloat("val", despawnVal);
+                    //GetComponentInChildren<MeshRenderer>().material.color = Color.red;
+                }
+                else if (PlayerID == 3)
+                {
+                    GetComponentInChildren<SkinnedMeshRenderer>().material = despawn3Mat;
+                    despawn2Mat.SetFloat("val", despawnVal);
+                    //GetComponentInChildren<MeshRenderer>().material.color = Color.red;
+                }
+                else if (PlayerID == 4)
+                {
+                    GetComponentInChildren<SkinnedMeshRenderer>().material = despawn4Mat;
                     despawn2Mat.SetFloat("val", despawnVal);
                     //GetComponentInChildren<MeshRenderer>().material.color = Color.red;
                 }
