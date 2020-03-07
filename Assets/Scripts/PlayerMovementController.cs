@@ -195,23 +195,24 @@ public class PlayerMovementController : MonoBehaviour
     //Any Input(Keyboard or Mouse) should be in Update function
     private void Update()
     {
-        /*if (isSpawning)
+        //LETS GET RID OF RESPAWN ALREADY AND MAKE OUR INTENDED GAME LOOP
+        if (isSpawning)
         {
             spawnVal += Time.deltaTime;
             //Respawn Effect
             if (PlayerID == 1)
             {
-                GetComponentInChildren<SkinnedMeshRenderer>().material = respawn1Mat;
-                respawn1Mat.SetFloat("val", spawnVal);
+                GetComponentInChildren<SkinnedMeshRenderer>().material = spawn1Mat;
+                spawn1Mat.SetFloat("val", spawnVal);
                 //GetComponentInChildren<MeshRenderer>().material.color = Color.blue;
             }
             else if (PlayerID == 2)
             {
-                GetComponentInChildren<SkinnedMeshRenderer>().material = respawn2Mat;
-                respawn2Mat.SetFloat("val", spawnVal);
+                GetComponentInChildren<SkinnedMeshRenderer>().material = spawn2Mat;
+                spawn2Mat.SetFloat("val", spawnVal);
                 //GetComponentInChildren<MeshRenderer>().material.color = Color.red;
             }
-        }*/
+        }
 
         if (gameManager.gameStart == false)
         {
