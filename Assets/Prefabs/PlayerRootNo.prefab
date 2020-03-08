@@ -3311,6 +3311,7 @@ MonoBehaviour:
   interactText: {fileID: 1150266295259038292}
   HealthNumText: {fileID: 3104052798400555184}
   RespawningText: {fileID: 1150266294849731926}
+  gameManager: {fileID: 0}
   BallCarrierTransform: {fileID: 1150266293726577362}
   sphere: {fileID: 0}
   player1Mat: {fileID: 2100000, guid: 19b6bc789bcc4994a95d2f189b6949fb, type: 2}
@@ -3369,7 +3370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61823a64f1a781e47a76304494fd81ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reticle: {fileID: 1150266294125017400}
+  reticle: {fileID: 2531975077706928385}
   timeToPickup: 4
 --- !u!114 &7933459783627751554
 MonoBehaviour:
