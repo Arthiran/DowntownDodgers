@@ -344,9 +344,19 @@ public class PlayerMovementController : MonoBehaviour
 
         }
         isGrounded = CharController.isGrounded;
-        //Animations 
-        PlayerAnimator.SetFloat("Vertical", forwardMovement);
-        PlayerAnimator.SetFloat("Horizontal", horizontalMovement);
+
+        if(isGrounded)
+        {
+            //Animations 
+            PlayerAnimator.SetFloat("Vertical", forwardMovement);
+            PlayerAnimator.SetFloat("Horizontal", horizontalMovement);
+        }
+        else
+        {
+            //Animations 
+            PlayerAnimator.SetFloat("Vertical", 0.0f);
+            PlayerAnimator.SetFloat("Horizontal", 0.0f);
+        }
 
         //Jump pls
         Jump();
@@ -510,6 +520,7 @@ public class PlayerMovementController : MonoBehaviour
     public IEnumerator HitStun()
     {
         stunned = true;
+        PlayerAnimator.SetBool("Stunned", true);
         yield return new WaitForSeconds(hitStunDuration);
         stunned = false;
         PlayerAnimator.SetBool("Stunned", false);
