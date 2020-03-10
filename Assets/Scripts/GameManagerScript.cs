@@ -148,7 +148,7 @@ public class GameManagerScript : MonoBehaviour
             }
         }
 
-        if (GameObject.FindGameObjectsWithTag("Loot").Length < 20)
+        if (GameObject.FindGameObjectsWithTag("Loot").Length < 27)
         {
             SpawnNewDodgeball();
         }
