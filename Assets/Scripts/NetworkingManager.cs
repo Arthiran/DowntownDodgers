@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public struct CS_to_Plugin_Functions
 {
     public IntPtr MsgReceivedPtr;
@@ -57,6 +58,10 @@ public class NetworkingManager : MonoBehaviour
     public delegate void CleanupDelegate();
     public CleanupDelegate Cleanup;
 
+    //MOVEMENT STUFF
+    public delegate void SendPacketToServerDelegateMove(string msg);
+    public SendPacketToServerDelegateMove SendPacketToServerMove;
+
     // MUST be called before you call any of the DLL functions
     private void InitDLLFunctions()
     {
@@ -64,6 +69,7 @@ public class NetworkingManager : MonoBehaviour
         InitServer = ManualPluginImporter.GetDelegate<InitServerDelegate>(Plugin_Handle, "InitServer");
         InitClient = ManualPluginImporter.GetDelegate<InitClientDelegate>(Plugin_Handle, "InitClient");
         SendPacketToServer = ManualPluginImporter.GetDelegate<SendPacketToServerDelegate>(Plugin_Handle, "SendPacketToServer");
+        SendPacketToServerMove = ManualPluginImporter.GetDelegate<SendPacketToServerDelegateMove>(Plugin_Handle, "SendPacketToServerMove");
         Cleanup = ManualPluginImporter.GetDelegate<CleanupDelegate>(Plugin_Handle, "Cleanup");
     }
 
@@ -73,6 +79,8 @@ public class NetworkingManager : MonoBehaviour
     public GameObject userPrefab;
     public GameObject userParent;
     public InputField textinput;
+
+    public GameObject player;
 
     private static bool mutex = false;
     static List<MsgToPopulate> msgs = new List<MsgToPopulate>();
@@ -164,7 +172,7 @@ public class NetworkingManager : MonoBehaviour
     {
         InitClient("127.0.0.1", 54000, "Client_0");
     }
-    
+
     // Where we'll process incoming messages
     public static void MsgReceived(IntPtr p_in)
     {
@@ -231,6 +239,18 @@ public class NetworkingManager : MonoBehaviour
                 }
         }
 
+    }
+
+    //process movement recieved
+    public static void moveRecieve()
+    {
+
+    }
+    public void sendCurrPos(string message)
+    {
+       // string msg;
+       // msg = player.transform.position.x.ToString() + "@" + player.transform.position.z.ToString();
+        SendPacketToServerMove(message);
     }
 
     public void SendCurrentMessage()

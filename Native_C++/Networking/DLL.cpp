@@ -51,6 +51,10 @@ DLL_OUT void SendPacketToServer(const char* message)
 	client.SendPacketToServer(message);
 }
 
+DLL_OUT void SendPacketToServerMove(const char* message)
+{
+	client.SendPacketToServerMove(message);
+}
 DLL_OUT void Cleanup()
 {
 	WSACleanup();

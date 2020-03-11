@@ -42,6 +42,7 @@ public:
 	void Init(const char* IP, const int port, const char* name, bool wsa);
 	void ConnectToServer();
 	void SendPacketToServer(const char* message);
+	void SendPacketToServerMove(const char* message);
 	void Cleanup();
 
 	CS_to_Plugin_Functions funcs;

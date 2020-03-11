@@ -23,6 +23,7 @@ extern "C"
 	DLL_OUT void Cleanup();
 
 	DLL_OUT void SendPacketToServer(const char* message);
+	DLL_OUT void SendPacketToServerMove(const char* message);
 
 	void InitConsole();
 	void ClearConsole();

@@ -18,6 +18,7 @@ private:
 	void StartListen();
 	void RecvLoop();
 	void ProcessMessage(const char* msg, sockaddr_in clientAddr);
+	void ProcessPosition(const char* msg, sockaddr_in clientAddr);
 	bool IsNewUser(sockaddr_in clientAddr);
 	void SendPacketToTargetClient(const char* msg, sockaddr_in clientAddr);
 	void BroadcastMessage(const char* msg, sockaddr_in clientAddrExcept);

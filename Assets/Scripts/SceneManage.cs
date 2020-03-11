@@ -21,4 +21,9 @@ public class SceneManage : MonoBehaviour
         SceneManager.LoadScene("Tutorial");
         PresistantManage.Instance.value++;
     }
+    public void GoToNetwork()
+    {
+        SceneManager.LoadScene("Networking");
+        PresistantManage.Instance.value++;
+    }
 }

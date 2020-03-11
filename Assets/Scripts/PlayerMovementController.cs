@@ -264,7 +264,6 @@ public class PlayerMovementController : MonoBehaviour
             vertical = Input.GetAxis("Vertical");
             forwardMovement = vertical;
             movementSoundCounter++;
-
         }
         else if ((Input.GetAxis(LeftAnalogYString) != 0) && stunned == false)
         {

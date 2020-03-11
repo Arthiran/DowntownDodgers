@@ -50,7 +50,19 @@ void Client::SendPacketToServer(const char* msg)
 
 	if (sendto(sock, msg, std::string(msg).length(), 0, (sockaddr*)&serverAddr, sizeof(serverAddr)) == SOCKET_ERROR)
 	{
-		std::cout << "ERR: Could not send msg to server.\n";
+		std::cout << "ERR: Could not send msg to server SEND.\n";
+		return;
+	}
+}
+
+//THIS SENDS TO THE SERVER
+void Client::SendPacketToServerMove(const char* msg)
+{
+	std::cout << "SENDING MOVE: " << msg << std::endl;
+
+	if (sendto(sock, msg, std::string(msg).length(), 0, (sockaddr*)& serverAddr, sizeof(serverAddr)) == SOCKET_ERROR)
+	{
+		std::cout << "ERR: Could not send msg to server MOVE.\n";
 		return;
 	}
 }
