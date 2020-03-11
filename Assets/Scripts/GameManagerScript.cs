@@ -30,6 +30,11 @@ public class GameManagerScript : MonoBehaviour
     public Text countDownText3;
     public Text countDownText4;
 
+    public Image timerCircle1;
+    public Image timerCircle2;
+    public Image timerCircle3;
+    public Image timerCircle4;
+
     public float seconds;
     public float minutes;
 
@@ -68,6 +73,11 @@ public class GameManagerScript : MonoBehaviour
         timerText2.text = "";
         timerText3.text = "";
         timerText4.text = "";
+
+        timerCircle1 = timerCircle1.GetComponent<Image>();
+        timerCircle2 = timerCircle2.GetComponent<Image>();
+        timerCircle3 = timerCircle3.GetComponent<Image>();
+        timerCircle4 = timerCircle4.GetComponent<Image>();
     }
 
     IEnumerator Countdown(int seconds)
@@ -120,12 +130,17 @@ public class GameManagerScript : MonoBehaviour
             minutes = (int)(gameTime / 60f);
             seconds = (int)(gameTime % 60f);
 
+            timerCircle1.fillAmount -= Time.deltaTime / 180.0f; 
+            timerCircle2.fillAmount -= Time.deltaTime / 180.0f; 
+            timerCircle3.fillAmount -= Time.deltaTime / 180.0f; 
+            timerCircle4.fillAmount -= Time.deltaTime / 180.0f; 
+
             if (!gameOver)
             {
-                timerText1.text = minutes.ToString("00") + ":" + seconds.ToString("00");
-                timerText2.text = minutes.ToString("00") + ":" + seconds.ToString("00");
-                timerText3.text = minutes.ToString("00") + ":" + seconds.ToString("00");
-                timerText4.text = minutes.ToString("00") + ":" + seconds.ToString("00");
+                timerText1.text = minutes.ToString("0") + ":" + seconds.ToString("00");
+                timerText2.text = minutes.ToString("0") + ":" + seconds.ToString("00");
+                timerText3.text = minutes.ToString("0") + ":" + seconds.ToString("00");
+                timerText4.text = minutes.ToString("0") + ":" + seconds.ToString("00");
             }
 
 
