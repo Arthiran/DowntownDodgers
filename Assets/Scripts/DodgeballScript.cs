@@ -10,6 +10,10 @@ public class DodgeballScript : MonoBehaviour
     public Rigidbody rb;
     public int PlayerID = 0;
     public bool inAir;
+    private GameObject BoxTrigger;
+    private float speedFactor = 100.0f;
+    [HideInInspector]
+    public GameObject parentGameObject;
 
     public PlayerMovementController MovementController;
 
@@ -22,6 +26,11 @@ public class DodgeballScript : MonoBehaviour
 
     private void OnTriggerStay(Collider collision)
     {
+        if (collision.name == "BoxTrigger" && parentGameObject != collision.GetComponentInParent<PlayerRootInfo>().gameObject)
+        {
+            BoxTrigger = collision.gameObject;
+            rb.AddForce((BoxTrigger.transform.position - transform.position) * speedFactor);
+        }
         //If the object collieded with has a Target script
         Target target = collision.gameObject.GetComponentInParent<Target>();
         //If it does, apply the damage to the object's health
