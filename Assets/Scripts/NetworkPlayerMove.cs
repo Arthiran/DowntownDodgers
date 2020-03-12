@@ -16,7 +16,7 @@ public class NetworkPlayerMove : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.W))
         {
-            player.transform.position()
+            //player.transform.position();
         }
         if (Input.GetKeyDown(KeyCode.A))
         {
