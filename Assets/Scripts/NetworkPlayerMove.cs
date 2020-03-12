@@ -14,21 +14,21 @@ public class NetworkPlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKey(KeyCode.W))
         {
-            player.transform.position()
+            player.transform.Translate(1, 0, 0);
         }
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKey(KeyCode.S))
         {
-
+            player.transform.Translate(-1, 0, 0);
         }
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKey(KeyCode.A))
         {
-
+            player.transform.Translate(0, 0, -1);
         }
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
         {
-
+            player.transform.Translate(0, 0, 1);
         }
 
     }
