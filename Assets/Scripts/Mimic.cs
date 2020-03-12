@@ -13,10 +13,10 @@ public class Mimic : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         //take in info to apply to player
         //client is girl sendign infor to server boy
-
+        //NetworkingManager.updateMove(player2);
     }
 }

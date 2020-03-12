@@ -92,7 +92,7 @@ void Server::RecvLoop()
 
 		if (numBytesReceived > 0)
 		{
-			ProcessPosition(buf, clientAddr);
+			ProcessMessage(buf, clientAddr);
 		}
 	}
 }
@@ -135,6 +135,10 @@ void Server::ProcessMessage(const char* msg, sockaddr_in clientAddr)
 		{
 			BroadcastMessage(msg, clientAddr);
 		}
+		if (msg[0] == 'v')
+		{
+			BroadcastMessage(msg, clientAddr);
+		}
 		else
 		{
 			// Validate the packet
@@ -145,37 +149,37 @@ void Server::ProcessMessage(const char* msg, sockaddr_in clientAddr)
 
 }
 
-void Server::ProcessPosition(const char* msg, sockaddr_in clientAddr)
-{
-	SERVERLOG << "PROCESS POS: " << msg << std::endl;
-
-	float tx = 0.0f;
-	float ty = 0.0f;
-
-	char buf[BUFLEN];
-	struct sockaddr_in fromAddr;
-	int fromlen;
-	fromlen = sizeof(fromAddr);
-
-	memset(buf, 0, BUFLEN);
-
-	int bytes_received = -1;
-	int sError = -1;
-
-	std::cout << "Received WORK: " << buf << std::endl;
-
-	std::string tmp = buf;
-	std::size_t pos = tmp.find("@"); //creates a position to separate data
-	tmp = tmp.substr(0, pos - 1); //Pos - 1 is tx
-	tx = std::stof(tmp, NULL); //Convert to float
-	tmp = buf; //Reset the temp variable 
-	tmp = tmp.substr(pos + 1); //pos + 1 is ty
-	ty = std::stof(tmp, NULL);
-	//Can be done for other axes?
-
-	std::cout << "tx: " << tx << std::endl;
-	std::cout << "ty: " << ty << std::endl;
-}
+//void Server::ProcessPosition(const char* msg, sockaddr_in clientAddr)
+//{
+//	SERVERLOG << "PROCESS POS: " << msg << std::endl;
+//
+//	float tx = 0.0f;
+//	float ty = 0.0f;
+//
+//	char buf[BUFLEN];
+//	struct sockaddr_in fromAddr;
+//	int fromlen;
+//	fromlen = sizeof(fromAddr);
+//
+//	memset(buf, 0, BUFLEN);
+//
+//	int bytes_received = -1;
+//	int sError = -1;
+//
+//	std::cout << "Received WORK: " << buf << std::endl;
+//
+//	std::string tmp = buf;
+//	std::size_t pos = tmp.find("@"); //creates a position to separate data
+//	tmp = tmp.substr(0, pos - 1); //Pos - 1 is tx
+//	tx = std::stof(tmp, NULL); //Convert to float
+//	tmp = buf; //Reset the temp variable 
+//	tmp = tmp.substr(pos + 1); //pos + 1 is ty
+//	ty = std::stof(tmp, NULL);
+//	//Can be done for other axes?
+//
+//	std::cout << "tx: " << tx << std::endl;
+//	std::cout << "ty: " << ty << std::endl;
+//}
 
 bool Server::IsNewUser(sockaddr_in clientAddr)
 {

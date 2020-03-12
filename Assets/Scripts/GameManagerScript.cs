@@ -39,6 +39,7 @@ public class GameManagerScript : MonoBehaviour
     private float endTime = 0.0f;
 
     public SceneManage sceneManage;
+
     // Start is called before the first frame update
     void Start()
     {

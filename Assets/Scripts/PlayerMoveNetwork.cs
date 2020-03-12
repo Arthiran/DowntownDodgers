@@ -11,7 +11,7 @@ public class PlayerMoveNetwork : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        NetworkingManager.StartServer();
+        NetworkingManager.StartClient();
         //NetworkingManager.StartClient();
     }
 
@@ -21,25 +21,25 @@ public class PlayerMoveNetwork : MonoBehaviour
         if(Input.GetKey(KeyCode.W))
         {
             player.transform.Translate(1,0,0);
-            msg = (player.transform.position.x.ToString() + "@" + player.transform.position.z.ToString());
+            msg = ("v;" + player.transform.position.x.ToString() + ";" + player.transform.position.z.ToString());
             NetworkingManager.sendCurrPos(msg);
         }
         if (Input.GetKey(KeyCode.S))
         {
             player.transform.Translate(-1, 0, 0);
-            msg = (player.transform.position.x.ToString() + "@" + player.transform.position.z.ToString());
+            msg = ("v;" + player.transform.position.x.ToString() + ";" + player.transform.position.z.ToString());
             NetworkingManager.sendCurrPos(msg);
         }
         if (Input.GetKey(KeyCode.A))
         {
             player.transform.Translate(0, 0, -1);
-            msg = (player.transform.position.x.ToString() + "@" + player.transform.position.z.ToString());
+            msg = ("v;" + player.transform.position.x.ToString() + ";" + player.transform.position.z.ToString());
             NetworkingManager.sendCurrPos(msg);
         }
         if (Input.GetKey(KeyCode.D))
         {
             player.transform.Translate(0, 0, 1);
-            msg = (player.transform.position.x.ToString() + "@" + player.transform.position.z.ToString());
+            msg = ("v;" + player.transform.position.x.ToString() + ";" + player.transform.position.z.ToString());
             NetworkingManager.sendCurrPos(msg);
         }
 
