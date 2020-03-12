@@ -134,12 +134,13 @@ public class Shooting : MonoBehaviour
         Quaternion rot = Quaternion.FromToRotation(DodgeballPrefab.transform.forward, direction);
         //Spawns an instance of the dodgeball prefab at the spawn transform
         GameObject DodgeballInstance = Instantiate(DodgeballPrefab, shootTransform.position, rot);
+        DodgeballInstance.GetComponent<DodgeballScript>().parentGameObject = GetComponentInParent<PlayerRootInfo>().gameObject;
         DodgeballInstance.GetComponent<DodgeballScript>().PlayerID = GetComponent<PlayerRootInfo>().PlayerID;
         DodgeballInstance.GetComponent<DodgeballScript>().MovementController = MovementController;
         StartCoroutine(ShootAnimation());
         //Gives dodgeball a launch force wherever the character is facing
-        DodgeballInstance.GetComponent<Rigidbody>().velocity = tempVec * dodgeballLaunchForce;
-        DodgeballInstance.GetComponent<Rigidbody>().AddForce(tempVec * dodgeballLaunchForce, ForceMode.Impulse);
+        //DodgeballInstance.GetComponent<Rigidbody>().velocity = camObj.transform.forward * dodgeballLaunchForce;
+        DodgeballInstance.GetComponent<Rigidbody>().AddForce(camObj.transform.forward * dodgeballLaunchForce, ForceMode.Impulse);
         shootDust.Play();
         BallSlots[DodgeballsInHand - 1].SetActive(false);
         DodgeballsInHand--;
