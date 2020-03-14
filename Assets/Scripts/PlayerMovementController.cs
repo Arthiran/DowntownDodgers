@@ -458,7 +458,7 @@ public class PlayerMovementController : MonoBehaviour
             }
         }
 
-        if ((Input.GetButton("Jump") || Input.GetButton(ControllerJumpString)) && stunned == false && climbWallCheck == 0)
+        if ((Input.GetButton("Jump") || Input.GetButton(ControllerJumpString)) && stunned == false && climbWallCheck == 0 && CharController.isGrounded == true)
         {
             RaycastHit hit;
             if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 1.1f, transform.position.z), transform.forward, out hit, distWall))
