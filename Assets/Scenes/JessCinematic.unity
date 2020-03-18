@@ -1966,7 +1966,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 16
+  m_Priority: 20
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 1875852991}
@@ -1993,7 +1993,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 74942712}
   m_LocalRotation: {x: -0.024183536, y: 0.71393687, z: 0.0038201492, w: 0.699782}
-  m_LocalPosition: {x: -58.324, y: 2.398, z: 76.55}
+  m_LocalPosition: {x: -76.72822, y: 6.434519, z: 76.60709}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 33094517}
@@ -3140,7 +3140,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 114536347}
   m_LocalRotation: {x: 0, y: 0.9991374, z: -0.041526876, w: 0}
-  m_LocalPosition: {x: -54.21, y: 2.475, z: 31.17}
+  m_LocalPosition: {x: -54.21649, y: 2.2080748, z: 31.639107}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1333496608}
@@ -15894,7 +15894,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 16
+  m_Priority: 20
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 1875852991}
   m_Follow: {fileID: 1875852991}
@@ -15920,8 +15920,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 590621917}
-  m_LocalRotation: {x: 0.07084871, y: 0.9158782, z: -0.18616559, w: 0.3485542}
-  m_LocalPosition: {x: -60.08, y: 3.32, z: 79.840004}
+  m_LocalRotation: {x: -0.04039535, y: 0.9595162, z: -0.20363884, w: -0.19033691}
+  m_LocalPosition: {x: -78.81256, y: 6.009223, z: 83.04238}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 601411838}
@@ -16183,12 +16183,12 @@ MonoBehaviour:
   m_VerticalDamping: 0.5
   m_ScreenX: 0.47999996
   m_ScreenY: 0.76
-  m_DeadZoneWidth: 0.08
-  m_DeadZoneHeight: 0.13
+  m_DeadZoneWidth: 0.64
+  m_DeadZoneHeight: 0.96
   m_SoftZoneWidth: 1.02
-  m_SoftZoneHeight: 0.8
+  m_SoftZoneHeight: 1
   m_BiasX: 0
-  m_BiasY: 0.00000017276709
+  m_BiasY: 0
   m_CenterOnActivate: 1
 --- !u!114 &601411841
 MonoBehaviour:
@@ -16792,7 +16792,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.01
+  near clip plane: 0.001
   far clip plane: 1000
   field of view: 36
   orthographic: 0
@@ -16819,8 +16819,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 638374693}
-  m_LocalRotation: {x: -0.008499708, y: 0.95314777, z: -0.30118695, w: -0.020708414}
-  m_LocalPosition: {x: -58.16, y: 2.01, z: 78.41}
+  m_LocalRotation: {x: 0.0734783, y: 0.9142008, z: -0.19248669, w: -0.19033691}
+  m_LocalPosition: {x: -39.87, y: 3.32, z: 78.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -29644,8 +29644,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1092705702}
-  m_LocalRotation: {x: 0.011406089, y: 0.70701486, z: -0.011406089, w: 0.7070148}
-  m_LocalPosition: {x: -58.61967, y: 2.3500001, z: 76.51}
+  m_LocalRotation: {x: 0.0123481415, y: 0.706999, z: -0.0123481415, w: 0.706999}
+  m_LocalPosition: {x: -83.08135, y: 2.3500001, z: 76.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1023502065}
@@ -30521,7 +30521,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1134206107}
-  m_LocalRotation: {x: -0.0084997015, y: 0.95314777, z: -0.30118695, w: -0.026898481}
+  m_LocalRotation: {x: -0.0073983236, y: 0.9646121, z: -0.26215973, w: -0.027222006}
   m_LocalPosition: {x: -58.16, y: 2.01, z: 78.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -31287,7 +31287,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 16
+  m_Priority: 15
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 1482290643}
   m_Follow: {fileID: 1482290643}
@@ -31313,8 +31313,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1153707134}
-  m_LocalRotation: {x: 0.048469003, y: -0.47502416, z: 0.026215842, w: 0.8782457}
-  m_LocalPosition: {x: -55.280334, y: 1.8899999, z: 74.63}
+  m_LocalRotation: {x: 0.06721698, y: -0.45599785, z: 0.03456472, w: 0.8867656}
+  m_LocalPosition: {x: -55.280792, y: 1.8899999, z: 74.629265}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2030183351}
@@ -48077,6 +48077,7 @@ GameObject:
   - component: {fileID: 1769369417}
   - component: {fileID: 1769369416}
   - component: {fileID: 1769369415}
+  - component: {fileID: 1769369418}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -48157,6 +48158,25 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1769369413}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!95 &1769369418
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1769369413}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1782084625
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48583,6 +48603,8 @@ PlayableDirector:
     value: {fileID: 638374697}
   - key: {fileID: 6501109730661890732, guid: 69daa8ad6ffe1db4ca5c68309a087ba1, type: 2}
     value: {fileID: 638374697}
+  - key: {fileID: 8007584685916582008, guid: 69daa8ad6ffe1db4ca5c68309a087ba1, type: 2}
+    value: {fileID: 1769369418}
   m_ExposedReferences:
     m_References:
     - d752b912f74b5d14b9d9c1460b5249d3: {fileID: 1153707135}
@@ -48597,6 +48619,7 @@ PlayableDirector:
     - 797d8da06ab8a6b45b8b8ba93d5fffc9: {fileID: 590621918}
     - a6b515d06d91a5d4d912d0905e297baa: {fileID: 2115701589}
     - c9727e7e8853530469aae76607a18071: {fileID: 1212711170}
+    - 6e202c39c2f439f4096d9be627c01958: {fileID: 590621918}
     - 9db012cb254951a4c99b9a52b3c716d2: {fileID: 0}
     - 922f5cdae718214438a7130324fa004a: {fileID: 74942713}
     - 18320293ee317344c854d767cee939e8: {fileID: 265505336}
