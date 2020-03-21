@@ -36364,6 +36364,31 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 35d6f39505b35f343aa3429490c565da, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5250b25232b3e4044ba9819ebf4bc928, type: 3}
+--- !u!1 &1306849855 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 5250b25232b3e4044ba9819ebf4bc928,
+    type: 3}
+  m_PrefabInstance: {fileID: 1306849854}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1306849856
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306849855}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1310886890
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41387,6 +41412,31 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 19b6bc789bcc4994a95d2f189b6949fb, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55b2fb24adadffc42981812bcaf503c9, type: 3}
+--- !u!1 &1564814979 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 55b2fb24adadffc42981812bcaf503c9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1564814978}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1564814980
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564814979}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1564845034
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48397,6 +48447,10 @@ PlayableDirector:
     value: {fileID: 1075743326}
   - key: {fileID: 924451205991432062, guid: 686eb505c3e970a4e9b0fc213b899587, type: 2}
     value: {fileID: 1075743327}
+  - key: {fileID: 615567560999451178, guid: 686eb505c3e970a4e9b0fc213b899587, type: 2}
+    value: {fileID: 1564814980}
+  - key: {fileID: 2263724485337114970, guid: 686eb505c3e970a4e9b0fc213b899587, type: 2}
+    value: {fileID: 1306849856}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &1821514032
