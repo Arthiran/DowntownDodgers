@@ -52,7 +52,7 @@ public class HealthSpawn : MonoBehaviour
         if (!healthSpawned)
         {
             timeToSpawnHealth += Time.deltaTime;
-            Debug.Log(timeToSpawnHealth);
+            //Debug.Log(timeToSpawnHealth);
         }
 
         if (Input.GetKeyDown(KeyCode.H))
