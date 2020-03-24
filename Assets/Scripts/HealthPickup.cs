@@ -11,6 +11,8 @@ public class HealthPickup : MonoBehaviour
     public float timeToPickup = 4.0f;
     private HealthSpawn healthSpawn;
     private bool isPlaying = false;
+    private FMODUnity.StudioEventEmitter[] eventEmitter;
+
 
     // Start is called before the first frame update
     void Start()
@@ -40,7 +42,7 @@ public class HealthPickup : MonoBehaviour
             {
                 if (!isPlaying)
                 {
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Bandaging", GetComponent<Transform>().position);
+                    eventEmitter[0].Play();
                     isPlaying = true;
                 }
 
