@@ -72,6 +72,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3902008109555902338, guid: 50bbc98ab97689a43a6c2ebede2afb45,
+        type: 3}
+      propertyPath: Event
+      value: event:/Bounce
+      objectReference: {fileID: 0}
+    - target: {fileID: -3902008109555902338, guid: 50bbc98ab97689a43a6c2ebede2afb45,
+        type: 3}
+      propertyPath: OverrideMinDistance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3902008109555902338, guid: 50bbc98ab97689a43a6c2ebede2afb45,
+        type: 3}
+      propertyPath: OverrideMaxDistance
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1457150040373877854, guid: 50bbc98ab97689a43a6c2ebede2afb45, type: 3}
     - {fileID: 8048425419474693442, guid: 50bbc98ab97689a43a6c2ebede2afb45, type: 3}

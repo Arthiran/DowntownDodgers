@@ -1675,7 +1675,7 @@ MonoBehaviour:
   dodgeballsText: {fileID: 0}
   camObj: {fileID: 1150266294631081421}
   shootTransform: {fileID: 8379788487433764638}
-  dodgeballLaunchForce: 20
+  dodgeballLaunchForce: 30
   fireRate: 2
   DodgeballsInHand: 0
   DodgeballCarryLimit: 3
