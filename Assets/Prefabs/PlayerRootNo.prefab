@@ -1703,7 +1703,7 @@ MonoBehaviour:
   camObj: {fileID: 1150266294631081421}
   shootTransform: {fileID: 8379788487433764638}
   dodgeballLaunchForce: 30
-  fireRate: 2
+  fireRate: 1
   DodgeballsInHand: 0
   DodgeballCarryLimit: 3
   giveQuest: {fileID: 0}
@@ -3624,7 +3624,7 @@ MonoBehaviour:
   moveSpeed: 500
   mass: 1
   damping: 5
-  climbSpeed: 4
+  climbSpeed: 6
   jumpForce: 750
   dashForce: 3000
   dashCooldown: 4
