@@ -84,6 +84,13 @@ public class GameManagerScript : MonoBehaviour
     {
         int count = seconds;
 
+        yield return new WaitForSeconds(2);
+
+        countDownText1.fontSize = 75;
+        countDownText2.fontSize = 75;
+        countDownText3.fontSize = 75;
+        countDownText4.fontSize = 75;
+
         while (count > 0)
         {
             //PlayerPrefab.GetComponent<PlayerMovementController>().enabled = false;
@@ -163,7 +170,7 @@ public class GameManagerScript : MonoBehaviour
             }
         }
 
-        if (GameObject.FindGameObjectsWithTag("Loot").Length < 27)
+        if (GameObject.FindGameObjectsWithTag("Loot").Length < 32)
         {
             SpawnNewDodgeball();
         }

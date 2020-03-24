@@ -36,14 +36,14 @@ public class HealthSpawn : MonoBehaviour
             totalHealth += allTargets[i].health;
         }
 
-        if (totalHealth <= averageNum)
+        /*if (totalHealth <= averageNum)
         {
-            if (!healthSpawned && timeToSpawnHealth >= 30.0f)
-            {
-                healthSpawned = true;
-                timeToSpawnHealth = 0.0f;
-                SpawnHealth();
-            }
+        }*/
+        if (!healthSpawned && timeToSpawnHealth >= 30.0f)
+        {
+            healthSpawned = true;
+            timeToSpawnHealth = 0.0f;
+            SpawnHealth();
         }
 
         //Reset total health checker

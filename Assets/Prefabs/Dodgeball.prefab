@@ -91,7 +91,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1880751298986934537}
-  m_Material: {fileID: 13400000, guid: 2773ee495a1924e449c665cab93d9ba3, type: 2}
+  m_Material: {fileID: 13400000, guid: 1d0cf70cf05d87446951639c1a78510e, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -109,11 +109,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dffc5842e15a224fa76f06a9afe67c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GravitationalForce: 25
+  GravitationalForce: 20
   damage: 10
   rb: {fileID: 8048425419474693442}
   PlayerID: 0
   inAir: 0
+  parentGameObject: {fileID: 0}
   MovementController: {fileID: 0}
 --- !u!54 &8048425419474693442
 Rigidbody:
@@ -129,7 +130,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 0
   m_CollisionDetection: 1
 --- !u!114 &-3424944321528377597
 MonoBehaviour:
@@ -262,7 +263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: 
+  Event: event:/Bounce
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -270,5 +271,5 @@ MonoBehaviour:
   Preload: 0
   Params: []
   OverrideAttenuation: 0
-  OverrideMinDistance: -1
-  OverrideMaxDistance: -1
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
