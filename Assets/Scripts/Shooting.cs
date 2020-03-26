@@ -22,6 +22,8 @@ public class Shooting : MonoBehaviour
     private Ray camRay;
     Vector3 tempVec = new Vector3(0, 0, 0);
 
+    public GameManagerScript gameManager;
+
     private Vector3 targetpoint;
     private int targetRange = 99999999;
 
@@ -64,7 +66,7 @@ public class Shooting : MonoBehaviour
         {
             camShootTransform = hit.transform;
         }
-        if (((Input.GetMouseButton(0) || (Input.GetAxisRaw(ControllerShootString) > 0)) && DodgeballsInHand > 0 && DodgeballsInHand <= 3 && Time.time > nextFire) && MovementController.stunned == false)
+        if (((Input.GetMouseButton(0) || (Input.GetAxisRaw(ControllerShootString) > 0)) && DodgeballsInHand > 0 && DodgeballsInHand <= 3 && Time.time > nextFire) && MovementController.stunned == false && !gameManager.isCountingDown)
         {
             nextFire = Time.time + fireRate;
             //Starts dodgeball shooting coroutine

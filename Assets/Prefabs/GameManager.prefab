@@ -45,18 +45,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NumberOfPlayers: 4
+  playerCount: 0
   PlayerPrefab: {fileID: 1150266294808196759, guid: 51b1becf417e14c488de996468cec74f,
     type: 3}
   DodgeballLootPrefab: {fileID: 1086040798761678246, guid: 8934013f0253bf6448689062ee4aba98,
     type: 3}
+  DodgeballPrefab: {fileID: 1880751298986934537, guid: 50bbc98ab97689a43a6c2ebede2afb45,
+    type: 3}
+  rainingballsBounds: {fileID: 0}
   timerText1: {fileID: 0}
   timerText2: {fileID: 0}
   timerText3: {fileID: 0}
   timerText4: {fileID: 0}
+  isCountingDown: 1
   countDownText1: {fileID: 0}
   countDownText2: {fileID: 0}
   countDownText3: {fileID: 0}
   countDownText4: {fileID: 0}
+  timerCircle1: {fileID: 0}
+  timerCircle2: {fileID: 0}
+  timerCircle3: {fileID: 0}
+  timerCircle4: {fileID: 0}
   seconds: 0
   minutes: 0
   gameStart: 0

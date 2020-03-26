@@ -22,11 +22,14 @@ public class PlayerMovementController : MonoBehaviour
     public Text interactText;
     public Text HealthNumText;
     public Text RespawningText;
+    public Text WinnerText;
     private Shooting shootingScript;
+    public CameraScript camScript;
     private GameObject DodgeballInstance;
     private Target PlayerHealth;
     private GameObject[] SpawnPointList;
     private FMODUnity.StudioEventEmitter[] eventEmitter;
+    public BoxCollider boxTrigger;
 
     public GameManagerScript gameManager;
 
@@ -94,6 +97,7 @@ public class PlayerMovementController : MonoBehaviour
     private int movementSoundCounter = 0;
     public int tempRandomNum;
     public int PlayerID;
+    private bool isDead = false;
 
     public float forwardMovement;
     public float horizontalMovement;
@@ -425,6 +429,11 @@ public class PlayerMovementController : MonoBehaviour
                 }
             }
         }
+
+        if(gameManager.playerCount == 1 && !isDead)
+        {
+            WinnerText.gameObject.SetActive(true);
+        }
     }
 
     //Resets all forces
@@ -597,18 +606,22 @@ public class PlayerMovementController : MonoBehaviour
 
     public IEnumerator Respawn()
     {
+        isDead = true;
         isRespawning = true;
-        RespawningText.color = new Color(RespawningText.color.r, RespawningText.color.g, RespawningText.color.b, 1f);
+        //RespawningText.color = new Color(RespawningText.color.r, RespawningText.color.g, RespawningText.color.b, 1f);
         tempRandomNum = Random.Range(0, SpawnPointList.Length - 1);
-        gameObject.GetComponent<CharacterController>().enabled = false;
         shootingScript.DodgeballsInHand = 0;
         yield return new WaitForSeconds(1);
         despawnVal = 0.0f;
         spawnVal = 0.0f;
         isDissolved = true;
         gameObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
+        camScript.enabled = false;
+        CharController.enabled = false;
+        boxTrigger.enabled = false;
+        gameManager.playerCount--;
         //yield return new WaitForSeconds(2);
-        transform.position = SpawnPointList[tempRandomNum].transform.position;
+        /*transform.position = SpawnPointList[tempRandomNum].transform.position;
         transform.eulerAngles = SpawnPointList[tempRandomNum].transform.eulerAngles;
         isRespawning = false;
         isDissolved = false;
@@ -624,7 +637,7 @@ public class PlayerMovementController : MonoBehaviour
         yield return new WaitForSeconds(1);
         isSpawning = false;
         gameObject.GetComponent<CharacterController>().enabled = true;
-        stunned = false;
+        stunned = false;*/
     }
 
     public IEnumerator Hitmarker()

@@ -10,21 +10,27 @@ public class GameManagerScript : MonoBehaviour
     private GameObject PlayerInstance;
     [Range(1,4)]
     public int NumberOfPlayers = 1;
+    [HideInInspector]
+    public int playerCount = 4;
     public GameObject PlayerPrefab;
     private GameObject[] LootSpawnList;
     //private GameObject[] PlayerList;
 
     public GameObject DodgeballLootPrefab;
+    public GameObject DodgeballPrefab;
+    public BoxCollider rainingballsBounds;
 
     private int LootRandomNum = 0;
 
-    private float gameTime = 180.0f;
+    private float gameTime = 90.0f;
 
     public Text timerText1;
     public Text timerText2;
     public Text timerText3;
     public Text timerText4;
 
+    [HideInInspector]
+    public bool isCountingDown = true;
     public Text countDownText1;
     public Text countDownText2;
     public Text countDownText3;
@@ -78,10 +84,12 @@ public class GameManagerScript : MonoBehaviour
         timerCircle2 = timerCircle2.GetComponent<Image>();
         timerCircle3 = timerCircle3.GetComponent<Image>();
         timerCircle4 = timerCircle4.GetComponent<Image>();
+        playerCount = FindObjectsOfType<PlayerRootInfo>().Length;
     }
 
     IEnumerator Countdown(int seconds)
     {
+        isCountingDown = true;
         int count = seconds;
 
         yield return new WaitForSeconds(2);
@@ -118,17 +126,18 @@ public class GameManagerScript : MonoBehaviour
                 countDownText4.enabled = false;
             }
         }
+        isCountingDown = false;
     }
 
     private void Update()
     {
-		//For quitting to menu
-		if (Input.GetKeyDown(KeyCode.M))
+        //For quitting to menu
+        if (Input.GetKeyDown(KeyCode.M))
 		{
 			sceneManage.GoToFirstScene();
 		}
 
-        if (gameStart)
+        if (gameStart && playerCount == 2)
         {
             //Update game time
             gameTime -= Time.deltaTime;
@@ -137,10 +146,10 @@ public class GameManagerScript : MonoBehaviour
             minutes = (int)(gameTime / 60f);
             seconds = (int)(gameTime % 60f);
 
-            timerCircle1.fillAmount -= Time.deltaTime / 180.0f; 
-            timerCircle2.fillAmount -= Time.deltaTime / 180.0f; 
-            timerCircle3.fillAmount -= Time.deltaTime / 180.0f; 
-            timerCircle4.fillAmount -= Time.deltaTime / 180.0f; 
+            timerCircle1.fillAmount -= Time.deltaTime / 90.0f; 
+            timerCircle2.fillAmount -= Time.deltaTime / 90.0f; 
+            timerCircle3.fillAmount -= Time.deltaTime / 90.0f; 
+            timerCircle4.fillAmount -= Time.deltaTime / 90.0f; 
 
             if (!gameOver)
             {
@@ -156,18 +165,23 @@ public class GameManagerScript : MonoBehaviour
             {
                 //timerText1.text = "00" + ":" + "00";
                 //timerText2.text = "00" + ":" + "00";
-
+                RainingBalls();
                 if (!gameOver)
                 {
                     endTime = gameTime;
                     gameOver = true;
                 }
 
-                if (gameTime < endTime - 3.0f)
+                /*if (gameTime < endTime - 3.0f)
                 {
                     sceneManage.GoToFirstScene();
-                }
+                }*/
             }
+        }
+
+        if (playerCount <= 1)
+        {
+            StartCoroutine(GoToMenu());
         }
 
         if (GameObject.FindGameObjectsWithTag("Loot").Length < 32)
@@ -176,12 +190,26 @@ public class GameManagerScript : MonoBehaviour
         }
     }
 
+    private IEnumerator GoToMenu()
+    {
+        yield return new WaitForSeconds(3.0f);
+        sceneManage.GoToFirstScene();
+    }
+
     private void SpawnNewDodgeball()
     {
         LootRandomNum = Random.Range(0, LootSpawnList.Length);
         if (LootSpawnList[LootRandomNum].GetComponent<LootSpawnManager>().hasDodgeball == false)
         {
             GameObject DodgeballLootInstance = Instantiate(DodgeballLootPrefab, RandomPointInBounds(LootSpawnList[LootRandomNum].GetComponent<BoxCollider>().bounds), Quaternion.identity);
+        }
+    }
+
+    private void RainingBalls()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            Instantiate(DodgeballPrefab, RandomPointInBounds(rainingballsBounds.bounds), Quaternion.identity);
         }
     }
 

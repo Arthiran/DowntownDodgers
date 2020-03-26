@@ -212,7 +212,10 @@ public class Target : MonoBehaviour {
             if (dodgeballScript.inAir == true)
             {
                 TakeDamage(dodgeballScript.damage);
-                dodgeballScript.MovementController.StartCoroutine(dodgeballScript.MovementController.Hitmarker());
+                if (dodgeballScript.MovementController != null)
+                {
+                    dodgeballScript.MovementController.StartCoroutine(dodgeballScript.MovementController.Hitmarker());
+                }
                 Destroy(collision.gameObject);
 
             }
@@ -222,13 +225,13 @@ public class Target : MonoBehaviour {
     //Destroys game object
     public void Die()
     {
-
         if (gameObject.tag == "Player")
         {
             if (MovementController != null)
             {
+                //Destroy(MovementController.GetComponentInParent<PlayerRootInfo>().gameObject);
                 MovementController.StartCoroutine(MovementController.Respawn());
-                health = originalHealth;
+                //health = originalHealth;
             }
         }
         else
