@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1526980366}
-  m_IndirectSpecularColor: {r: 0.43438926, g: 0.28181434, b: 0.2906566, a: 1}
+  m_IndirectSpecularColor: {r: 0.45835924, g: 0.29656985, b: 0.30485967, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6568,17 +6568,17 @@ PrefabInstance:
         type: 3}
       propertyPath: BallSlots.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 218281261}
     - target: {fileID: 997062673534216075, guid: 51b1becf417e14c488de996468cec74f,
         type: 3}
       propertyPath: BallSlots.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 218281260}
     - target: {fileID: 997062673534216075, guid: 51b1becf417e14c488de996468cec74f,
         type: 3}
       propertyPath: BallSlots.Array.data[2]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 218281259}
     - target: {fileID: 997062673534216075, guid: 51b1becf417e14c488de996468cec74f,
         type: 3}
       propertyPath: gameManager
@@ -6890,6 +6890,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51b1becf417e14c488de996468cec74f, type: 3}
+--- !u!1 &218281259 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4178333928731378056, guid: 51b1becf417e14c488de996468cec74f,
+    type: 3}
+  m_PrefabInstance: {fileID: 218281258}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &218281260 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2192645463325199023, guid: 51b1becf417e14c488de996468cec74f,
+    type: 3}
+  m_PrefabInstance: {fileID: 218281258}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &218281261 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1969687068200376051, guid: 51b1becf417e14c488de996468cec74f,
+    type: 3}
+  m_PrefabInstance: {fileID: 218281258}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &220890688
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12691,7 +12709,7 @@ Light:
   m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1, y: 1, z: 1, w: 1}
+  m_BoundingSphereOverride: {x: 0, y: 0.1484375, z: 0.02734375, w: -0.0390625}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -13653,9 +13671,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 997062673534216075, guid: 51b1becf417e14c488de996468cec74f,
         type: 3}
+      propertyPath: BallSlots.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 997062673534216075, guid: 51b1becf417e14c488de996468cec74f,
+        type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1991412648}
+    - target: {fileID: 997062673534216075, guid: 51b1becf417e14c488de996468cec74f,
+        type: 3}
+      propertyPath: BallSlots.Array.data[0]
+      value: 
+      objectReference: {fileID: 455977668}
+    - target: {fileID: 997062673534216075, guid: 51b1becf417e14c488de996468cec74f,
+        type: 3}
+      propertyPath: BallSlots.Array.data[1]
+      value: 
+      objectReference: {fileID: 455977667}
+    - target: {fileID: 997062673534216075, guid: 51b1becf417e14c488de996468cec74f,
+        type: 3}
+      propertyPath: BallSlots.Array.data[2]
+      value: 
+      objectReference: {fileID: 455977666}
     - target: {fileID: 6066163026988717062, guid: 51b1becf417e14c488de996468cec74f,
         type: 3}
       propertyPath: PlayerID
@@ -13970,6 +14008,11 @@ PrefabInstance:
       propertyPath: m_Size.z
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 7488675104956816503, guid: 51b1becf417e14c488de996468cec74f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 560529476195806175, guid: 51b1becf417e14c488de996468cec74f,
         type: 3}
       propertyPath: m_IsActive
@@ -13987,6 +14030,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51b1becf417e14c488de996468cec74f, type: 3}
+--- !u!1 &455977666 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2175427301526037327, guid: 51b1becf417e14c488de996468cec74f,
+    type: 3}
+  m_PrefabInstance: {fileID: 455977665}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &455977667 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6404786244790877638, guid: 51b1becf417e14c488de996468cec74f,
+    type: 3}
+  m_PrefabInstance: {fileID: 455977665}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &455977668 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1017452983146920336, guid: 51b1becf417e14c488de996468cec74f,
+    type: 3}
+  m_PrefabInstance: {fileID: 455977665}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &456487983
 GameObject:
   m_ObjectHideFlags: 0
@@ -23737,7 +23798,7 @@ Light:
   m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 7.19e-43, y: 5.6019054e+29, z: 7.19e-43, w: 0}
+  m_BoundingSphereOverride: {x: 6, y: 6, z: -9, w: 6}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -28570,7 +28631,7 @@ Light:
   m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.0637e-41, y: 6e-44, z: 7.19e-43, w: 0}
+  m_BoundingSphereOverride: {x: 0.05078125, y: 0.2734375, z: 0.03125, w: -0.0390625}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -31184,7 +31245,7 @@ Light:
   m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 7.19e-43, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 7, y: 7, z: -8, w: 6}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -38599,7 +38660,7 @@ Light:
   m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 7.499209e+29}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -38868,17 +38929,17 @@ PrefabInstance:
         type: 3}
       propertyPath: BallSlots.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1295974417}
     - target: {fileID: 997062673534216075, guid: 51b1becf417e14c488de996468cec74f,
         type: 3}
       propertyPath: BallSlots.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1295974416}
     - target: {fileID: 997062673534216075, guid: 51b1becf417e14c488de996468cec74f,
         type: 3}
       propertyPath: BallSlots.Array.data[2]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1295974415}
     - target: {fileID: 997062673534216075, guid: 51b1becf417e14c488de996468cec74f,
         type: 3}
       propertyPath: gameManager
@@ -39175,6 +39236,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51b1becf417e14c488de996468cec74f, type: 3}
+--- !u!1 &1295974415 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8524673039902221802, guid: 51b1becf417e14c488de996468cec74f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1295974414}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1295974416 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6920636849743929430, guid: 51b1becf417e14c488de996468cec74f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1295974414}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1295974417 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3414954990056971460, guid: 51b1becf417e14c488de996468cec74f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1295974414}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1297824007
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43794,7 +43873,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.7186e-41, y: 6e-44, z: 0, w: 3e-45}
+  m_BoundingSphereOverride: {x: 0, y: 8.3e-43, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -51174,7 +51253,7 @@ Light:
   m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 7.19e-43, y: 1.32e-43, z: 0, w: NaN}
+  m_BoundingSphereOverride: {x: 7.423e-42, y: 6e-44, z: 7.19e-43, w: NaN}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -58107,17 +58186,17 @@ PrefabInstance:
         type: 3}
       propertyPath: BallSlots.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1994398850}
     - target: {fileID: 997062673534216075, guid: 51b1becf417e14c488de996468cec74f,
         type: 3}
       propertyPath: BallSlots.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1994398849}
     - target: {fileID: 997062673534216075, guid: 51b1becf417e14c488de996468cec74f,
         type: 3}
       propertyPath: BallSlots.Array.data[2]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1994398848}
     - target: {fileID: 997062673534216075, guid: 51b1becf417e14c488de996468cec74f,
         type: 3}
       propertyPath: gameManager
@@ -58434,6 +58513,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51b1becf417e14c488de996468cec74f, type: 3}
+--- !u!1 &1994398848 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9065815736543585220, guid: 51b1becf417e14c488de996468cec74f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1994398847}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1994398849 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 747701141064022074, guid: 51b1becf417e14c488de996468cec74f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1994398847}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1994398850 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7414251678598408045, guid: 51b1becf417e14c488de996468cec74f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1994398847}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1999267482
 PrefabInstance:
   m_ObjectHideFlags: 0
