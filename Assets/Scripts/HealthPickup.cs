@@ -12,6 +12,14 @@ public class HealthPickup : MonoBehaviour
     private HealthSpawn healthSpawn;
     private bool isPlaying = false;
     private FMODUnity.StudioEventEmitter[] eventEmitter;
+    [FMODUnity.EventRef] private string FmodBandaging = "event:/Bandaging";
+    [FMODUnity.EventRef] private string FmodHeal = "event:/Heal";
+    
+
+
+    
+
+
 
 
     // Start is called before the first frame update
@@ -42,8 +50,11 @@ public class HealthPickup : MonoBehaviour
             {
                 if (!isPlaying)
                 {
-                    eventEmitter[0].Play();
+                    
                     isPlaying = true;
+                    FMODUnity.RuntimeManager.PlayOneShot(FmodBandaging, transform.position);
+                    //eventEmitter[3].Play();
+
                 }
 
                 pickupTimer += Time.deltaTime;
@@ -53,8 +64,13 @@ public class HealthPickup : MonoBehaviour
                 if (pickupTimer >= timeToPickup)
                 {
                     Debug.Log("Heel'd");
+                    FMODUnity.RuntimeManager.PlayOneShot(FmodHeal, transform.position);
                     isPlaying = false;
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Heal", GetComponent<Transform>().position);
+
+                    // eventEmitter[4].Play();
+
+
+
 
                     if (gameObject.GetComponent<Target>().health < 30.0f)
                     {
