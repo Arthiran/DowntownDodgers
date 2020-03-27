@@ -93,7 +93,7 @@ public class HealthPickup : MonoBehaviour
                     Debug.Log("Heel'd");
                     FMODUnity.RuntimeManager.PlayOneShot(FmodHeal, transform.position);
                     isPlaying = false;
-
+                    interact.enabled = false;
                     // eventEmitter[4].Play();
 
 
