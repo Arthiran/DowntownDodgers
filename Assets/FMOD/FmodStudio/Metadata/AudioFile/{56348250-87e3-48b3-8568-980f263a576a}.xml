@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{56348250-87e3-48b3-8568-980f263a576a}">
+		<property name="assetPath">
+			<value>music_zapsplat_funky_walk.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>203.328</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{47291d30-6015-410f-9431-8270cac847a7}</destination>
+		</relationship>
+	</object>
+</objects>
