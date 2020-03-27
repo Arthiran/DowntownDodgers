@@ -85,6 +85,11 @@ public class GameManagerScript : MonoBehaviour
         timerCircle3 = timerCircle3.GetComponent<Image>();
         timerCircle4 = timerCircle4.GetComponent<Image>();
         playerCount = FindObjectsOfType<PlayerRootInfo>().Length;
+
+        timerCircle1.enabled = false;
+        timerCircle2.enabled = false;
+        timerCircle3.enabled = false;
+        timerCircle4.enabled = false;
     }
 
     IEnumerator Countdown(int seconds)
@@ -139,6 +144,11 @@ public class GameManagerScript : MonoBehaviour
 
         if (gameStart && playerCount == 2)
         {
+            timerCircle1.enabled = true;
+            timerCircle2.enabled = true;
+            timerCircle3.enabled = true;
+            timerCircle4.enabled = true;
+
             //Update game time
             gameTime -= Time.deltaTime;
 
