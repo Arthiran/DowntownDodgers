@@ -3635,7 +3635,8 @@ MonoBehaviour:
   moveSpeed: 500
   mass: 1
   damping: 5
-  climbSpeed: 10
+  edgeUpForce: 25
+  climbSpeed: 8
   jumpForce: 750
   dashForce: 3000
   dashCooldown: 4
