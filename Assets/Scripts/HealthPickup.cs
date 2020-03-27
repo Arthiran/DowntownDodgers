@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class HealthPickup : MonoBehaviour
@@ -13,10 +14,33 @@ public class HealthPickup : MonoBehaviour
     private bool isPlaying = false;
     private FMODUnity.StudioEventEmitter[] eventEmitter;
 
+    private int PlayerID;
+    private string ControllerInteractString;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        PlayerID = GetComponentInParent<PlayerRootInfo>().PlayerID;
+
+        if (SceneManager.GetActiveScene().name != "LevelEditorScene")
+        {
+            if (SceneManager.GetActiveScene().name == "Tutorial")
+            {
+                //Set Controller Strings
+                ControllerInteractString = "ControllerInteract1";
+            }
+            else
+            {
+                //Set Controller Strings
+                ControllerInteractString = "ControllerInteract" + PlayerID.ToString();
+            }
+        }
+        else
+        {
+            //Set Controller Strings
+            ControllerInteractString = "ControllerInteract1";
+        }
         pickupTimer = 0.0f;
 
         reticle = reticle.GetComponent<Image>();
@@ -27,7 +51,7 @@ public class HealthPickup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.E))
+        if (Input.GetKeyUp(KeyCode.E) || Input.GetButtonUp(ControllerInteractString))
         {
             pickupTimer = 0.0f;
             reticle.fillAmount = 0.0f;
@@ -38,7 +62,7 @@ public class HealthPickup : MonoBehaviour
     {
         if (other.tag == "Health")
         {
-            if (Input.GetKey(KeyCode.E))
+            if (Input.GetKey(KeyCode.E) || Input.GetButton(ControllerInteractString))
             {
                 if (!isPlaying)
                 {
