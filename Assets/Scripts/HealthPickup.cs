@@ -42,7 +42,7 @@ public class HealthPickup : MonoBehaviour
             {
                 if (!isPlaying)
                 {
-                    eventEmitter[0].Play();
+                    //eventEmitter[0].Play();
                     isPlaying = true;
                 }
 
