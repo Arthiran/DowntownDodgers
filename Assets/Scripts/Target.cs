@@ -78,7 +78,7 @@ public class Target : MonoBehaviour {
                 //RumbleOnHit(0);
                 MovementController.PlayerAnimator.SetBool("Stunned", true);
                 StartCoroutine(MovementController.HitStun());
-                controllerID = 1;
+                controllerID = 0;
                 vignette.canvasRenderer.SetAlpha(1.0f);
                 vignette.enabled = true;
                 var temp = vignette.color;
@@ -97,7 +97,7 @@ public class Target : MonoBehaviour {
                 //if (vibrate)
                 //RumbleOnHit(1);
                 StartCoroutine(MovementController.HitStun());
-                controllerID = 0;
+                controllerID = 1;
                 vignette.canvasRenderer.SetAlpha(1.0f);
                 vignette.enabled = true;
                 var temp = vignette.color;
@@ -116,7 +116,7 @@ public class Target : MonoBehaviour {
                 //if (vibrate)
                 //RumbleOnHit(1);
                 StartCoroutine(MovementController.HitStun());
-                controllerID = 0;
+                controllerID = 2;
                 vignette.canvasRenderer.SetAlpha(1.0f);
                 vignette.enabled = true;
                 var temp = vignette.color;
@@ -135,7 +135,7 @@ public class Target : MonoBehaviour {
                 //if (vibrate)
                 //RumbleOnHit(1);
                 StartCoroutine(MovementController.HitStun());
-                controllerID = 0;
+                controllerID = 3;
                 vignette.canvasRenderer.SetAlpha(1.0f);
                 vignette.enabled = true;
                 var temp = vignette.color;
