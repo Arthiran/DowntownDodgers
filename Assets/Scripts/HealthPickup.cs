@@ -9,6 +9,7 @@ public class HealthPickup : MonoBehaviour
     //Global Variables
     private float pickupTimer;
     public Image reticle;
+    public Text interact;
     public float timeToPickup = 4.0f;
     private HealthSpawn healthSpawn;
     private bool isPlaying = false;
@@ -44,6 +45,7 @@ public class HealthPickup : MonoBehaviour
         pickupTimer = 0.0f;
 
         reticle = reticle.GetComponent<Image>();
+        interact = interact.GetComponent<Text>();
 
         healthSpawn = GameObject.FindObjectOfType<HealthSpawn>();
     }
@@ -62,6 +64,7 @@ public class HealthPickup : MonoBehaviour
     {
         if (other.tag == "Health")
         {
+            interact.enabled = true;
             if (Input.GetKey(KeyCode.E) || Input.GetButton(ControllerInteractString))
             {
                 if (!isPlaying)
@@ -112,6 +115,7 @@ public class HealthPickup : MonoBehaviour
         //Reset pickup action
         if (other.tag == "Health")
         {
+            interact.enabled = false;
             reticle.fillAmount = 0.0f;
             pickupTimer = 0.0f;
         }
