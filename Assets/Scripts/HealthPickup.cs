@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class HealthPickup : MonoBehaviour
@@ -8,6 +9,7 @@ public class HealthPickup : MonoBehaviour
     //Global Variables
     private float pickupTimer;
     public Image reticle;
+    public Text interact;
     public float timeToPickup = 4.0f;
     private HealthSpawn healthSpawn;
     private bool isPlaying = false;
@@ -21,13 +23,37 @@ public class HealthPickup : MonoBehaviour
 
 
 
+    private int PlayerID;
+    private string ControllerInteractString;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        PlayerID = GetComponentInParent<PlayerRootInfo>().PlayerID;
+
+        if (SceneManager.GetActiveScene().name != "LevelEditorScene")
+        {
+            if (SceneManager.GetActiveScene().name == "Tutorial")
+            {
+                //Set Controller Strings
+                ControllerInteractString = "ControllerInteract1";
+            }
+            else
+            {
+                //Set Controller Strings
+                ControllerInteractString = "ControllerInteract" + PlayerID.ToString();
+            }
+        }
+        else
+        {
+            //Set Controller Strings
+            ControllerInteractString = "ControllerInteract1";
+        }
         pickupTimer = 0.0f;
 
         reticle = reticle.GetComponent<Image>();
+        interact = interact.GetComponent<Text>();
 
         healthSpawn = GameObject.FindObjectOfType<HealthSpawn>();
     }
@@ -35,7 +61,7 @@ public class HealthPickup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.E))
+        if (Input.GetKeyUp(KeyCode.E) || Input.GetButtonUp(ControllerInteractString))
         {
             pickupTimer = 0.0f;
             reticle.fillAmount = 0.0f;
@@ -46,7 +72,8 @@ public class HealthPickup : MonoBehaviour
     {
         if (other.tag == "Health")
         {
-            if (Input.GetKey(KeyCode.E))
+            interact.enabled = true;
+            if (Input.GetKey(KeyCode.E) || Input.GetButton(ControllerInteractString))
             {
                 if (!isPlaying)
                 {
@@ -104,6 +131,7 @@ public class HealthPickup : MonoBehaviour
         //Reset pickup action
         if (other.tag == "Health")
         {
+            interact.enabled = false;
             reticle.fillAmount = 0.0f;
             pickupTimer = 0.0f;
         }

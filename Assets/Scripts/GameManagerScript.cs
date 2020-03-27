@@ -136,6 +136,7 @@ public class GameManagerScript : MonoBehaviour
 
     private void Update()
     {
+        playerCount = FindObjectsOfType<PlayerMovementController>().Length;
         //For quitting to menu
         if (Input.GetKeyDown(KeyCode.M))
 		{

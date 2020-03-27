@@ -619,7 +619,8 @@ public class PlayerMovementController : MonoBehaviour
         camScript.enabled = false;
         CharController.enabled = false;
         boxTrigger.enabled = false;
-        gameManager.playerCount--;
+        shootingScript.enabled = false;
+        Destroy(gameObject);
         //yield return new WaitForSeconds(2);
         /*transform.position = SpawnPointList[tempRandomNum].transform.position;
         transform.eulerAngles = SpawnPointList[tempRandomNum].transform.eulerAngles;
