@@ -113,6 +113,7 @@ public class PlayerMovementController : MonoBehaviour
     private string ControllerBackwardDashString;
     private string ControllerLoadString;
     private string ControllerInteractString;
+    private string ControllerExitString;
 
     private void Start()
     {
@@ -151,6 +152,7 @@ public class PlayerMovementController : MonoBehaviour
                 ControllerBackwardDashString = "ControllerBackwardDash1";
                 ControllerLoadString = "ControllerLoad1";
                 ControllerInteractString = "ControllerInteract1";
+                ControllerExitString = "ControllerExit1";
                 SpawnPointList = GameObject.FindGameObjectsWithTag("PlayerSpawn");
             }
             else
@@ -163,6 +165,7 @@ public class PlayerMovementController : MonoBehaviour
                 ControllerBackwardDashString = "ControllerBackwardDash" + PlayerID.ToString();
                 ControllerLoadString = "ControllerLoad" + PlayerID.ToString();
                 ControllerInteractString = "ControllerInteract" + PlayerID.ToString();
+                ControllerExitString = "ControllerExit" + PlayerID.ToString();
                 SpawnPointList = GameObject.FindGameObjectsWithTag("PlayerSpawn");
             }
         }
@@ -176,6 +179,7 @@ public class PlayerMovementController : MonoBehaviour
             ControllerBackwardDashString = "ControllerBackwardDash1";
             ControllerLoadString = "ControllerLoad1";
             ControllerInteractString = "ControllerInteract1";
+            ControllerExitString = "ControllerExit1";
             SpawnPointList = GameObject.FindGameObjectsWithTag("PlayerSpawn");
         }
         //Set Components to Variables at Start of Script
@@ -221,6 +225,11 @@ public class PlayerMovementController : MonoBehaviour
         if (gameManager.gameStart == false)
         {
             gameObject.GetComponent<CharacterController>().enabled = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown(ControllerExitString))
+        {
+            SceneManager.LoadScene("MenuScene");
         }
 
         //Change amterial so things can be transparent :/
