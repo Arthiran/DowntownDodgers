@@ -188,6 +188,25 @@ public class GameManagerScript : MonoBehaviour
                     sceneManage.GoToFirstScene();
                 }*/
             }
+
+
+            //End Conditions
+            if (gameTime <= 0.0f)
+            {
+                //timerText1.text = "00" + ":" + "00";
+                //timerText2.text = "00" + ":" + "00";
+
+                if (!gameOver)
+                {
+                    endTime = gameTime;
+                    gameOver = true;
+                }
+
+                if (gameTime < endTime - 3.0f)
+                {
+                    sceneManage.GoToFirstScene();
+                }
+            }
         }
 
         if (playerCount <= 1)
