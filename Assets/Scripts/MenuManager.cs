@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -8,18 +9,25 @@ public class MenuManager : MonoBehaviour
 {
     public Image instructions;
     public Button yaReady;
+    public Button FirstBtn;
+    public EventSystem es;
 
     // Start is called before the first frame update
     void Start()
     {
         instructions = instructions.GetComponent<Image>();
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        es.SetSelectedGameObject(null);
+        es.SetSelectedGameObject(FirstBtn.gameObject);
     }
 
     public void LoadLevel(string levelName)
     {
         SceneManager.LoadScene(levelName);
+    }
+
+    public void PlaySelected()
+    {
+        es.SetSelectedGameObject(yaReady.gameObject);
     }
 
     public void DisplayInstructions()
