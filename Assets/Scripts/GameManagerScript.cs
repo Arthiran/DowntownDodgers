@@ -202,10 +202,10 @@ public class GameManagerScript : MonoBehaviour
                     gameOver = true;
                 }
 
-                if (gameTime < endTime - 3.0f)
+                /*if (gameTime < endTime - 3.0f)
                 {
                     sceneManage.GoToFirstScene();
-                }
+                }*/
             }
         }
 
