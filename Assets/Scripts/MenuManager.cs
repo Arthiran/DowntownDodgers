@@ -8,8 +8,11 @@ using UnityEngine.UI;
 public class MenuManager : MonoBehaviour
 {
     public Image instructions;
+    public Image credits;
     public GameObject selectedObject;
     public Button yaReady;
+    public Button back;
+    public Button backPlay;
     public GameObject FirstBtn;
     private GameObject previousBtn;
     public EventSystem es;
@@ -51,9 +54,35 @@ public class MenuManager : MonoBehaviour
     {
         instructions.enabled = true;
         yaReady.image.enabled = true;
+        backPlay.image.enabled = true;
     }
 
-	public void QuitGame()
+    public void DisplayCredits()
+    {
+        credits.enabled = true;
+        back.image.enabled = true;
+
+        es.SetSelectedGameObject(back.gameObject);
+    }
+
+    public void HideCredits()
+    {
+        credits.enabled = false;
+        back.image.enabled = false;
+
+        es.SetSelectedGameObject(FirstBtn.gameObject);
+    }
+
+    public void HideInstructions()
+    {
+        instructions.enabled = false;
+        backPlay.image.enabled = false;
+        yaReady.image.enabled = false;
+
+        es.SetSelectedGameObject(FirstBtn.gameObject);
+    }
+
+    public void QuitGame()
 	{
 		Debug.Log("Quit");
 		Application.Quit();
